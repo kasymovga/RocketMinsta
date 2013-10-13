@@ -15,6 +15,21 @@ BUILT_PKGNAMES=""
 COMMONSUM=""
 MENUSUM=""
 
+function checkdir
+{
+    local dir="$(readlink -f "${1}")"
+    if [[ -d "${dir}" ]]; then
+        if [[ -x "${dir}" && -w "${dir}" ]]; then
+            return 0
+        else
+            error "\"${NEXDATA}/\" has wrong permissions."
+        fi
+    else
+        echo " -- Creating \"${NEXDATA}/\".."
+        mkdir -p "${NEXDATA}/" || error "Could not create directory \"${NEXDATA}/\" in \"${NEXDATA%/*}/\"."
+    fi
+}
+
 function buildall
 {
     # $1 = suffix
@@ -298,9 +313,9 @@ function listcustom
 
 function finalize-install
 {
-    cp -v "rocketminsta.cfg" "$NEXDATA"
-    cp -v "rocketminsta-gameplay.cfg" "$NEXDATA"
-    cp -v "rocketminsta-compat.cfg" "$NEXDATA"
+    cp -v "rocketminsta.cfg" "$NEXDATA/"
+    cp -v "rocketminsta-gameplay.cfg" "$NEXDATA/"
+    cp -v "rocketminsta-compat.cfg" "$NEXDATA/"
 
     cat <<EOF >>"$NEXDATA"/rocketminsta.cfg
 rm_clearpkgs
@@ -428,6 +443,7 @@ if [ "$1" = "release" ]; then
     SVPROGS="$NEXDATA/$(echo "$SVPROGS" | sed -e 's@.*/@@g')"
     CSPROGS="$NEXDATA/$(echo "$CSPROGS" | sed -e 's@.*/@@g')"
 
+    checkdir "${NEXDATA}/"
     makedata-all "$RELEASE_REALSUFFIX" "$RELEASE_DESCRIPTION"
     buildall "$RELEASE_REALSUFFIX" "$RELEASE_DESCRIPTION"
     finalize-install    
@@ -507,6 +523,7 @@ RELEASE_RMCUSTOM=1
 PREFIX="-$BRANCH"
 [ $PREFIX = "-master" ] && PREFIX=""
 
+checkdir "${NEXDATA}/"
 makedata-all "$PREFIX" "git build"
 buildall "$PREFIX" "git build"
 finalize-install
