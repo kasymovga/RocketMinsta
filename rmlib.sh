@@ -98,7 +98,7 @@ function warning
 
 function warn-oldconfig
 {
-    warning "your $1 is OUTDATED! It does not contain option $2, using the default value of $3! Please refer to EXAMPLE_$1 and fix this!"
+    warning "your $1 is OUTDATED! It does not contain option '$2', using the default value of '$3'! Please refer to EXAMPLE_$1 and fix this!"
 }
 
 PERLGREP=""
