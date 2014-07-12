@@ -1000,6 +1000,35 @@ void Heal(entity targ, entity inflictor, entity healer, float heal, float pauser
     }
 }
 
+void AngelHeal(entity targ, entity healer) {    
+    if(g_clanarena) {
+        return;
+    }
+    float heal = cvar("g_buffs_angel_heal");
+    float healmax = cvar("g_buffs_angel_healmax");
+    float healhp = max(0, min(heal, healmax - targ.health) );
+    float healarm = max(0, min(heal, healmax - targ.armorvalue) );
+    float pauserot = cvar ("g_buffs_angel_pauserot");
+    
+    targ.health += healhp;
+    targ.armorvalue += healarm;
+
+    targ.pauserothealth_finished = max(targ.pauserothealth_finished, time + pauserot);
+    targ.pauserotarmor_finished = max(targ.pauserotarmor_finished, time + pauserot);
+    
+    if(time > targ.heal_next_particle) {
+        te_heal(targ);
+        targ.heal_next_particle = time + 0.2;
+    }
+    
+    if(healhp) {
+        VisualDamage(healer, targ, heal, 0, VDMG_TYPE_HEAL);
+        HealScore(targ, healer, heal);
+        sound(targ, CHAN_TRIGGER, "misc/mediumhealth.wav", VOL_BASE, ATTN_NORM);
+        //centerprint(targ, strcat("^2+", ftos(heal)));
+    }
+}
+
 // these are updated by each Damage call for use in button triggering and such
 entity damage_targ;
 entity damage_inflictor;
