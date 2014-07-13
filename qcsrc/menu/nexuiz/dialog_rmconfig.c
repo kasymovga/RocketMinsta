@@ -85,19 +85,24 @@ void fillNexuizRMConfigDialog(entity me)
 		me.TD(me, 1, 4, e = makeRMCheckBox(0, "oldhud", "Use default Nexuiz HUD"));
 	me.TR(me);
 		me.TD(me, 1, 4, e = makeRMCheckBox(0, "althud", "Use an alternative HUD layout"));
-		setDependent(e, "rm_oldhud", 0, 0);
+            setDependent(e, "rm_oldhud", 0, 0);
 	me.TR(me);
 		me.TD(me, 1, 4, e = makeRMCheckBox(0, "oldbigfont", "Use default Nexuiz fonts"));
 	me.TR(me);
 		me.TD(me, 1, 4, e = makeRMCheckBox(0, "visualscore", "Scoring notifications in the HUD"));
 	me.TR(me);
 		me.TD(me, 1, 4, e = makeRMCheckBox(0, "showrankings", "Show top players in the HUD"));
+    me.TR(me);
+		me.TD(me, 1, 4, e = makeRMCheckBox(0, "showtimer", "Always show the timer"));
+    me.TR(me);
+		me.TD(me, 1, 4, e = makeRMCheckBox(0, "shownadgetregen", "Show Nadget regeneration in seconds"));
+            setDependentAND(e, "rm_oldhud", 0, 0, "_rm_optavail_shownadgetregen", 1, 1);
 	me.setFirstColumn(me, me.firstColumn - 0.1);
 		me.TR(me);
 		me.TD(me, 1, 4, e = makeNexuizTextLabel(0, "HUD skin:"));
 		setDependent(e, "rm_oldhud", 0, 0);
 	me.TR(me);
-		me.TD(me, me.rows - 11, 8, e = makeRMHudSkinList());
+		me.TD(me, me.rows - 13, 8, e = makeRMHudSkinList());
 		setDependent(e, "rm_oldhud", 0, 0);
 	//me.gotoRC(me, me.rows - 5, 8); me.setFirstColumn(me, me.currentColumn);
 }

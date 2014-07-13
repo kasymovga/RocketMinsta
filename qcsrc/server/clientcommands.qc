@@ -71,7 +71,7 @@ void Nagger_ReadyCounted()
 }
 
 void ReadyCount();
-string MapVote_Suggest(string m);
+string MapVote_Suggest(string m, float ismaster);
 
 entity GetPlayer(string name)
 {
@@ -179,7 +179,6 @@ void SV_ParseClientCommand(string s) {
 	if(cmd != "prespawn")
 	if(cmd != "spawn")
 	if(cmd != "begin")
-	if(cmd != "rmcfgreport")
 	if(cmd != "hudinfo")
 	if(cmd != "fovreport")
 	if(cmd != "zoomreport")
@@ -193,25 +192,12 @@ void SV_ParseClientCommand(string s) {
 		return;
 	} else if(GameCommand_MapVote(argv(0))) {
 		return;
-	} else if(cmd == "rmcfgreport") {
-		print("^2Received rmcfgreport from ", self.netname, "^2: ", s, "\n");
-		
-		if(!self)
-			return;
-			
-		if(self.rmcfgreport)
-			strunzone(self.rmcfgreport);
-		
-		if(!self)
-			return;
-		
-		self.rmcfgreport = strzone(s);
-	} else if(cmd == "menu_request"){
+    } else if(cmd == "menu_request"){
 		// Report that this server is running RM
 		stuffcmd(self, "set _rm_server 1\n");
 		
 		// Report available votes
-		stuffcmd(self, strcat("set _vote_commands \"", GetVoteList_Filtered(), "\"\n"));
+		stuffcmd(self, strcat("set _vote_commands \"", GetVoteList_Filtered(FALSE, FALSE), "\"\n"));
 		stuffcmd(self, strcat("set _voting_allowed ", cvar_string("sv_vote_call"), "\n"));
 		
 		// Report availability of certain RM options
@@ -226,6 +212,7 @@ void SV_ParseClientCommand(string s) {
 		OPTAVAIL	("shownames", "sv_shownames")
 		OPTAVAIL    ("showdamage", "sv_showdamage")
 		OPTAVAIL	("hidecountry", "sv_hidecountry")
+        OPTAVAIL_RAW("shownadgetregen", ftos(g_nadgets && cvar("g_nadgets_regen_time")))
 		OPTAVAIL_RAW("freezetag_danger", "1")		// TODO: maybe a serverside setting for this too?
 		
 		#undef OPTAVAIL_RAW
@@ -239,21 +226,6 @@ void SV_ParseClientCommand(string s) {
 		
 		// And the scoreboard fields
 		stuffcmd(self, "cl_cmd sbar_columns_set default\n");
-	} else if(cmd == "spyrmcfg") {
-		e = GetCommandPlayerSlotTargetFromTokenizedCommand(tokens, 1);
-		
-		if(e && e != world)
-		{
-			if(clienttype(e) != CLIENTTYPE_REAL)
-			{
-				sprint(self, strcat(e.netname, "^1: not a real client\n"));
-				return;
-			}
-			
-			sprint(self, strcat("^3rmcfgreport from ", e.netname, "^3 (cached):\n^2", e.rmcfgreport, "\n"));
-		}
-		else
-			sprint(self, strcat(argv(1), "^1: failed to find player\n"));
 	} else if(cmd == "anonspec") {
 		local string val = argv(1);
 		
@@ -407,7 +379,10 @@ void SV_ParseClientCommand(string s) {
 			return;
 		if not(self.flags & FL_CLIENT)
 			return;
-		if(g_arena)
+        if(self.joinqueue) {
+            JoinQ_Remove(self);
+            self.hg_type_picked = 0;
+		} if(g_arena)
 			return;
 		if(g_lms)
 		{
@@ -441,9 +416,16 @@ void SV_ParseClientCommand(string s) {
 	} else if(cmd == "join") {
 		if not(self.flags & FL_CLIENT)
 			return;
-		if(!g_arena)
-		if (self.classname != "player" && !lockteams)
-		{
+		
+        if(g_arena)
+            return;
+        
+		if(self.classname != "player") {            
+            if(lockteams) {
+                bigprint(self, "The teams are locked", "", 2);
+                return;
+            }
+            
 			if(isJoinAllowed()) {
                 if(HG_ShowMenu(FALSE))
                     return;
@@ -459,7 +441,11 @@ void SV_ParseClientCommand(string s) {
 			}
 			else {
 				//player may not join because of g_maxplayers is set
-				centerprint_atprio(self, CENTERPRIO_MAPVOTE, PREVENT_JOIN_TEXT);
+				//centerprint_atprio(self, CENTERPRIO_MAPVOTE, PREVENT_JOIN_TEXT);
+                
+                if(!self.joinqueue)
+                if(!HG_ShowMenu(FALSE))
+                    JoinQ_Push(self);
 			}
 		}
 		UnmarkAway(self);
@@ -493,17 +479,17 @@ void SV_ParseClientCommand(string s) {
         if not(self.flags & FL_CLIENT)
             return;
         
-        if(!g_handgrenades)
+        if(!g_nadgets)
             return;
             
         float isplayer = self.classname != "spectator" && self.classname != "observer";
         float gamestarted = roundstate == ROUNDSTATE_GAME; //time > warmup && time > game_starttime;
-        float term = self.term_authed;
+        float term = (self.term_authed && !self.term_used);
         float nr = isplayer && (gamestarted || self.hg_nadesused) && !term;
         
         float t = HG_NameToType(argv(1));
         float i;
-        float argc = tokenize_console(cvar_string("g_handgrenades_type_selectable"));
+        float argc = tokenize_console(cvar_string("g_nadgets_type_selectable"));
         
         if(argc)
             for(i = 0; i < argc; ++i)
@@ -529,17 +515,21 @@ void SV_ParseClientCommand(string s) {
                         HG_SetGrenadeType(self, HG_PlayerGrenadeType(self));
                         
                         if(o || !term) {
-                            self.hg_regentime = HG_RegenTime(self);
-                            self.hg_regenstat = 0;
+                            HG_SetRegenTime(self, HG_RegenTime(self));
                             if(!term)
-                                self.hg_ammo = cvar("g_handgrenades_ammo");
+                                self.hg_ammo = cvar("g_nadgets_ammo");
+                        }
+                        
+                        if(term) {
+                            self.term_used = TRUE;
+                            self.term_nextuse = time + cvar("g_terminals_auth_cooldown");
                         }
                     }
                     
                     return;
                 }
                 
-        sprint(self, "^1This grenade type is either invalid or not allowed on this server.\n");
+        sprint(self, "^1This nadget type is either invalid or not allowed on this server.\n");
         return;
     } else if(cmd == "hg_optout") {
         if not(self.flags & FL_CLIENT)
@@ -630,7 +620,7 @@ void SV_ParseClientCommand(string s) {
 		else
 			wordwrap_sprint(cmd, 1111);
 	} else if(cmd == "suggestmap") {
-		sprint(self, strcat(MapVote_Suggest(argv(1)), "\n"));
+		sprint(self, strcat(MapVote_Suggest(argv(1), self.vote_master), "\n"));
 	} else if(cmd == "timeout") {
 		if not(self.flags & FL_CLIENT)
 			return;
@@ -656,6 +646,9 @@ void SV_ParseClientCommand(string s) {
 		sprint(self, cvar_changes);
 	} else if(cmd == "afk") {
 		MarkAway(self, 1);
+    } else if(cmd == "removenadgets") {
+        if(sv_cheats || self.maycheat)
+            HG_RemoveAll(self);
 	} else if(cmd == "pointparticles") {
 		if((sv_cheats || self.maycheat) && tokens == 5)
 		{

@@ -3,6 +3,7 @@ float waypointsprite_fadedistance;
 float waypointsprite_normdistance;
 float waypointsprite_minscale;
 float waypointsprite_minalpha;
+float waypointsprite_alpha;
 float waypointsprite_distancealphaexponent;
 float waypointsprite_timealphaexponent;
 float waypointsprite_scale;
@@ -15,6 +16,8 @@ float waypointsprite_crosshairfadedistance;
 float waypointsprite_distancefadealpha;
 float waypointsprite_distancefadescale;
 float waypointsprite_distancefadedistance;
+float waypointsprite_pointer_scale;
+float waypointsprite_pointer_edgefadescale;
 
 .float rule;
 .string netname; // primary picture
@@ -37,6 +40,9 @@ float waypointsprite_distancefadedistance;
 .float topalpha;
 .string toptext;
 .float toptextmode;
+.float frozenid;
+.float frozen_alpha;
+.float ispointer;
 
 vector SPRITE_SIZE = '288 36 0';
 vector SPRITE_HOTSPOT = '144 36 0';
@@ -117,8 +123,16 @@ void Draw_WaypointSprite()
 	string spriteimage;
 	float t, me, spritemode;
     vector txtclr;
+    
+    float ws_scale = waypointsprite_scale;
+    float ws_edgefadescale = waypointsprite_edgefadescale;
 
-    if(waypointsprite_scale <= 0)
+    if(self.ispointer) {
+        ws_scale *= waypointsprite_pointer_scale;
+        ws_edgefadescale *= waypointsprite_pointer_edgefadescale;
+    }
+
+    if(ws_scale <= 0)
         return;
 
 	if(self.lifetime)
@@ -216,12 +230,22 @@ void Draw_WaypointSprite()
 	dist = vlen(self.origin - view_origin);
 	
 	float a;
-	a = self.alpha * sbar_alpha_fg;
+	a = self.alpha * sbar_alpha_fg * waypointsprite_alpha;
 
 	if(self.maxdistance > waypointsprite_normdistance)
 		a *= pow(bound(0, (self.maxdistance - dist) / (self.maxdistance - waypointsprite_normdistance), 1), waypointsprite_distancealphaexponent);
 	else if(self.maxdistance > 0)
 		a *= pow(bound(0, (waypointsprite_fadedistance - dist) / (waypointsprite_fadedistance - waypointsprite_normdistance), 1), waypointsprite_distancealphaexponent) * (1 - waypointsprite_minalpha) + waypointsprite_minalpha;
+    
+    if(rm_shownames && self.frozenid) {
+        entity p = playerslots[self.frozenid-1];
+        if(time - p.sn_lastdraw > drawframetime * 3) {
+            self.frozen_alpha = approach(self.frozen_alpha, 1, drawframetime * 3);
+        } else {
+            self.frozen_alpha = approach(self.frozen_alpha, 0, drawframetime * 3);
+        }
+        a = a * self.frozen_alpha;
+    }
 
 	if(a <= 0)
 		return;
@@ -231,7 +255,7 @@ void Draw_WaypointSprite()
 	float rot;
 	o = project_3d_to_2d(self.origin);
 	rot = 0;
-
+    
     float maxw = vid_conwidth;
     float maxh = vid_conheight;
     
@@ -308,11 +332,10 @@ void Draw_WaypointSprite()
     }
 
 	float edgedistance_min, crosshairdistance;
-	edgedistance_min = min4(o_y, o_x,vid_conwidth - o_x, vid_conheight - o_y);
+	edgedistance_min = min4(o_y, o_x, maxw - o_x, maxh - o_y);
+	crosshairdistance = sqrt(pow(o_x - vid_conwidth/2, 2) + pow(o_y - vid_conheight/2, 2));
 
-	crosshairdistance = sqrt( pow(o_x - vid_conwidth/2, 2) + pow(o_y - vid_conheight/2, 2) );
-
-	t = waypointsprite_scale * vidscale;
+	t = ws_scale * vidscale;
 
 	{
 		a = a * (1 - (1 - waypointsprite_distancefadealpha) * (bound(0, dist/waypointsprite_distancefadedistance, 1)));
@@ -320,7 +343,7 @@ void Draw_WaypointSprite()
 	}
 	if (edgedistance_min < waypointsprite_edgefadedistance) {
 		a = a * (1 - (1 - waypointsprite_edgefadealpha) * (1 - bound(0, edgedistance_min/waypointsprite_edgefadedistance, 1)));
-		t = t * (1 - (1 - waypointsprite_edgefadescale) * (1 - bound(0, edgedistance_min/waypointsprite_edgefadedistance, 1)));
+		t = t * (1 - (1 - ws_edgefadescale)             * (1 - bound(0, edgedistance_min/waypointsprite_edgefadedistance, 1)));
 	}
 	if(crosshairdistance < waypointsprite_crosshairfadedistance) {
 		a = a * (1 - (1 - waypointsprite_crosshairfadealpha) * (1 - bound(0, crosshairdistance/waypointsprite_crosshairfadedistance, 1)));
@@ -482,6 +505,11 @@ void Ent_WaypointSprite()
 		if(self.netname)
 			strunzone(self.netname);
 		self.netname = strzone(ReadString());
+        
+        if(self.netname == "Frozen!")
+            self.frozenid = ReadByte();
+        else
+            self.ispointer = (substring(self.netname, 0, 8) == "pointer_");
 	}
 
 	if(sendflags & 4)
@@ -530,6 +558,8 @@ void WaypointSprite_Load()
 {
 	waypointsprite_fadedistance = vlen(mi_max - mi_min);
 	waypointsprite_normdistance = cvar("g_waypointsprite_normdistance");
+    waypointsprite_alpha = cvar("g_waypointsprite_alpha");
+    if(!waypointsprite_alpha) waypointsprite_alpha = 1;
 	waypointsprite_minscale = cvar("g_waypointsprite_minscale");
 	waypointsprite_minalpha = cvar("g_waypointsprite_minalpha");
 	waypointsprite_distancealphaexponent = cvar("g_waypointsprite_distancealphaexponent");
@@ -544,6 +574,8 @@ void WaypointSprite_Load()
 	waypointsprite_distancefadealpha = cvar_or("g_waypointsprite_distancefadealpha", 1);
 	waypointsprite_distancefadescale = cvar_or("g_waypointsprite_distancefadescale", 1);
 	waypointsprite_distancefadedistance = vlen(mi_max - mi_min) * cvar_or("g_waypointsprite_distancefadedistancemultiplier", 1);
+    waypointsprite_pointer_scale = cvar_or("g_waypointsprite_pointer_scale", 1);
+    waypointsprite_pointer_edgefadescale = cvar_or("g_waypointsprite_pointer_edgefadescale", 1);
 
 	if(!waypointsprite_initialized)
 	{

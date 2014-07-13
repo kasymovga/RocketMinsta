@@ -455,361 +455,351 @@ void RM_CvarCompat() {
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades ---> g_handgrenades
+	// g_explosive_handgrenades ---> g_nadgets
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades", cvar_string("g_explosive_handgrenades"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades^7. Will _TRY_ to stay compatible by updating ^3g_nadgets^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets", cvar_string("g_explosive_handgrenades"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_ammo ---> g_handgrenades_ammo
+	// g_explosive_handgrenades_ammo ---> g_nadgets_ammo
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_ammo") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_ammo^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_ammo^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_ammo", cvar_string("g_explosive_handgrenades_ammo"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_ammo^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_ammo^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_ammo", cvar_string("g_explosive_handgrenades_ammo"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_ammo", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_clearspeed ---> g_handgrenades_clearspeed
-	
-	if COMPATVAR_ACTIVE("g_explosive_handgrenades_clearspeed") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_clearspeed^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_clearspeed^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_clearspeed", cvar_string("g_explosive_handgrenades_clearspeed"));
-		if(mode == 2)
-			cvar_set("g_explosive_handgrenades_clearspeed", "__COMPATVAR_DISABLED__");
-		++corrections;
-	}
-	
-	// g_explosive_handgrenades_mindelay ---> g_handgrenades_mindelay
+	// g_explosive_handgrenades_mindelay ---> g_nadgets_mindelay
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_mindelay") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_mindelay^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_mindelay^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_mindelay", cvar_string("g_explosive_handgrenades_mindelay"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_mindelay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_mindelay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_mindelay", cvar_string("g_explosive_handgrenades_mindelay"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_mindelay", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_burndamage ---> g_handgrenades_napalm_burndamage
+	// g_explosive_handgrenades_napalm_burndamage ---> g_nadgets_napalm_burndamage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_burndamage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burndamage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_burndamage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_burndamage", cvar_string("g_explosive_handgrenades_napalm_burndamage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burndamage", cvar_string("g_explosive_handgrenades_napalm_burndamage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_burndamage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_burnradius ---> g_handgrenades_napalm_burnradius
+	// g_explosive_handgrenades_napalm_burnradius ---> g_nadgets_napalm_burnradius
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_burnradius") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burnradius^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_burnradius^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_burnradius", cvar_string("g_explosive_handgrenades_napalm_burnradius"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burnradius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burnradius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burnradius", cvar_string("g_explosive_handgrenades_napalm_burnradius"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_burnradius", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_burntime ---> g_handgrenades_napalm_burntime
+	// g_explosive_handgrenades_napalm_burntime ---> g_nadgets_napalm_burntime
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_burntime") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burntime^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_burntime^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_burntime", cvar_string("g_explosive_handgrenades_napalm_burntime"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_burntime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burntime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burntime", cvar_string("g_explosive_handgrenades_napalm_burntime"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_burntime", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_damage ---> g_handgrenades_napalm_damage
+	// g_explosive_handgrenades_napalm_damage ---> g_nadgets_napalm_damage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_damage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_damage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_damage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_damage", cvar_string("g_explosive_handgrenades_napalm_damage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_damage", cvar_string("g_explosive_handgrenades_napalm_damage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_damage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_damageforcescale ---> g_handgrenades_napalm_damageforcescale
+	// g_explosive_handgrenades_napalm_damageforcescale ---> g_nadgets_napalm_damageforcescale
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_damageforcescale") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_damageforcescale^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_damageforcescale", cvar_string("g_explosive_handgrenades_napalm_damageforcescale"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_damageforcescale", cvar_string("g_explosive_handgrenades_napalm_damageforcescale"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_damageforcescale", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_edgeburndamage ---> g_handgrenades_napalm_edgeburndamage
+	// g_explosive_handgrenades_napalm_edgeburndamage ---> g_nadgets_napalm_edgeburndamage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_edgeburndamage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_edgeburndamage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_edgeburndamage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_edgeburndamage", cvar_string("g_explosive_handgrenades_napalm_edgeburndamage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_edgeburndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_edgeburndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_edgeburndamage", cvar_string("g_explosive_handgrenades_napalm_edgeburndamage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_edgeburndamage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_edgedamage ---> g_handgrenades_napalm_edgedamage
+	// g_explosive_handgrenades_napalm_edgedamage ---> g_nadgets_napalm_edgedamage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_edgedamage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_edgedamage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_edgedamage", cvar_string("g_explosive_handgrenades_napalm_edgedamage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_edgedamage", cvar_string("g_explosive_handgrenades_napalm_edgedamage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_edgedamage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_fire_lifetime ---> g_handgrenades_napalm_fire_lifetime
+	// g_explosive_handgrenades_napalm_fire_lifetime ---> g_nadgets_napalm_fire_lifetime
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_fire_lifetime") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_fire_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_fire_lifetime^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_fire_lifetime", cvar_string("g_explosive_handgrenades_napalm_fire_lifetime"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_fire_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_fire_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_fire_lifetime", cvar_string("g_explosive_handgrenades_napalm_fire_lifetime"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_fire_lifetime", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_force ---> g_handgrenades_napalm_force
+	// g_explosive_handgrenades_napalm_force ---> g_nadgets_napalm_force
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_force") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_force^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_force^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_force", cvar_string("g_explosive_handgrenades_napalm_force"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_force", cvar_string("g_explosive_handgrenades_napalm_force"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_force", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_health ---> g_handgrenades_napalm_health
+	// g_explosive_handgrenades_napalm_health ---> g_nadgets_napalm_health
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_health") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_health^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_health^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_health", cvar_string("g_explosive_handgrenades_napalm_health"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_health", cvar_string("g_explosive_handgrenades_napalm_health"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_health", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_kamikaze_damage ---> g_handgrenades_napalm_kamikaze_damage
+	// g_explosive_handgrenades_napalm_kamikaze_damage ---> g_nadgets_napalm_kamikaze_damage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_kamikaze_damage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_kamikaze_damage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_kamikaze_damage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_kamikaze_damage", cvar_string("g_explosive_handgrenades_napalm_kamikaze_damage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_kamikaze_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_kamikaze_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_kamikaze_damage", cvar_string("g_explosive_handgrenades_napalm_kamikaze_damage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_kamikaze_damage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_lifetime ---> g_handgrenades_napalm_lifetime
+	// g_explosive_handgrenades_napalm_lifetime ---> g_nadgets_napalm_lifetime
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_lifetime") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_lifetime^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_lifetime", cvar_string("g_explosive_handgrenades_napalm_lifetime"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_lifetime", cvar_string("g_explosive_handgrenades_napalm_lifetime"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_lifetime", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_middleburnradius ---> g_handgrenades_napalm_middleburnradius
+	// g_explosive_handgrenades_napalm_middleburnradius ---> g_nadgets_napalm_middleburnradius
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_middleburnradius") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_middleburnradius^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_middleburnradius^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_middleburnradius", cvar_string("g_explosive_handgrenades_napalm_middleburnradius"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_middleburnradius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_middleburnradius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_middleburnradius", cvar_string("g_explosive_handgrenades_napalm_middleburnradius"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_middleburnradius", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_numparticles ---> g_handgrenades_napalm_numparticles
+	// g_explosive_handgrenades_napalm_numparticles ---> g_nadgets_napalm_numparticles
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_numparticles") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_numparticles^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_numparticles^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_numparticles", cvar_string("g_explosive_handgrenades_napalm_numparticles"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_numparticles^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_numparticles^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_numparticles", cvar_string("g_explosive_handgrenades_napalm_numparticles"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_numparticles", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_radius ---> g_handgrenades_napalm_radius
+	// g_explosive_handgrenades_napalm_radius ---> g_nadgets_napalm_radius
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_radius") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_radius^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_radius^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_radius", cvar_string("g_explosive_handgrenades_napalm_radius"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_radius", cvar_string("g_explosive_handgrenades_napalm_radius"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_radius", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_speed ---> g_handgrenades_napalm_speed
+	// g_explosive_handgrenades_napalm_speed ---> g_nadgets_napalm_speed
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_speed") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_speed^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_speed^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_speed", cvar_string("g_explosive_handgrenades_napalm_speed"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_speed", cvar_string("g_explosive_handgrenades_napalm_speed"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_speed", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_speed_up ---> g_handgrenades_napalm_speed_up
+	// g_explosive_handgrenades_napalm_speed_up ---> g_nadgets_napalm_speed_up
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_speed_up") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_speed_up^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_speed_up", cvar_string("g_explosive_handgrenades_napalm_speed_up"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_speed_up", cvar_string("g_explosive_handgrenades_napalm_speed_up"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_speed_up", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_spread_xy ---> g_handgrenades_napalm_spread_xy
+	// g_explosive_handgrenades_napalm_spread_xy ---> g_nadgets_napalm_spread_xy
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_spread_xy") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_xy^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_spread_xy^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_spread_xy", cvar_string("g_explosive_handgrenades_napalm_spread_xy"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_xy^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_xy^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_xy", cvar_string("g_explosive_handgrenades_napalm_spread_xy"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_spread_xy", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_spread_z ---> g_handgrenades_napalm_spread_z
+	// g_explosive_handgrenades_napalm_spread_z ---> g_nadgets_napalm_spread_z
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_spread_z") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_spread_z^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_spread_z", cvar_string("g_explosive_handgrenades_napalm_spread_z"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z", cvar_string("g_explosive_handgrenades_napalm_spread_z"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_spread_z", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_spread_z_min ---> g_handgrenades_napalm_spread_z_min
+	// g_explosive_handgrenades_napalm_spread_z_min ---> g_nadgets_napalm_spread_z_min
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_spread_z_min") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z_min^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_spread_z_min^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_spread_z_min", cvar_string("g_explosive_handgrenades_napalm_spread_z_min"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z_min", cvar_string("g_explosive_handgrenades_napalm_spread_z_min"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_spread_z_min", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_napalm_spread_z_min_randomfactor ---> g_handgrenades_napalm_spread_z_min_randomfactor
+	// g_explosive_handgrenades_napalm_spread_z_min_randomfactor ---> g_nadgets_napalm_spread_z_min_randomfactor
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_napalm_spread_z_min_randomfactor") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z_min_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_napalm_spread_z_min_randomfactor^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_napalm_spread_z_min_randomfactor", cvar_string("g_explosive_handgrenades_napalm_spread_z_min_randomfactor"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_napalm_spread_z_min_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z_min_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z_min_randomfactor", cvar_string("g_explosive_handgrenades_napalm_spread_z_min_randomfactor"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_napalm_spread_z_min_randomfactor", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_damage ---> g_handgrenades_normal_damage
+	// g_explosive_handgrenades_normal_damage ---> g_nadgets_normal_damage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_damage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_damage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_damage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_damage", cvar_string("g_explosive_handgrenades_normal_damage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_damage", cvar_string("g_explosive_handgrenades_normal_damage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_damage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_damageforcescale ---> g_handgrenades_normal_damageforcescale
+	// g_explosive_handgrenades_normal_damageforcescale ---> g_nadgets_normal_damageforcescale
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_damageforcescale") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_damageforcescale^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_damageforcescale", cvar_string("g_explosive_handgrenades_normal_damageforcescale"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_damageforcescale", cvar_string("g_explosive_handgrenades_normal_damageforcescale"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_damageforcescale", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_edgedamage ---> g_handgrenades_normal_edgedamage
+	// g_explosive_handgrenades_normal_edgedamage ---> g_nadgets_normal_edgedamage
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_edgedamage") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_edgedamage^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_edgedamage", cvar_string("g_explosive_handgrenades_normal_edgedamage"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_edgedamage", cvar_string("g_explosive_handgrenades_normal_edgedamage"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_edgedamage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_force ---> g_handgrenades_normal_force
+	// g_explosive_handgrenades_normal_force ---> g_nadgets_normal_force
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_force") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_force^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_force^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_force", cvar_string("g_explosive_handgrenades_normal_force"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_force", cvar_string("g_explosive_handgrenades_normal_force"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_force", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_health ---> g_handgrenades_normal_health
+	// g_explosive_handgrenades_normal_health ---> g_nadgets_normal_health
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_health") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_health^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_health^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_health", cvar_string("g_explosive_handgrenades_normal_health"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_health", cvar_string("g_explosive_handgrenades_normal_health"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_health", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_lifetime ---> g_handgrenades_normal_lifetime
+	// g_explosive_handgrenades_normal_lifetime ---> g_nadgets_normal_lifetime
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_lifetime") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_lifetime^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_lifetime", cvar_string("g_explosive_handgrenades_normal_lifetime"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_lifetime", cvar_string("g_explosive_handgrenades_normal_lifetime"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_lifetime", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_radius ---> g_handgrenades_normal_radius
+	// g_explosive_handgrenades_normal_radius ---> g_nadgets_normal_radius
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_radius") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_radius^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_radius^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_radius", cvar_string("g_explosive_handgrenades_normal_radius"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_radius", cvar_string("g_explosive_handgrenades_normal_radius"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_radius", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_speed ---> g_handgrenades_normal_speed
+	// g_explosive_handgrenades_normal_speed ---> g_nadgets_normal_speed
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_speed") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_speed^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_speed^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_speed", cvar_string("g_explosive_handgrenades_normal_speed"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed", cvar_string("g_explosive_handgrenades_normal_speed"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_speed", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_normal_speed_up ---> g_handgrenades_normal_speed_up
+	// g_explosive_handgrenades_normal_speed_up ---> g_nadgets_normal_speed_up
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_normal_speed_up") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_normal_speed_up^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_normal_speed_up", cvar_string("g_explosive_handgrenades_normal_speed_up"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_normal_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed_up", cvar_string("g_explosive_handgrenades_normal_speed_up"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_normal_speed_up", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_speed ---> g_handgrenades_speed
+	// g_explosive_handgrenades_speed ---> g_nadgets_normal_speed
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_speed") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_speed^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_speed^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_speed", cvar_string("g_explosive_handgrenades_speed"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed", cvar_string("g_explosive_handgrenades_speed"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_speed", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	
-	// g_explosive_handgrenades_type ---> g_handgrenades_type
+	// g_explosive_handgrenades_type ---> g_nadgets_type
 	
 	if COMPATVAR_ACTIVE("g_explosive_handgrenades_type") {
-		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_type^7. Will _TRY_ to stay compatible by updating ^3g_handgrenades_type^7, but no stability is guaranteed at this point!\n");
-		cvar_set("g_handgrenades_type", cvar_string("g_explosive_handgrenades_type"));
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_explosive_handgrenades_type^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_type^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_type", cvar_string("g_explosive_handgrenades_type"));
 		if(mode == 2)
 			cvar_set("g_explosive_handgrenades_type", "__COMPATVAR_DISABLED__");
 		++corrections;
@@ -1482,6 +1472,2496 @@ void RM_CvarCompat() {
 		cvar_set("g_weaponarena_limitammo", cvar_string("g_explosive_weaponarena_limitammo"));
 		if(mode == 2)
 			cvar_set("g_explosive_weaponarena_limitammo", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades ---> g_nadgets
+	
+	if COMPATVAR_ACTIVE("g_handgrenades") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades^7. Will _TRY_ to stay compatible by updating ^3g_nadgets^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets", cvar_string("g_handgrenades"));
+		if(mode == 2)
+			cvar_set("g_handgrenades", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_ammo ---> g_nadgets_ammo
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_ammo") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_ammo^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_ammo^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_ammo", cvar_string("g_handgrenades_ammo"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_ammo", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_time ---> g_nadgets_regen_time
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_time") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_time^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_time^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_time", cvar_string("g_handgrenades_regen_time"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_time", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_factor ---> g_nadgets_regen_factor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_factor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_factor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_factor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_factor", cvar_string("g_handgrenades_regen_factor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_factor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_power ---> g_nadgets_regen_power
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_power") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_power^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_power^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_power", cvar_string("g_handgrenades_regen_power"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_power", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_max ---> g_nadgets_regen_max
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_max") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_max^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_max^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_max", cvar_string("g_handgrenades_regen_max"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_max", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_damagepause ---> g_nadgets_regen_damagepause
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_damagepause") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_damagepause^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_damagepause^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_damagepause", cvar_string("g_handgrenades_regen_damagepause"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_damagepause", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_regen_frozenfactor ---> g_nadgets_regen_frozenfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_regen_frozenfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_regen_frozenfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_regen_frozenfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_regen_frozenfactor", cvar_string("g_handgrenades_regen_frozenfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_regen_frozenfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_resetonrespawn ---> g_nadgets_resetonrespawn
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_resetonrespawn") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_resetonrespawn^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_resetonrespawn^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_resetonrespawn", cvar_string("g_handgrenades_resetonrespawn"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_resetonrespawn", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_type ---> g_nadgets_type
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_type") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_type^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_type^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_type", cvar_string("g_handgrenades_type"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_type", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_type_selectable ---> g_nadgets_type_selectable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_type_selectable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_type_selectable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_type_selectable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_type_selectable", cvar_string("g_handgrenades_type_selectable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_type_selectable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_bonus_free ---> g_nadgets_bonus_free
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_bonus_free") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_bonus_free^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_bonus_free^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_bonus_free", cvar_string("g_handgrenades_bonus_free"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_bonus_free", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_oldhitboxes ---> g_nadgets_oldhitboxes
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_oldhitboxes") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_oldhitboxes^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_oldhitboxes^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_oldhitboxes", cvar_string("g_handgrenades_oldhitboxes"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_oldhitboxes", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_detonate_on_death ---> g_nadgets_detonate_on_death
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_detonate_on_death") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_detonate_on_death^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_detonate_on_death^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_detonate_on_death", cvar_string("g_handgrenades_detonate_on_death"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_detonate_on_death", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_detonatelaunches ---> g_nadgets_detonatelaunches
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_detonatelaunches") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_detonatelaunches^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_detonatelaunches^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_detonatelaunches", cvar_string("g_handgrenades_detonatelaunches"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_detonatelaunches", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_launchspeed ---> g_nadgets_normal_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_launchspeed", cvar_string("g_handgrenades_normal_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_launch_fullforce_explodes_in_yo_face ---> g_nadgets_normal_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_normal_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_launch_fullforce_launches_immediately ---> g_nadgets_normal_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_normal_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_cooldown ---> g_nadgets_normal_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_cooldown", cvar_string("g_handgrenades_normal_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_damage ---> g_nadgets_normal_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_damage", cvar_string("g_handgrenades_normal_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_edgedamage ---> g_nadgets_normal_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_edgedamage", cvar_string("g_handgrenades_normal_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_radius ---> g_nadgets_normal_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_radius", cvar_string("g_handgrenades_normal_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_force ---> g_nadgets_normal_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_force", cvar_string("g_handgrenades_normal_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_lifetime ---> g_nadgets_normal_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_lifetime", cvar_string("g_handgrenades_normal_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_damageforcescale ---> g_nadgets_normal_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_damageforcescale", cvar_string("g_handgrenades_normal_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_health ---> g_nadgets_normal_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_health", cvar_string("g_handgrenades_normal_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_takedamage ---> g_nadgets_normal_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_takedamage", cvar_string("g_handgrenades_normal_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_speed ---> g_nadgets_normal_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed", cvar_string("g_handgrenades_normal_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_speed_min ---> g_nadgets_normal_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed_min", cvar_string("g_handgrenades_normal_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_speed_up ---> g_nadgets_normal_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_speed_up", cvar_string("g_handgrenades_normal_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_detonable ---> g_nadgets_normal_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_detonable", cvar_string("g_handgrenades_normal_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_detonate_delay ---> g_nadgets_normal_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_detonate_delay", cvar_string("g_handgrenades_normal_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_detonate_threshold ---> g_nadgets_normal_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_detonate_threshold", cvar_string("g_handgrenades_normal_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_bouncelimit ---> g_nadgets_normal_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_bouncelimit", cvar_string("g_handgrenades_normal_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_movetype ---> g_nadgets_normal_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_movetype", cvar_string("g_handgrenades_normal_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_detect_enemies ---> g_nadgets_normal_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_detect_enemies", cvar_string("g_handgrenades_normal_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_regenscale ---> g_nadgets_normal_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_regenscale", cvar_string("g_handgrenades_normal_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_normal_gravity ---> g_nadgets_normal_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_normal_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_normal_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_normal_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_normal_gravity", cvar_string("g_handgrenades_normal_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_normal_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_launchspeed ---> g_nadgets_remote_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_launchspeed", cvar_string("g_handgrenades_remote_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_launch_fullforce_explodes_in_yo_face ---> g_nadgets_remote_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_remote_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_launch_fullforce_launches_immediately ---> g_nadgets_remote_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_remote_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_cooldown ---> g_nadgets_remote_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_cooldown", cvar_string("g_handgrenades_remote_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_damage ---> g_nadgets_remote_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_damage", cvar_string("g_handgrenades_remote_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_edgedamage ---> g_nadgets_remote_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_edgedamage", cvar_string("g_handgrenades_remote_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_radius ---> g_nadgets_remote_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_radius", cvar_string("g_handgrenades_remote_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_force ---> g_nadgets_remote_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_force", cvar_string("g_handgrenades_remote_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_lifetime ---> g_nadgets_remote_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_lifetime", cvar_string("g_handgrenades_remote_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_damageforcescale ---> g_nadgets_remote_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_damageforcescale", cvar_string("g_handgrenades_remote_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_health ---> g_nadgets_remote_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_health", cvar_string("g_handgrenades_remote_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_takedamage ---> g_nadgets_remote_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_takedamage", cvar_string("g_handgrenades_remote_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_speed ---> g_nadgets_remote_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_speed", cvar_string("g_handgrenades_remote_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_speed_min ---> g_nadgets_remote_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_speed_min", cvar_string("g_handgrenades_remote_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_speed_up ---> g_nadgets_remote_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_speed_up", cvar_string("g_handgrenades_remote_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_detonable ---> g_nadgets_remote_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_detonable", cvar_string("g_handgrenades_remote_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_detonate_delay ---> g_nadgets_remote_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_detonate_delay", cvar_string("g_handgrenades_remote_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_detonate_threshold ---> g_nadgets_remote_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_detonate_threshold", cvar_string("g_handgrenades_remote_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_bouncelimit ---> g_nadgets_remote_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_bouncelimit", cvar_string("g_handgrenades_remote_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_movetype ---> g_nadgets_remote_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_movetype", cvar_string("g_handgrenades_remote_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_numparticles ---> g_nadgets_remote_numparticles
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_numparticles") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_numparticles^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_numparticles^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_numparticles", cvar_string("g_handgrenades_remote_numparticles"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_numparticles", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_burnradius ---> g_nadgets_remote_burnradius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_burnradius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_burnradius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_burnradius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_burnradius", cvar_string("g_handgrenades_remote_burnradius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_burnradius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_burndamage ---> g_nadgets_remote_burndamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_burndamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_burndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_burndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_burndamage", cvar_string("g_handgrenades_remote_burndamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_burndamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_burndelay ---> g_nadgets_remote_burndelay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_burndelay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_burndelay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_burndelay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_burndelay", cvar_string("g_handgrenades_remote_burndelay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_burndelay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_edgeburndamage ---> g_nadgets_remote_edgeburndamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_edgeburndamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_edgeburndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_edgeburndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_edgeburndamage", cvar_string("g_handgrenades_remote_edgeburndamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_edgeburndamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_burntime ---> g_nadgets_remote_burntime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_burntime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_burntime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_burntime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_burntime", cvar_string("g_handgrenades_remote_burntime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_burntime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_spread_xy ---> g_nadgets_remote_spread_xy
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_spread_xy") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_spread_xy^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_spread_xy^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_spread_xy", cvar_string("g_handgrenades_remote_spread_xy"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_spread_xy", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_spread_z ---> g_nadgets_remote_spread_z
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_spread_z") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_spread_z^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_spread_z^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_spread_z", cvar_string("g_handgrenades_remote_spread_z"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_spread_z", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_spread_z_min ---> g_nadgets_remote_spread_z_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_spread_z_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_spread_z_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_spread_z_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_spread_z_min", cvar_string("g_handgrenades_remote_spread_z_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_spread_z_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_spread_z_min_randomfactor ---> g_nadgets_remote_spread_z_min_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_spread_z_min_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_spread_z_min_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_spread_z_min_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_spread_z_min_randomfactor", cvar_string("g_handgrenades_remote_spread_z_min_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_spread_z_min_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_fire_lifetime ---> g_nadgets_remote_fire_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_fire_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_fire_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_fire_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_fire_lifetime", cvar_string("g_handgrenades_remote_fire_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_fire_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_fire_lifetime_randomfactor ---> g_nadgets_remote_fire_lifetime_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_fire_lifetime_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_fire_lifetime_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_fire_lifetime_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_fire_lifetime_randomfactor", cvar_string("g_handgrenades_remote_fire_lifetime_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_fire_lifetime_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_detect_enemies ---> g_nadgets_remote_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_detect_enemies", cvar_string("g_handgrenades_remote_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_regenscale ---> g_nadgets_remote_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_regenscale", cvar_string("g_handgrenades_remote_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_remote_gravity ---> g_nadgets_remote_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_remote_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_remote_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_remote_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_remote_gravity", cvar_string("g_handgrenades_remote_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_remote_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_launchspeed ---> g_nadgets_plasma_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_launchspeed", cvar_string("g_handgrenades_plasma_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_launch_fullforce_explodes_in_yo_face ---> g_nadgets_plasma_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_plasma_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_launch_fullforce_launches_immediately ---> g_nadgets_plasma_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_plasma_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_cooldown ---> g_nadgets_plasma_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_cooldown", cvar_string("g_handgrenades_plasma_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_damage ---> g_nadgets_plasma_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_damage", cvar_string("g_handgrenades_plasma_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_edgedamage ---> g_nadgets_plasma_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_edgedamage", cvar_string("g_handgrenades_plasma_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_radius ---> g_nadgets_plasma_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_radius", cvar_string("g_handgrenades_plasma_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_force ---> g_nadgets_plasma_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_force", cvar_string("g_handgrenades_plasma_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_lifetime ---> g_nadgets_plasma_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_lifetime", cvar_string("g_handgrenades_plasma_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_damageforcescale ---> g_nadgets_plasma_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_damageforcescale", cvar_string("g_handgrenades_plasma_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_health ---> g_nadgets_plasma_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_health", cvar_string("g_handgrenades_plasma_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_takedamage ---> g_nadgets_plasma_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_takedamage", cvar_string("g_handgrenades_plasma_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_speed ---> g_nadgets_plasma_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_speed", cvar_string("g_handgrenades_plasma_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_speed_min ---> g_nadgets_plasma_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_speed_min", cvar_string("g_handgrenades_plasma_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_speed_up ---> g_nadgets_plasma_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_speed_up", cvar_string("g_handgrenades_plasma_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_detonable ---> g_nadgets_plasma_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_detonable", cvar_string("g_handgrenades_plasma_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_detonate_delay ---> g_nadgets_plasma_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_detonate_delay", cvar_string("g_handgrenades_plasma_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_detonate_threshold ---> g_nadgets_plasma_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_detonate_threshold", cvar_string("g_handgrenades_plasma_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_bouncelimit ---> g_nadgets_plasma_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_bouncelimit", cvar_string("g_handgrenades_plasma_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_movetype ---> g_nadgets_plasma_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_movetype", cvar_string("g_handgrenades_plasma_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_spread_xy ---> g_nadgets_plasma_spread_xy
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_spread_xy") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_spread_xy^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_spread_xy^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_spread_xy", cvar_string("g_handgrenades_plasma_spread_xy"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_spread_xy", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_spread_z ---> g_nadgets_plasma_spread_z
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_spread_z") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_spread_z^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_spread_z^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_spread_z", cvar_string("g_handgrenades_plasma_spread_z"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_spread_z", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_spread_z_min ---> g_nadgets_plasma_spread_z_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_spread_z_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_spread_z_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_spread_z_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_spread_z_min", cvar_string("g_handgrenades_plasma_spread_z_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_spread_z_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_spread_z_min_randomfactor ---> g_nadgets_plasma_spread_z_min_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_spread_z_min_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_spread_z_min_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_spread_z_min_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_spread_z_min_randomfactor", cvar_string("g_handgrenades_plasma_spread_z_min_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_spread_z_min_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_count ---> g_nadgets_plasma_projectile_count
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_count") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_count^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_count^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_count", cvar_string("g_handgrenades_plasma_projectile_count"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_count", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_lifetime ---> g_nadgets_plasma_projectile_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_lifetime", cvar_string("g_handgrenades_plasma_projectile_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_lifetime_randomfactor ---> g_nadgets_plasma_projectile_lifetime_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_lifetime_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_lifetime_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_lifetime_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_lifetime_randomfactor", cvar_string("g_handgrenades_plasma_projectile_lifetime_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_lifetime_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_dps ---> g_nadgets_plasma_projectile_dps
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_dps") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_dps^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_dps^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_dps", cvar_string("g_handgrenades_plasma_projectile_dps"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_dps", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_dps_range ---> g_nadgets_plasma_projectile_dps_range
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_dps_range") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_dps_range^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_dps_range^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_dps_range", cvar_string("g_handgrenades_plasma_projectile_dps_range"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_dps_range", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_dps_delay ---> g_nadgets_plasma_projectile_dps_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_dps_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_dps_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_dps_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_dps_delay", cvar_string("g_handgrenades_plasma_projectile_dps_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_dps_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_dps_pause ---> g_nadgets_plasma_projectile_dps_pause
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_dps_pause") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_dps_pause^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_dps_pause^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_dps_pause", cvar_string("g_handgrenades_plasma_projectile_dps_pause"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_dps_pause", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_dps_pause_randomfactor ---> g_nadgets_plasma_projectile_dps_pause_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_dps_pause_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_dps_pause_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_dps_pause_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_dps_pause_randomfactor", cvar_string("g_handgrenades_plasma_projectile_dps_pause_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_dps_pause_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_damage ---> g_nadgets_plasma_projectile_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_damage", cvar_string("g_handgrenades_plasma_projectile_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_edgedamage ---> g_nadgets_plasma_projectile_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_edgedamage", cvar_string("g_handgrenades_plasma_projectile_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_radius ---> g_nadgets_plasma_projectile_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_radius", cvar_string("g_handgrenades_plasma_projectile_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_force ---> g_nadgets_plasma_projectile_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_force", cvar_string("g_handgrenades_plasma_projectile_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_maxdistance ---> g_nadgets_plasma_projectile_maxdistance
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_maxdistance") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_maxdistance^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_maxdistance^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_maxdistance", cvar_string("g_handgrenades_plasma_projectile_maxdistance"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_maxdistance", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_frozenlock ---> g_nadgets_plasma_projectile_frozenlock
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_frozenlock") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_frozenlock^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_frozenlock^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_frozenlock", cvar_string("g_handgrenades_plasma_projectile_frozenlock"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_frozenlock", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_frozenlock_hookdamage ---> g_nadgets_plasma_projectile_frozenlock_hookdamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_frozenlock_hookdamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_frozenlock_hookdamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_frozenlock_hookdamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_frozenlock_hookdamage", cvar_string("g_handgrenades_plasma_projectile_frozenlock_hookdamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_frozenlock_hookdamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_frozenlock_dps ---> g_nadgets_plasma_projectile_frozenlock_dps
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_frozenlock_dps") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_frozenlock_dps^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_frozenlock_dps^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_frozenlock_dps", cvar_string("g_handgrenades_plasma_projectile_frozenlock_dps"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_frozenlock_dps", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_frozenlock_dps_radius ---> g_nadgets_plasma_projectile_frozenlock_dps_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_frozenlock_dps_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_frozenlock_dps_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_frozenlock_dps_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_frozenlock_dps_radius", cvar_string("g_handgrenades_plasma_projectile_frozenlock_dps_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_frozenlock_dps_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_projectile_frozenlock_dps_force ---> g_nadgets_plasma_projectile_frozenlock_dps_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_projectile_frozenlock_dps_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_projectile_frozenlock_dps_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_projectile_frozenlock_dps_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_projectile_frozenlock_dps_force", cvar_string("g_handgrenades_plasma_projectile_frozenlock_dps_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_projectile_frozenlock_dps_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_detect_enemies ---> g_nadgets_plasma_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_detect_enemies", cvar_string("g_handgrenades_plasma_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_regenscale ---> g_nadgets_plasma_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_regenscale", cvar_string("g_handgrenades_plasma_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_plasma_gravity ---> g_nadgets_plasma_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_plasma_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_plasma_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_plasma_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_plasma_gravity", cvar_string("g_handgrenades_plasma_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_plasma_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_launchspeed ---> g_nadgets_napalm_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_launchspeed", cvar_string("g_handgrenades_napalm_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_launch_fullforce_explodes_in_yo_face ---> g_nadgets_napalm_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_napalm_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_launch_fullforce_launches_immediately ---> g_nadgets_napalm_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_napalm_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_cooldown ---> g_nadgets_napalm_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_cooldown", cvar_string("g_handgrenades_napalm_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_damage ---> g_nadgets_napalm_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_damage", cvar_string("g_handgrenades_napalm_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_edgedamage ---> g_nadgets_napalm_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_edgedamage", cvar_string("g_handgrenades_napalm_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_radius ---> g_nadgets_napalm_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_radius", cvar_string("g_handgrenades_napalm_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_force ---> g_nadgets_napalm_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_force", cvar_string("g_handgrenades_napalm_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_lifetime ---> g_nadgets_napalm_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_lifetime", cvar_string("g_handgrenades_napalm_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_fire_lifetime ---> g_nadgets_napalm_fire_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_fire_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_fire_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_fire_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_fire_lifetime", cvar_string("g_handgrenades_napalm_fire_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_fire_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_fire_lifetime_randomfactor ---> g_nadgets_napalm_fire_lifetime_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_fire_lifetime_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_fire_lifetime_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_fire_lifetime_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_fire_lifetime_randomfactor", cvar_string("g_handgrenades_napalm_fire_lifetime_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_fire_lifetime_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_health ---> g_nadgets_napalm_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_health", cvar_string("g_handgrenades_napalm_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_takedamage ---> g_nadgets_napalm_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_takedamage", cvar_string("g_handgrenades_napalm_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_speed ---> g_nadgets_napalm_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_speed", cvar_string("g_handgrenades_napalm_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_speed_min ---> g_nadgets_napalm_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_speed_min", cvar_string("g_handgrenades_napalm_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_speed_up ---> g_nadgets_napalm_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_speed_up", cvar_string("g_handgrenades_napalm_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_numparticles ---> g_nadgets_napalm_numparticles
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_numparticles") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_numparticles^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_numparticles^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_numparticles", cvar_string("g_handgrenades_napalm_numparticles"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_numparticles", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_damageforcescale ---> g_nadgets_napalm_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_damageforcescale", cvar_string("g_handgrenades_napalm_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_burnradius ---> g_nadgets_napalm_burnradius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_burnradius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_burnradius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burnradius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burnradius", cvar_string("g_handgrenades_napalm_burnradius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_burnradius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_middleburnradius ---> g_nadgets_napalm_middleburnradius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_middleburnradius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_middleburnradius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_middleburnradius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_middleburnradius", cvar_string("g_handgrenades_napalm_middleburnradius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_middleburnradius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_burndamage ---> g_nadgets_napalm_burndamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_burndamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_burndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burndamage", cvar_string("g_handgrenades_napalm_burndamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_burndamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_burndelay ---> g_nadgets_napalm_burndelay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_burndelay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_burndelay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burndelay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burndelay", cvar_string("g_handgrenades_napalm_burndelay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_burndelay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_edgeburndamage ---> g_nadgets_napalm_edgeburndamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_edgeburndamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_edgeburndamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_edgeburndamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_edgeburndamage", cvar_string("g_handgrenades_napalm_edgeburndamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_edgeburndamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_burntime ---> g_nadgets_napalm_burntime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_burntime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_burntime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_burntime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_burntime", cvar_string("g_handgrenades_napalm_burntime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_burntime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_spread_xy ---> g_nadgets_napalm_spread_xy
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_spread_xy") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_spread_xy^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_xy^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_xy", cvar_string("g_handgrenades_napalm_spread_xy"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_spread_xy", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_spread_z ---> g_nadgets_napalm_spread_z
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_spread_z") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_spread_z^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z", cvar_string("g_handgrenades_napalm_spread_z"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_spread_z", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_spread_z_min ---> g_nadgets_napalm_spread_z_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_spread_z_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_spread_z_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z_min", cvar_string("g_handgrenades_napalm_spread_z_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_spread_z_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_spread_z_min_randomfactor ---> g_nadgets_napalm_spread_z_min_randomfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_spread_z_min_randomfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_spread_z_min_randomfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_spread_z_min_randomfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_spread_z_min_randomfactor", cvar_string("g_handgrenades_napalm_spread_z_min_randomfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_spread_z_min_randomfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_kamikaze_damage ---> g_nadgets_napalm_kamikaze_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_kamikaze_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_kamikaze_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_kamikaze_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_kamikaze_damage", cvar_string("g_handgrenades_napalm_kamikaze_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_kamikaze_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_detonable ---> g_nadgets_napalm_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_detonable", cvar_string("g_handgrenades_napalm_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_detonate_delay ---> g_nadgets_napalm_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_detonate_delay", cvar_string("g_handgrenades_napalm_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_detonate_threshold ---> g_nadgets_napalm_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_detonate_threshold", cvar_string("g_handgrenades_napalm_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_bouncelimit ---> g_nadgets_napalm_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_bouncelimit", cvar_string("g_handgrenades_napalm_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_movetype ---> g_nadgets_napalm_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_movetype", cvar_string("g_handgrenades_napalm_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_detect_enemies ---> g_nadgets_napalm_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_detect_enemies", cvar_string("g_handgrenades_napalm_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_regenscale ---> g_nadgets_napalm_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_regenscale", cvar_string("g_handgrenades_napalm_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_napalm_gravity ---> g_nadgets_napalm_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_napalm_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_napalm_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_napalm_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_napalm_gravity", cvar_string("g_handgrenades_napalm_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_napalm_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_launchspeed ---> g_nadgets_transloc_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_launchspeed", cvar_string("g_handgrenades_transloc_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_launch_fullforce_explodes_in_yo_face ---> g_nadgets_transloc_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_transloc_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_launch_fullforce_launches_immediately ---> g_nadgets_transloc_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_transloc_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_cooldown ---> g_nadgets_transloc_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_cooldown", cvar_string("g_handgrenades_transloc_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_damage ---> g_nadgets_transloc_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_damage", cvar_string("g_handgrenades_transloc_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_damage_shield ---> g_nadgets_transloc_damage_shield
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_damage_shield") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_damage_shield^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_damage_shield^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_damage_shield", cvar_string("g_handgrenades_transloc_damage_shield"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_damage_shield", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_edgedamage ---> g_nadgets_transloc_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_edgedamage", cvar_string("g_handgrenades_transloc_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_radius ---> g_nadgets_transloc_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_radius", cvar_string("g_handgrenades_transloc_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_force ---> g_nadgets_transloc_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_force", cvar_string("g_handgrenades_transloc_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_lifetime ---> g_nadgets_transloc_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_lifetime", cvar_string("g_handgrenades_transloc_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_damageforcescale ---> g_nadgets_transloc_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_damageforcescale", cvar_string("g_handgrenades_transloc_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_health ---> g_nadgets_transloc_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_health", cvar_string("g_handgrenades_transloc_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_takedamage ---> g_nadgets_transloc_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_takedamage", cvar_string("g_handgrenades_transloc_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_speed ---> g_nadgets_transloc_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_speed", cvar_string("g_handgrenades_transloc_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_speed_min ---> g_nadgets_transloc_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_speed_min", cvar_string("g_handgrenades_transloc_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_speed_up ---> g_nadgets_transloc_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_speed_up", cvar_string("g_handgrenades_transloc_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_detonable ---> g_nadgets_transloc_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_detonable", cvar_string("g_handgrenades_transloc_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_detonate_delay ---> g_nadgets_transloc_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_detonate_delay", cvar_string("g_handgrenades_transloc_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_detonate_threshold ---> g_nadgets_transloc_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_detonate_threshold", cvar_string("g_handgrenades_transloc_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_bouncelimit ---> g_nadgets_transloc_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_bouncelimit", cvar_string("g_handgrenades_transloc_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_movetype ---> g_nadgets_transloc_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_movetype", cvar_string("g_handgrenades_transloc_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_detect_enemies ---> g_nadgets_transloc_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_detect_enemies", cvar_string("g_handgrenades_transloc_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_push_base ---> g_nadgets_transloc_push_base
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_push_base") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_push_base^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_push_base^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_push_base", cvar_string("g_handgrenades_transloc_push_base"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_push_base", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_push_projfactor ---> g_nadgets_transloc_push_projfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_push_projfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_push_projfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_push_projfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_push_projfactor", cvar_string("g_handgrenades_transloc_push_projfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_push_projfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_push_playerfactor ---> g_nadgets_transloc_push_playerfactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_push_playerfactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_push_playerfactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_push_playerfactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_push_playerfactor", cvar_string("g_handgrenades_transloc_push_playerfactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_push_playerfactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_telefragbonus ---> g_nadgets_transloc_telefragbonus
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_telefragbonus") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_telefragbonus^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_telefragbonus^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_telefragbonus", cvar_string("g_handgrenades_transloc_telefragbonus"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_telefragbonus", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_reloadonuse ---> g_nadgets_transloc_reloadonuse
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_reloadonuse") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_reloadonuse^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_reloadonuse^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_reloadonuse", cvar_string("g_handgrenades_transloc_reloadonuse"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_reloadonuse", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_regenscale ---> g_nadgets_transloc_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_regenscale", cvar_string("g_handgrenades_transloc_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_transloc_gravity ---> g_nadgets_transloc_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_transloc_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_transloc_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_transloc_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_transloc_gravity", cvar_string("g_handgrenades_transloc_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_transloc_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_cooldown ---> g_nadgets_shield_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_cooldown", cvar_string("g_handgrenades_shield_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_duration ---> g_nadgets_shield_duration
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_duration") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_duration^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_duration^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_duration", cvar_string("g_handgrenades_shield_duration"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_duration", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_health ---> g_nadgets_shield_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_health", cvar_string("g_handgrenades_shield_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_regenscale ---> g_nadgets_shield_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_regenscale", cvar_string("g_handgrenades_shield_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_take ---> g_nadgets_shield_damage_take
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_take") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_take^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_take^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_take", cvar_string("g_handgrenades_shield_damage_take"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_take", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_reflect ---> g_nadgets_shield_damage_reflect
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_reflect") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_reflect^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_reflect^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_reflect", cvar_string("g_handgrenades_shield_damage_reflect"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_reflect", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_reflect_hg ---> g_nadgets_shield_damage_reflect_hg
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_reflect_hg") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_reflect_hg^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_reflect_hg^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_reflect_hg", cvar_string("g_handgrenades_shield_damage_reflect_hg"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_reflect_hg", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store ---> g_nadgets_shield_damage_store
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store", cvar_string("g_handgrenades_shield_damage_store"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_base ---> g_nadgets_shield_damage_store_base
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_base") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_base^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_base^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_base", cvar_string("g_handgrenades_shield_damage_store_base"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_base", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_limit ---> g_nadgets_shield_damage_store_limit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_limit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_limit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_limit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_limit", cvar_string("g_handgrenades_shield_damage_store_limit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_limit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_radius ---> g_nadgets_shield_damage_store_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_radius", cvar_string("g_handgrenades_shield_damage_store_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_edgefactor ---> g_nadgets_shield_damage_store_edgefactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_edgefactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_edgefactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_edgefactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_edgefactor", cvar_string("g_handgrenades_shield_damage_store_edgefactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_edgefactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_forcefactor ---> g_nadgets_shield_damage_store_forcefactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_forcefactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_forcefactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_forcefactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_forcefactor", cvar_string("g_handgrenades_shield_damage_store_forcefactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_forcefactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_arc ---> g_nadgets_shield_damage_store_arc
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_arc") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_arc^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_arc^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_arc", cvar_string("g_handgrenades_shield_damage_store_arc"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_arc", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_arc_range ---> g_nadgets_shield_damage_store_arc_range
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_arc_range") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_arc_range^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_arc_range^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_arc_range", cvar_string("g_handgrenades_shield_damage_store_arc_range"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_arc_range", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_damage_store_arc_pushback ---> g_nadgets_shield_damage_store_arc_pushback
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_damage_store_arc_pushback") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_damage_store_arc_pushback^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_damage_store_arc_pushback^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_damage_store_arc_pushback", cvar_string("g_handgrenades_shield_damage_store_arc_pushback"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_damage_store_arc_pushback", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_diminish ---> g_nadgets_shield_diminish
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_diminish") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_diminish^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_diminish^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_diminish", cvar_string("g_handgrenades_shield_diminish"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_diminish", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_progressrate ---> g_nadgets_shield_progressrate
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_progressrate") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_progressrate^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_progressrate^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_progressrate", cvar_string("g_handgrenades_shield_progressrate"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_progressrate", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_immobile ---> g_nadgets_shield_immobile
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_immobile") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_immobile^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_immobile^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_immobile", cvar_string("g_handgrenades_shield_immobile"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_immobile", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_shield_nobuffs ---> g_nadgets_shield_nobuffs
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_shield_nobuffs") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_shield_nobuffs^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_shield_nobuffs^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_shield_nobuffs", cvar_string("g_handgrenades_shield_nobuffs"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_shield_nobuffs", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_cooldown ---> g_nadgets_linker_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_cooldown", cvar_string("g_handgrenades_linker_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_duration ---> g_nadgets_linker_duration
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_duration") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_duration^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_duration^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_duration", cvar_string("g_handgrenades_linker_duration"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_duration", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_regenscale ---> g_nadgets_linker_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_regenscale", cvar_string("g_handgrenades_linker_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_range ---> g_nadgets_linker_range
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_range") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_range^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_range^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_range", cvar_string("g_handgrenades_linker_range"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_range", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_damagefactor ---> g_nadgets_linker_damagefactor
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_damagefactor") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_damagefactor^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_damagefactor^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_damagefactor", cvar_string("g_handgrenades_linker_damagefactor"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_damagefactor", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_hps ---> g_nadgets_linker_hps
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_hps") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_hps^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_hps^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_hps", cvar_string("g_handgrenades_linker_hps"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_hps", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_linker_sharedbuffpower ---> g_nadgets_linker_sharedbuffpower
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_linker_sharedbuffpower") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_linker_sharedbuffpower^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_linker_sharedbuffpower^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_linker_sharedbuffpower", cvar_string("g_handgrenades_linker_sharedbuffpower"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_linker_sharedbuffpower", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_launchspeed ---> g_nadgets_laser_launchspeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_launchspeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_launchspeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_launchspeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_launchspeed", cvar_string("g_handgrenades_laser_launchspeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_launchspeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_launch_fullforce_explodes_in_yo_face ---> g_nadgets_laser_launch_fullforce_explodes_in_yo_face
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_launch_fullforce_explodes_in_yo_face") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_launch_fullforce_explodes_in_yo_face^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_launch_fullforce_explodes_in_yo_face^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_launch_fullforce_explodes_in_yo_face", cvar_string("g_handgrenades_laser_launch_fullforce_explodes_in_yo_face"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_launch_fullforce_explodes_in_yo_face", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_launch_fullforce_launches_immediately ---> g_nadgets_laser_launch_fullforce_launches_immediately
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_launch_fullforce_launches_immediately") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_launch_fullforce_launches_immediately^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_launch_fullforce_launches_immediately^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_launch_fullforce_launches_immediately", cvar_string("g_handgrenades_laser_launch_fullforce_launches_immediately"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_launch_fullforce_launches_immediately", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_cooldown ---> g_nadgets_laser_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_cooldown", cvar_string("g_handgrenades_laser_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_damage ---> g_nadgets_laser_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_damage", cvar_string("g_handgrenades_laser_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_damage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_edgedamage ---> g_nadgets_laser_edgedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_edgedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_edgedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_edgedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_edgedamage", cvar_string("g_handgrenades_laser_edgedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_edgedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_radius ---> g_nadgets_laser_radius
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_radius") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_radius^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_radius^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_radius", cvar_string("g_handgrenades_laser_radius"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_radius", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_force ---> g_nadgets_laser_force
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_force") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_force^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_force^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_force", cvar_string("g_handgrenades_laser_force"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_force", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_lifetime ---> g_nadgets_laser_lifetime
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_lifetime") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_lifetime^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_lifetime^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_lifetime", cvar_string("g_handgrenades_laser_lifetime"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_lifetime", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_damageforcescale ---> g_nadgets_laser_damageforcescale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_damageforcescale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_damageforcescale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_damageforcescale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_damageforcescale", cvar_string("g_handgrenades_laser_damageforcescale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_damageforcescale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_health ---> g_nadgets_laser_health
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_health") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_health^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_health^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_health", cvar_string("g_handgrenades_laser_health"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_health", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_takedamage ---> g_nadgets_laser_takedamage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_takedamage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_takedamage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_takedamage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_takedamage", cvar_string("g_handgrenades_laser_takedamage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_takedamage", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_speed ---> g_nadgets_laser_speed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_speed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_speed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_speed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_speed", cvar_string("g_handgrenades_laser_speed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_speed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_speed_min ---> g_nadgets_laser_speed_min
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_speed_min") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_speed_min^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_speed_min^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_speed_min", cvar_string("g_handgrenades_laser_speed_min"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_speed_min", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_speed_up ---> g_nadgets_laser_speed_up
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_speed_up") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_speed_up^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_speed_up^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_speed_up", cvar_string("g_handgrenades_laser_speed_up"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_speed_up", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_detonable ---> g_nadgets_laser_detonable
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_detonable") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_detonable^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_detonable^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_detonable", cvar_string("g_handgrenades_laser_detonable"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_detonable", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_detonate_delay ---> g_nadgets_laser_detonate_delay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_detonate_delay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_detonate_delay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_detonate_delay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_detonate_delay", cvar_string("g_handgrenades_laser_detonate_delay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_detonate_delay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_detonate_threshold ---> g_nadgets_laser_detonate_threshold
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_detonate_threshold") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_detonate_threshold^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_detonate_threshold^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_detonate_threshold", cvar_string("g_handgrenades_laser_detonate_threshold"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_detonate_threshold", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_bouncelimit ---> g_nadgets_laser_bouncelimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_bouncelimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_bouncelimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_bouncelimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_bouncelimit", cvar_string("g_handgrenades_laser_bouncelimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_bouncelimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_movetype ---> g_nadgets_laser_movetype
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_movetype") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_movetype^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_movetype^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_movetype", cvar_string("g_handgrenades_laser_movetype"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_movetype", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_detect_enemies ---> g_nadgets_laser_detect_enemies
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_detect_enemies") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_detect_enemies^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_detect_enemies^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_detect_enemies", cvar_string("g_handgrenades_laser_detect_enemies"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_detect_enemies", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_regenscale ---> g_nadgets_laser_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_regenscale", cvar_string("g_handgrenades_laser_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_gravity ---> g_nadgets_laser_gravity
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_gravity") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_gravity^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_gravity^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_gravity", cvar_string("g_handgrenades_laser_gravity"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_gravity", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_laser_stacklimit ---> g_nadgets_laser_stacklimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_laser_stacklimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_laser_stacklimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_laser_stacklimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_laser_stacklimit", cvar_string("g_handgrenades_laser_stacklimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_laser_stacklimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_regenscale ---> g_nadgets_cloak_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_regenscale", cvar_string("g_handgrenades_cloak_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_cooldown ---> g_nadgets_cloak_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_cooldown", cvar_string("g_handgrenades_cloak_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_cooldown_decloak ---> g_nadgets_cloak_cooldown_decloak
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_cooldown_decloak") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_cooldown_decloak^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_cooldown_decloak^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_cooldown_decloak", cvar_string("g_handgrenades_cloak_cooldown_decloak"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_cooldown_decloak", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_movespeed ---> g_nadgets_cloak_movespeed
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_movespeed") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_movespeed^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_movespeed^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_movespeed", cvar_string("g_handgrenades_cloak_movespeed"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_movespeed", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_duration ---> g_nadgets_cloak_duration
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_duration") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_duration^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_duration^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_duration", cvar_string("g_handgrenades_cloak_duration"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_duration", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_stacklimit ---> g_nadgets_cloak_stacklimit
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_stacklimit") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_stacklimit^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_stacklimit^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_stacklimit", cvar_string("g_handgrenades_cloak_stacklimit"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_stacklimit", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_actiondelay ---> g_nadgets_cloak_actiondelay
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_actiondelay") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_actiondelay^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_actiondelay^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_actiondelay", cvar_string("g_handgrenades_cloak_actiondelay"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_actiondelay", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_stealthrate ---> g_nadgets_cloak_stealthrate
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_stealthrate") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_stealthrate^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_stealthrate^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_stealthrate", cvar_string("g_handgrenades_cloak_stealthrate"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_stealthrate", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_unstealthrate ---> g_nadgets_cloak_unstealthrate
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_unstealthrate") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_unstealthrate^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_unstealthrate^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_unstealthrate", cvar_string("g_handgrenades_cloak_unstealthrate"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_unstealthrate", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_cloak_usewhileactive ---> g_nadgets_cloak_usewhileactive
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_cloak_usewhileactive") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_cloak_usewhileactive^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_cloak_usewhileactive^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_cloak_usewhileactive", cvar_string("g_handgrenades_cloak_usewhileactive"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_cloak_usewhileactive", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_gg_cooldown ---> g_nadgets_gg_cooldown
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_gg_cooldown") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_gg_cooldown^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_gg_cooldown^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_gg_cooldown", cvar_string("g_handgrenades_gg_cooldown"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_gg_cooldown", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_gg_regenscale ---> g_nadgets_gg_regenscale
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_gg_regenscale") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_gg_regenscale^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_gg_regenscale^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_gg_regenscale", cvar_string("g_handgrenades_gg_regenscale"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_gg_regenscale", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_gg_range ---> g_nadgets_gg_range
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_gg_range") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_gg_range^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_gg_range^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_gg_range", cvar_string("g_handgrenades_gg_range"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_gg_range", "__COMPATVAR_DISABLED__");
+		++corrections;
+	}
+	
+	// g_handgrenades_gg_damage ---> g_nadgets_gg_damage
+	
+	if COMPATVAR_ACTIVE("g_handgrenades_gg_damage") {
+		print("^1WARNING: ^7Your configuration uses an OUTDATED cvar name: ^3g_handgrenades_gg_damage^7. Will _TRY_ to stay compatible by updating ^3g_nadgets_gg_damage^7, but no stability is guaranteed at this point!\n");
+		cvar_set("g_nadgets_gg_damage", cvar_string("g_handgrenades_gg_damage"));
+		if(mode == 2)
+			cvar_set("g_handgrenades_gg_damage", "__COMPATVAR_DISABLED__");
 		++corrections;
 	}
 	

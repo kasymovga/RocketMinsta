@@ -9,9 +9,6 @@ RELEASE_SUFFIX=""
 # Will be appended to RM_BUILD_DATE. Should not be left blank, may be left unchanged.
 RELEASE_DESCRIPTION="release build"
 
-# Whether to include the rm-custom directory or not. 1 = include, 0 = don't include.
-RELEASE_RMCUSTOM=1
-
 # Name of a rm-custom configuration to be made default. May be left blank.
 # Note: only the config NAME has to be specified.
 # Example: to make rm-custom/akari.cfg the default config, you have to specify "akari"

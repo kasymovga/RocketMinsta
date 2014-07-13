@@ -198,7 +198,10 @@ float GameCommand_Generic(string command)
 		print("  maplist maplist\n");
 		print("  maplist lsmaps\n");
 		print("  addtolist variable addedvalue\n");
+		print("  delfromlist variable removedvalue\n");
+		print("  delfromlist_startswith variable removedvalue\n");
 		print("  records\n");
+        print("  crc16 string");
 		IP2C_GameCommand("help");
 		return TRUE;
 	}
@@ -853,6 +856,10 @@ float GameCommand_Generic(string command)
 		}
 		return TRUE;
 #endif
+    } else if(argv(0) == "crc16") {
+        s = substring(command, argv_start_index(1), strlen(command));
+        print(s, ": ^5", ftos(crc16(FALSE, s)), "\n");
+        return TRUE;
 	} else return IP2C_GameCommand(command);
 
 	return FALSE;

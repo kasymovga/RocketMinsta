@@ -367,7 +367,6 @@ void InitGameplayMode()
 	}
 
 	gamemode_name = gametype_ID_to_LongName(game);
-	gametypetoset = game;
 
 	if(teams_matter)
 		entcs_init();

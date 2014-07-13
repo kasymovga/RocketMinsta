@@ -143,14 +143,9 @@ void ImpulseCommands (void)
 					W_PreviousWeapon (2);
 					break;
 				case 17:
-                    if(g_handgrenades) {
-                        if(self.hg_stealth)
-                            self.hg_stealth = -1;
-                        else {
-                            self.hg_detonatepressed = TRUE;
-                            HG_DetonateAll(self);
-                        }
-					} else if(!g_minstagib)
+                    if(g_nadgets)
+                        HG_Trigger();
+					else if(!g_minstagib)
 						W_ThrowWeapon(W_CalculateProjectileVelocity(self.velocity, v_forward * 750), '0 0 0', TRUE);
 					break;
 				case 18:

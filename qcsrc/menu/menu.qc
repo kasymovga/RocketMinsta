@@ -181,7 +181,7 @@ void() m_init_delayed =
 	menuShiftState = 0;
 	menuMousePos = '0.5 0.5 0';
     
-    rm_watermark = strzone(strcat(RM_BUILD_NAME, " ", RM_BUILD_VERSION, " ", RM_BUILD_DATE));
+    rm_watermark = RM_BUILD_NAME " " RM_BUILD_VERSION " " RM_BUILD_COMMIT " " RM_BUILD_DATE;
     
 	if(Menu_Active)
 		m_display(); // delayed menu display

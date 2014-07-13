@@ -22,7 +22,7 @@ float ctf_score_value(string parameter);
 #define g_total_domination g_totaldomination
 
 float g_dm, g_domination, g_ctf, g_tdm, g_keyhunt, g_onslaught, g_assault, g_arena, g_lms, g_runematch, g_race, g_nexball, g_cts, g_total_domination, g_vip, g_prec, g_rps, g_inf, g_jailbreak, g_clanarena, g_no;
-float g_cloaked, g_footsteps, g_jump_grunt, g_grappling_hook, g_laserguided_missile, g_midair, g_minstagib, g_nixnex, g_nixnex_with_laser, g_pinata, g_norecoil, g_vampire, g_minstagib_invis_alpha, g_bloodloss, g_handgrenades;
+float g_cloaked, g_footsteps, g_jump_grunt, g_grappling_hook, g_laserguided_missile, g_midair, g_minstagib, g_nixnex, g_nixnex_with_laser, g_pinata, g_norecoil, g_vampire, g_minstagib_invis_alpha, g_bloodloss, g_nadgets;
 
 float g_warmup_limit;
 float g_warmup_allguns;
@@ -375,10 +375,9 @@ void UpdateSelectedPlayer();
 void ClearSelectedPlayer();
 .entity selected_player;
 .entity last_selected_player;
-.float selected_player_time; // when this player has been selected
 .float selected_player_count; // how long this player has been directly pointed to
-.float selected_player_display_needs_update; // are regular updates necessary? (health)
 .float selected_player_display_timeout; // when the selection will time out
+.float selected_player_next_update;
 
 void FixIntermissionClient(entity e);
 void FixClientCvars(entity e);
@@ -526,6 +525,8 @@ string clientstuff;
 .float weapons;
 .float pressedkeys;
 
+.float lastkeypressed;
+
 .float porto_forbidden;
 
 .string fog;
@@ -632,7 +633,6 @@ void bigprint(entity e, string bigstring, string comment, float staytime);
 void centerprint_spec(entity, string);
 void bigprint_spec(entity, string, string, float);
 
-.string rmcfgreport;
 .float anonspec;
 .float madoka;
 
@@ -657,8 +657,6 @@ void shownames_think();
 
 .float g_minstagib_stat;
 .string hudskin;
-
-float gametypetoset;
 
 #define DEPENDON(d) if(!(d)) return;
 #define DEPENDON_F(d,f) if(!(d)) return f;
@@ -699,6 +697,7 @@ vector frag_force;
 void Boobs_DropAllAndRespawn(vector);
 
 float next_round;
+float next_round_starttime;
 
 float sv_showspecs_extra;
 float sv_showfps;
@@ -758,7 +757,6 @@ vector TeamColor(float teem);
 float sv_scoreboard_heal_column;
 
 float hack_forcenextmap;
-string nextgametype;
 
 float RadiusDamage (entity inflictor, entity attacker, float coredamage, float edgedamage, float rad, entity ignore, float forceintensity, float deathtype, entity directhitentity);
 
@@ -770,3 +768,7 @@ void SwapTeams_Generic(void);
 .float playtimeupdate;
 float roundstate;
 .float roundstate_stat;
+
+.float vdmg_ignorenext;
+float sv_nicehealth;
+float sv_showacc;

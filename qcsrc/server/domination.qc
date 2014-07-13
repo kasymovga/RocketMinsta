@@ -269,7 +269,7 @@ void dompointtouch()
     if(g_freeze && other.frozen)
         return;
     
-    if(other.hg_stealth)
+    if(time - other.hg_stealthtime < cvar("g_nadgets_cloak_actiondelay"))
         return;
     
 	if(time < self.captime + 0.3)
@@ -291,7 +291,7 @@ void dompointtouch()
 
     float rate = cvar("g_domination_capture_speed");
     if(other.hg_shield)
-        rate *= cvar("g_handgrenades_shield_progressrate");
+        rate *= cvar("g_nadgets_shield_progressrate");
 
 	self.dom_captureprogress = bound(0, self.dom_captureprogress + frametime * rate, 1);
 	self.pointupdatetime = time;

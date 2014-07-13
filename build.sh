@@ -1,19 +1,27 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+
 INCLUDE=1
-. rmlib.sh || exit 1
+. extras/scripts/rmlib.sh || exit 1
 require md5sum tar 7za:zip %convert
 
 RELEASE=0
 BUILD_DATE="$(date +"%F %T %Z")"
 BUILD_DATE_PLAIN="$(date +%y%m%d%H%M%S)"
 BRANCH="`git symbolic-ref HEAD 2>/dev/null | sed -e 's@^refs/heads/@@'`"
+COMMIT="$(git show 2>/dev/null | head -n 1 | sed -e 's/commit //' | head -c 8)"
 VERSION="$(rm-version)"
 BUILT_PACKAGES=""
 BUILT_PKGINFOS=""
 BUILT_PKGNAMES=""
 COMMONSUM=""
 MENUSUM=""
+
+WINDOWS=0
+if [ "$(uname -o)" = "Cygwin" ]; then
+	WINDOWS=1
+fi
 
 function getfiledircache
 {
@@ -61,10 +69,6 @@ function removeoldfiles
 function linkfiles
 {
     if [ -n "${LINKDIRS}" ]; then
-
-        # Not tested under Windows at all
-        export CYGWIN="winsymlinks:native"
-
         getfiledircache "${BUILDDIR}"
 
         for j in "${LINKDIRS[@]}"; do
@@ -76,7 +80,11 @@ function linkfiles
             done
 
             for i in "${filecache[@]}"; do
-                ln --symbolic --force "${BUILDDIR}/${i:2}" "${j}/${i:2}"
+				if [ "$WINDOWS" = 1 ]; then
+					cp -vf "${BUILDDIR}/${i:2}" "${j}/${i:2}"
+				else
+					ln --symbolic --force "${BUILDDIR}/${i:2}" "${j}/${i:2}"
+				fi
             done
 
         done
@@ -118,6 +126,7 @@ function buildall
     echo "#define RM_BUILD_VERSION \"$VERSION\""      >> "$QCSOURCE"/common/rm_auto.qh
     echo "#define RM_BUILD_MENUSUM \"$MENUSUM\""      >> "$QCSOURCE"/common/rm_auto.qh
     echo "#define RM_BUILD_SUFFIX \"${1##-}\""        >> "$QCSOURCE"/common/rm_auto.qh
+    echo "#define RM_BUILD_COMMIT \"$COMMIT\""        >> "$QCSOURCE"/common/rm_auto.qh
     
 	echo "#define RM_SUPPORT_CLIENTPKGS"              >> "$QCSOURCE"/common/rm_auto.qh
 	for i in $BUILT_PKGNAMES; do
@@ -126,16 +135,21 @@ function buildall
 
     buildqc server/
     mv -v progs.dat "$SVPROGS"
+    mv -v progs.lno "${SVPROGS%%dat}lno"
 
     buildqc client/
     mv -v csprogs.dat "$CSPROGS"
+    mv -v csprogs.lno "${CSPROGS%%dat}lno"
 
     buildqc menu/
     mv -v menu.dat "menu.pk3dir/menu.dat"
+    mv -v menu.lno "menu.pk3dir/menu.lno"
     makedata menu "$1" "$2"
     rm -v "menu.pk3dir"/*.dat
 
     rm -v "$QCSOURCE"/common/rm_auto.qh
+    
+    mv -v --target-directory="${BUILDDIR}" *.lno *.log
 }
 
 function tocompress
@@ -374,15 +388,16 @@ function listcustom
 {
     find "${BUILDDIR}/rm-custom" -maxdepth 1 -name "*.cfg" | while read cfg; do
         scfg="${cfg##*/}"
-        echo -e "\t\t$scfg -- $(head -1 "$cfg" | sed -e 's@//cfgname:@@')"
+        scfg="${scfg%%.cfg}"
+        echo -n "            $scfg "
+        for ((i=$(echo -n "$scfg" | wc -c); i <= 15; ++i)); do echo -n " "; done
+        echo "$(head -1 "$cfg" | sed -e 's@//cfgname:@@')"
     done
 }
 
 function finalize-install
 {
-    cp -v "rocketminsta.cfg" "${BUILDDIR}/"
-    cp -v "rocketminsta-gameplay.cfg" "${BUILDDIR}/"
-    cp -v "rocketminsta-compat.cfg" "${BUILDDIR}/"
+    cp -vr modfiles/* "${BUILDDIR}/"
 
     cat <<EOF >>"${BUILDDIR}/rocketminsta.cfg"
 rm_clearpkgs
@@ -397,11 +412,6 @@ EOF
 set sv_progs $(echo "$SVPROGS" | sed -e 's@.*/@@g')
 set csqc_progname $(echo "$CSPROGS" | sed -e 's@.*/@@g')
 EOF
-
-    if [ $RELEASE_RMCUSTOM -eq 1 ]; then
-        mkdir -pv "${BUILDDIR}/rm-custom"
-        cp -rv rm-custom/* "${BUILDDIR}/rm-custom"
-    fi
 }
 
 function configtest
@@ -515,7 +525,7 @@ if [ "$1" = "release" ]; then
             RELEASE_REALSUFFIX="-cfg$RELEASE_DEFAULTCFG"
         fi
         
-        [ -e "rm-custom/$RELEASE_DEFAULTCFG.cfg" ] || error "Default configuration '$RELEASE_DEFAULTCFG.cfg' does not exist in rm-custom"
+        [ -e "modfiles/rm-custom/$RELEASE_DEFAULTCFG.cfg" ] || error "Default configuration '$RELEASE_DEFAULTCFG.cfg' does not exist in rm-custom"
     fi
     
     PKGNAME="RocketMinsta${RELEASE_REALSUFFIX}"
@@ -539,7 +549,7 @@ if [ "$1" = "release" ]; then
     finalize-install    
 
     if [ -n "$RELEASE_DEFAULTCFG" ]; then
-        cat "rm-custom/$RELEASE_DEFAULTCFG.cfg" >> "${BUILDDIR}/rocketminsta-gameplay.cfg"
+        cat "modfiles/rm-custom/$RELEASE_DEFAULTCFG.cfg" >> "${BUILDDIR}/rocketminsta-gameplay.cfg"
         sed -i '/exec "$rm_gameplay_config"/d' "${BUILDDIR}/rocketminsta-gameplay.cfg" # Without this, a recursive include will occur
     fi
     
@@ -553,30 +563,23 @@ This is an auto generated $PKGNAME $VERSION release package, built at $BUILD_DAT
     2) Edit your server config and add the following line at very top:
         
         exec rocketminsta.cfg
-EOF
-
-    if [ $RELEASE_RMCUSTOM -eq 1 ]; then
-        cat <<EOF >> "${BUILDDIR}/README.rmrelease"
         
         If you'd like to use one of the custom configurations,
         add the following at the bottom of your config:
         
-            rmcustom NAME_OF_CUSTOM_CONFIG.cfg
+            rmcustom NAME_OF_CUSTOM_CONFIG
         
-        The following configurations were included at build time: `ls rm-custom/*.cfg | while read line; do line=${line##rm-custom/}; echo -n "$line "; done`
-EOF
-    fi
-
-    cat <<EOF >> "${BUILDDIR}/README.rmrelease"
+        The following configurations were included at build time: 
+$(listcustom)
     3) MAKE SURE that the following packages can be autodownloaded by clients:
-        $BUILT_PACKAGES
+$(for i in $BUILT_PACKAGES; do
+    echo "        $i"
+done)
         
         This package contains all of them
     4) Start the server and enjoy.
-EOF
-
-    cat <<EOF >> "${BUILDDIR}/README.rmrelease"
-
+    
+    
 RocketMinsta project: http://rocketminsta.net/
 
 EOF
@@ -609,7 +612,6 @@ EOF
     exit
 fi
 
-RELEASE_RMCUSTOM=1
 PREFIX="-$BRANCH"
 [ $PREFIX = "-master" ] && PREFIX=""
 
@@ -645,7 +647,7 @@ $(listcustom)
     If you'd like to use one of the custom configurations,
     add the following at the bottom of your config:
         
-        rmcustom NAME_OF_CUSTOM_CONFIG.cfg
+        rmcustom NAME_OF_CUSTOM_CONFIG
         
     In addition, these packages MUST be available on your download server:
 $(for i in $BUILT_PACKAGES;

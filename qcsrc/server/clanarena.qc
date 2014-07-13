@@ -29,13 +29,11 @@ void CA_Initialize(void) {
     else
         warmup = time + cvar("g_start_delay");
     
-    // XXX: rename this function
-    ft_teams = ca_teams;
-    defer(0.1, FreezeTag_FixTeamSpawns);
-    
     entity ca = spawn();
     ca.think = CA_Frame;
     ca.nextthink = time;
+    
+    sv_nicehealth = cvar("g_clanarena_start_health") + cvar("g_clanarena_start_armor");
 }
 
 float CA_AliveCheck(entity plr) {

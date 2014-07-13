@@ -29,10 +29,10 @@ void te_heal(entity e) {
 }
 
 void te_blast(vector loc) {
-    WriteByte(MSG_ALL, SVC_TEMPENTITY);
-    WriteByte(MSG_ALL, TE_CSQC_BLAST);
+    WriteByte(MSG_BROADCAST, SVC_TEMPENTITY);
+    WriteByte(MSG_BROADCAST, TE_CSQC_BLAST);
     
-    WriteCoord(MSG_ALL, loc_x);
-    WriteCoord(MSG_ALL, loc_y);
-    WriteCoord(MSG_ALL, loc_z);
+    WriteCoord(MSG_BROADCAST, loc_x);
+    WriteCoord(MSG_BROADCAST, loc_y);
+    WriteCoord(MSG_BROADCAST, loc_z);
 }

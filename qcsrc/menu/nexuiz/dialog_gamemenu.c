@@ -38,7 +38,7 @@ void fillNexuizGameMenuDialog(entity me)
 		setDependent(e, "_teams_available", 1, 1337);
 	me.TR(me);
 		me.TD(me, 1, me.columns, e = makeNexuizCommandButton("Switch nadget", '0 0 0', "menu_cmd directmenu NadeMenu;", COMMANDBUTTON_CLOSE));
-		setDependent(e, "_g_handgrenades_select_available", 1, 1337);
+		setDependent(e, "_g_nadgets_select_available", 1, 1337);
 	me.TR(me);
 		me.TD(me, 1, me.columns, e = makeNexuizCommandButton("Spectate", '0 0 0', "cmd spectate;", COMMANDBUTTON_CLOSE));
 	me.TR(me);

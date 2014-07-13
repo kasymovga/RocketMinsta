@@ -5,6 +5,7 @@
 .float last_LEFT_KEY_time;
 .float last_RIGHT_KEY_time;
 
+
 // these store the movement direction at the time of the dodge action happening.
 .float dodging_direction_x;
 .float dodging_direction_y;
@@ -37,6 +38,8 @@ void dodging_Initialize() {
 	self.dodging_single_action = 0;
 	self.dodging_direction_x = 0;
 	self.dodging_direction_y = 0;
+	
+	self.lastkeypressed = 0;
 }
 
 // returns 1 if the player is close to a wall
@@ -96,10 +99,11 @@ float dodging_GetPressedKeys()
 	if(g_freeze && self.frozen) {
         if not(g_freezetag_dodging_frozen)
             return 0;
-        if(time < self.frozen_plasmalock)
-            return 0;
     }
 
+    if(time < self.hg_plasmalock)
+        return 0;
+    
     //if(self.hg_stealth)
     //    return 0;
 
@@ -124,44 +128,56 @@ float dodging_GetPressedKeys()
 	if (self.movement_x > 0) {
 		// is this a state change?
 		if (!(self.pressedkeys & KEY_FORWARD)) {
-			if ((time - self.last_FORWARD_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
-				tap_direction_x = 1.0;
-				dodge_detected = 1;
+			if(self.lastkeypressed != KEY_BACKWARD) {
+				if ((time - self.last_FORWARD_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
+					tap_direction_x = 1.0;
+					dodge_detected = 1;
+					self.lastkeypressed = 0;
+				}
 			}
- 			self.last_FORWARD_KEY_time = time;
+			self.last_FORWARD_KEY_time = time;
  		}
 	}
 
 	if (self.movement_x < 0) {
 		// is this a state change?
  		if (!(self.pressedkeys & KEY_BACKWARD)) {
-			tap_direction_x = -1.0;
-			if ((time - self.last_BACKWARD_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
-				dodge_detected = 1;
+			if(self.lastkeypressed != KEY_FORWARD) {
+				tap_direction_x = -1.0;
+				if ((time - self.last_BACKWARD_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
+					dodge_detected = 1;
+					self.lastkeypressed = 0;
+				}
 			}
- 			self.last_BACKWARD_KEY_time = time;
+			self.last_BACKWARD_KEY_time = time;
  		}
 	}
 
 	if (self.movement_y > 0) {
 		// is this a state change?
 		if (!(self.pressedkeys & KEY_RIGHT)) {
-			tap_direction_y = 1.0;
-			if ((time - self.last_RIGHT_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
-				dodge_detected = 1;
+			if(self.lastkeypressed != KEY_LEFT) {
+				tap_direction_y = 1.0;
+				if ((time - self.last_RIGHT_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
+					dodge_detected = 1;
+					self.lastkeypressed = 0;
+				}
 			}
- 			self.last_RIGHT_KEY_time = time;
+			self.last_RIGHT_KEY_time = time;
  		}
 	}
 
 	if (self.movement_y < 0) {
 		// is this a state change?
 		if (!(self.pressedkeys & KEY_LEFT)) {
-			tap_direction_y = -1.0;
-			if ((time - self.last_LEFT_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
-				dodge_detected = 1;
+			if(self.lastkeypressed != KEY_RIGHT) {
+				tap_direction_y = -1.0;
+				if ((time - self.last_LEFT_KEY_time) < self.cvar_cl_dodging_timeout)	{ 
+					dodge_detected = 1;
+					self.lastkeypressed = 0;
+				}
 			}
- 			self.last_LEFT_KEY_time = time;
+			self.last_LEFT_KEY_time = time;
  		}
 	}
 

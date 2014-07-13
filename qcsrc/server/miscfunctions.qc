@@ -169,6 +169,31 @@ void GameLogClose()
     }
 }
 
+float check_team_spawns(void) {
+    float r, b, y, p, c;
+    float tc = TeamCount_TotalTeams();
+    entity e;
+    
+    #define HANDLETEAM(n,o,p) case o: if(tc >= n) if(!p) c++; p = 1; break;
+    for(e = world; (e = find(e, classname, "info_player_deathmatch")); ) switch(e.team) {
+        HANDLETEAM(1, COLOR_TEAM1, r)
+        HANDLETEAM(2, COLOR_TEAM2, b)
+        HANDLETEAM(3, COLOR_TEAM3, y)
+        HANDLETEAM(4, COLOR_TEAM4, p)
+    }
+    #undef HANDLETEAM
+    
+    return (c >= tc);
+}
+
+void fix_team_spawns(void) {
+    if(have_team_spawns)
+    if(!check_team_spawns()) {
+        print("Not enough team spawnpoints, not using them\n");
+        have_team_spawns = 0;
+    }
+}
+
 float spawnpoint_nag;
 void relocate_spawnpoint()
 {
@@ -229,27 +254,6 @@ void relocate_spawnpoint()
         setsize(e, '-8 -8 -8', '8 8 8');
         e.solid = SOLID_TRIGGER;
     }
-}
-
-float count_team_spawns()
-{
-	float r, b, y, p, c;
-	entity e;
-	
-	#define HANDLETEAM(o,p) case o: if(!p) c++; p = 1; break;
-	for(e = world; (e = find(e, classname, "info_player_deathmatch")); ) if(e.team)
-	{
-		switch(e.team)
-		{
-			HANDLETEAM(COLOR_TEAM1, r)
-			HANDLETEAM(COLOR_TEAM2, b)
-			HANDLETEAM(COLOR_TEAM3, y)
-			HANDLETEAM(COLOR_TEAM4, p)
-		}
-	}
-	#undef HANDLETEAM
-	
-	return c;
 }
 
 #define strstr strstrofs
@@ -763,7 +767,7 @@ void GetCvars(float f)
 	GetCvars_handleFloat(s, f, cvar_cl_forceplayermodels, "cl_forceplayermodels");
 	GetCvars_handleFloat(s, f, cvar_cl_forceplayermodelsfromnexuiz, "cl_forceplayermodelsfromnexuiz");
 #endif
-	GetCvars_handleFloatOnce(s, f, cvar_cl_gunalign, "cl_gunalign");
+	GetCvars_handleFloat(s, f, cvar_cl_gunalign, "cl_gunalign");
 
 
 	// fixup of switchweapon (needed for LMS or when spectating is disabled, as PutClientInServer comes too early)
@@ -1260,7 +1264,7 @@ void readplayerstartcvars()
         start_items |= IT_JETPACK;
 
 	if(g_jetpack /*|| g_grappling_hook*/)
-		g_handgrenades = 0;
+		g_nadgets = 0;
 
     if (g_weapon_stay == 2)
     {
@@ -1353,7 +1357,7 @@ void readlevelcvars(void)
     g_footsteps = cvar("g_footsteps");
     g_grappling_hook = cvar("g_grappling_hook");
     g_jetpack = cvar("g_jetpack");
-    g_handgrenades = cvar("g_handgrenades");
+    g_nadgets = cvar("g_nadgets");
     g_laserguided_missile = cvar("g_laserguided_missile");
     g_midair = cvar("g_midair");
     g_minstagib = cvar("g_minstagib");
@@ -1873,7 +1877,7 @@ void precache()
         precache_sound ("weapons/hook_impact.wav"); // hook
     }
 
-    if(g_handgrenades) {
+    if(g_nadgets) {
         HG_Precache();
     }
 
@@ -2238,7 +2242,7 @@ float SUB_NoImpactCheck()
         {
             dprint("Odd... did not hit...?\n");
         }
-        else if (trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOIMPACT)
+        else if(trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOIMPACT) if(self.classname == "grapplinghook")
         {
             dprint("Detected and prevented the sky-grapple bug.\n");
             return 1;
@@ -2251,6 +2255,8 @@ float SUB_NoImpactCheck()
 #define SUB_OwnerCheck() (other && (other == self.owner))
 
 #define PROJECTILE_TOUCH do { if(SUB_OwnerCheck()) return; if(SUB_NoImpactCheck()) { remove(self); return; } if(trace_ent && trace_ent.solid > SOLID_TRIGGER) UpdateCSQCProjectileNextFrame(self); } while(0)
+#define PROJECTILE_FIX(p) if(cvar("sv_gameplayfix_zerohitcontents")) { setsize(p, '0 0 0', '0 0 1'); }
+#define PROJECTILE_FIX2(p) if(cvar("sv_gameplayfix_zerohitcontents")) { setsize(p, '0 0 0', '0 0 1'); (p).dphitcontentsmask &~= DPCONTENTS_CORPSE; }
 
 float MAX_IPBAN_URIS = 16;
 
@@ -3284,13 +3290,22 @@ float Banning_UnbanPlayerByName (string name)
 	return 1;
 }
 
-string GetVoteList_All()
+string GetVoteList_VoteCommands(float ismaster, float isvdo) {
+    string s = cvar_string("sv_vote_commands");
+    if(ismaster)
+        s = strcat(s, " ", cvar_string("sv_vote_master_commands"));
+    if(!isvdo)
+        s = strcat(s, " ", cvar_string("sv_vote_only_commands"));
+    return s;
+}
+
+string GetVoteList_All(float ismaster, float isvdo)
 {
 	if(!cvar("sv_vote_gametype_call"))
-		return cvar_string("sv_vote_commands");
+		return GetVoteList_VoteCommands(ismaster, isvdo);
 	
 	local string votes;
-	local float i, n = tokenizebyseparator(cvar_string("sv_vote_commands"), " ");
+	local float i, n = tokenizebyseparator(GetVoteList_VoteCommands(ismaster, isvdo), " ");
 	
 	for(i = 0; i < n; ++i)
 	{
@@ -3301,17 +3316,17 @@ string GetVoteList_All()
 	return strcat(votes, cvar_string("sv_vote_gametype_options"));
 }
 
-string GetVoteList_Filtered()
+string GetVoteList_Filtered(float ismaster, float isvdo)
 {
 	local string votes;
-	local float i, n = tokenizebyseparator(GetVoteList_All(), " ");
+	local float i, n = tokenizebyseparator(GetVoteList_All(ismaster, isvdo), " ");
 	
 	for(i = 0; i < n; ++i)
 	{
 		float c = ListContains(cvar_string("sv_vote_secretcommands"), argv(i), " ");
 		
 		// ListContains tokenizes
-		n = tokenizebyseparator(GetVoteList_All(), " ");
+		n = tokenizebyseparator(GetVoteList_All(ismaster, isvdo), " ");
 		
 		if not(c)
 			votes = strcat(votes, argv(i), " ");
@@ -3320,12 +3335,12 @@ string GetVoteList_Filtered()
 	return votes;
 }
 
-string GetVoteList()
+string GetVoteList(float ismaster, float isvdo)
 {
 	if(cvar("sv_vote_secretcommands_enabled"))
-		return GetVoteList_All();
+		return GetVoteList_All(ismaster, isvdo);
 	else
-		return GetVoteList_Filtered();
+		return GetVoteList_Filtered(ismaster, isvdo);
 }
 
 void GameCommand(string);
@@ -3442,7 +3457,8 @@ void G_EndRound(float thedelay, float warmuptime, void() callback, void() callba
     e.endround_finalize = callbackfin;
     e.endround_warmuptime = warmuptime;
     next_round = time + thedelay;
-    e.cnt = warmuptime + next_round;
+    next_round_starttime = next_round + warmuptime;
+    e.cnt = next_round_starttime;
     roundstate = ROUNDSTATE_OVER;
 }
 
@@ -3456,6 +3472,7 @@ void SendServerInfo(entity player) {
 	WriteString(MSG_ONE, RM_BUILD_NAME);
 	WriteString(MSG_ONE, RM_BUILD_VERSION);
 	WriteString(MSG_ONE, RM_BUILD_DATE);
+	WriteString(MSG_ONE, RM_BUILD_COMMIT);
 	WriteString(MSG_ONE, strreplace("\\n", "\n", cvar_string("sv_motd")));
 }
 

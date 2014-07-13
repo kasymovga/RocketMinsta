@@ -16,13 +16,6 @@ void FreezeTag_Frame()
     self.nextthink = time;
 }
 
-void FreezeTag_FixTeamSpawns() {
-    if(count_team_spawns() < ft_teams) {
-        print("FreezeTag: not enough team spawnpoints, refusing to use them\n");
-        have_team_spawns = 0;
-    }
-}
-
 void FreezeTag_Initialize()
 {
     ft_teams = cvar("g_freezetag_teams_override");
@@ -45,7 +38,6 @@ void FreezeTag_Initialize()
     e.think = FreezeTag_Frame;
     e.nextthink = time;
     
-    defer(0.1, FreezeTag_FixTeamSpawns);
     defer(0.2, sm_Init);
 }
 

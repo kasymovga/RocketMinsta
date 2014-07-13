@@ -190,8 +190,8 @@ void Freeze_UnfreezePlayer(entity plr)
     if(plr.freeze_waypoint)
         WaypointSprite_Disown(plr.freeze_waypoint, 0.5);
     
-    if(g_handgrenades) {
-        if(cvar("g_handgrenades_regen_time")) {
+    if(g_nadgets) {
+        if(cvar("g_nadgets_regen_time")) {
             plr.hg_power = 0;
         } else HG_PlayerSpawnEx(plr);
     }
@@ -372,6 +372,7 @@ void Freeze_RevivePlayer(entity plr, entity revlist) {
         e.revresettime = time + frametime * 2;
     }
     
+    plr.hg_plasmalock = 0;
     centerprint_spec(plr, strcat("^5You were revived by ^7", names, "\n"));
     bprint("^7", names, "^5 revived ^7", plr.netname, "\n");
 }
@@ -430,6 +431,7 @@ void Freeze_Hook_PlayerPreThink(void) {
         if(Freeze_CVar("iceblocks_teamcolored"))
             self.iceblock.skin = TeamColorSkin(self.team);
         self.iceblock.team = self.team;
+        WaypointSprite_Disown(self.freeze_waypoint, 0.5);
     }
     
     if(!self.freeze_waypoint) {
@@ -444,37 +446,18 @@ void Freeze_Hook_PlayerPreThink(void) {
     float rmod;
     float allow;
     
-    if(time < self.frozen_plasmalock) {
-        if(!self.frozen_plasmalock_owner.iscreature) {
-            self.frozen_plasmalock_owner = world;
-            self.frozen_plasmalock = 0;
-            self.frozen_plasmalock_nexteffect = time + frametime;
-        }
-        
-        if(time > self.frozen_plasmalock_nexteffect) {
-            float edelay = 0.35;
-            self.frozen_plasmalock_nexteffect = time + edelay;
-            vector eorigin = self.origin + self.maxs_z * '0 0 0.5';
-            
-            float pdmg = cvar("g_handgrenades_plasma_projectile_frozenlock_dps") * edelay;
-            if(pdmg)
-                RadiusDamage(self, self.frozen_plasmalock_owner, pdmg, pdmg, cvar("g_handgrenades_plasma_projectile_frozenlock_dps_radius"), world, cvar("g_handgrenades_plasma_projectile_frozenlock_dps_force"), self.projectiledeathtype, world);
-            
-            te_csqc_lightningarc(eorigin + randomvec() * 100, eorigin + randomvec() * 10, TRUE, self.frozen_plasmalock_owner.team);
-            sound(self, CHAN_AUTO, "sound/weapons/electro_impact.wav", 0.4, 1.5);
-        }
-        
+    if(time < self.hg_plasmalock)
         return;
-    }
     
     // Find all players withing revival radius and build a linked list
     if(self.freezetime + Freeze_CVar("revive_delay") < time) {
         revive_extra_size = '1 1 1' * Freeze_CVar("revive_extra_size");
         
         FOR_EACH_PLAYER(other)
-            if(!other.hg_stealth)
+            if(time - other.hg_stealthtime >= cvar("g_nadgets_cloak_actiondelay"))
             if(self != other && !other.frozen && other.team == self.team)
-            if(time - other.revtime > Freeze_CVar("revive_delay_after_revived"))
+            if(time - other.revtime >= Freeze_CVar("revive_delay_after_revived"))
+            if(time - other.lastdamage >= Freeze_CVar("revive_delay_for_reviver"))
             if(boxesoverlap(self.absmin - revive_extra_size, self.absmax + revive_extra_size, other.absmin, other.absmax))
             {
                 allow = Freeze_CVar("revive_through_walls");
@@ -502,7 +485,7 @@ void Freeze_Hook_PlayerPreThink(void) {
                     
                     float lmod = 1;
                     if(other.hg_shield)
-                        lmod *= cvar("g_handgrenades_shield_progressrate");
+                        lmod *= cvar("g_nadgets_shield_progressrate");
                     if(BUFFS_PRESENT(other, BUFF_MEDIC))
                         lmod = lmod + (cvar("g_buffs_medic_revivefactor") - lmod) * Buffs_BuffPower(other, BUFF_MEDIC);
                     rmod = max(rmod, lmod);
@@ -563,9 +546,6 @@ void Freeze_Hook_PlayerPhysics(void) {
     
     if(self.frozen) {
         float s = Freeze_CVar("frozen_movespeed");
-        
-        if(time < self.frozen_plasmalock)
-            s = 0;
         
         if(s > 0) {
             if(Freeze_CVar("movespeed_dependonmelt"))

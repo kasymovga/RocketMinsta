@@ -55,6 +55,8 @@ const float TE_CSQC_DTRACK = 121;
 #define VDMG_TYPE_CRIT 2
 #define VDMG_TYPE_HEAL 4
 #define VDMG_TYPE_TEAMHIT 8
+#define VDMG_TYPE_TOSELF 16
+#define VDMG_TYPE_NOTPLAYERTARGET 32
 
 const float RACE_NET_CHECKPOINT_HIT_QUALIFYING = 0; // byte checkpoint, short time, short recordtime, string recordholder
 const float RACE_NET_CHECKPOINT_CLEAR = 1;
@@ -283,6 +285,8 @@ const float ROUNDSTATE_GAME = 1;
 const float ROUNDSTATE_OVER = 2;
 const float ROUNDSTATE_WARMUP = 3;
 
+const float STAT_QUEUE = 52;
+
 const float STAT_SPIDERBOT_HEALTH  = 60;
 const float STAT_SPIDERBOT_ROCKETS = 61;
 const float STAT_SPIDERBOT_HEAT    = 62;
@@ -325,6 +329,11 @@ const float STAT_BUFFS = 92;
 const float STAT_TERM_AUTH = 93;
 const float STAT_STEALTH = 94;
 const float STAT_HGREFIRE = 95;
+const float STAT_STEALTH_SAVED = 96;
+const float STAT_HGSHIELDSTORE = 97;
+const float STAT_HGSHIELDSTOREMAX = 98;
+const float STAT_HGREGENMAX = 99;
+const float STAT_HGREGENRATE = 100;
 
 const float JBMSG_NONE = 0;
 const float JBMSG_CAPPINGNEUTRAL = 1;
@@ -376,7 +385,7 @@ const float JBMSG_TOOLATE = 5;
  * Score indices
  */
  
-#define MAX_SCORE 23
+#define MAX_SCORE 24
 #define MAX_TEAMSCORE 2
 
 #define ST_SCORE 0
@@ -390,14 +399,15 @@ const float JBMSG_TOOLATE = 5;
 #define SP_MADOKASTATUS 12
 #define SP_AWAYSTATUS 13
 #define SP_PLAYTIME 14
-#define SP_CN_CHAR0 15
-#define SP_CN_CHAR1 16
+#define SP_COUNTRY 15
+#define SP_ACCURACY 16
 #define SP_FPS 17
 #define SP_NADEMODE 18
 #define SP_NADEFRAGS 19
 #define SP_REVIVALS 20
 #define SP_DAMAGE 21
 #define SP_HEALING 22
+#define SP_QUEUE 23
 
 // the following like should be in ctf.qc as per status quo, but ask me if I care
 // --ThexDarksider
@@ -491,6 +501,8 @@ float PROJECTILE_HG_REMOTE = 30;
 float PROJECTILE_HG_LASER = 31;
 
 float PROJECTILE_HG_NAPALMSHARD = 50;
+
+float PROJECTILE_HEAL_PARTICLE_EMITTER = 70;
 
 float SPECIES_HUMAN        =  0;
 float SPECIES_ROBOT_SOLID  =  1;

@@ -72,6 +72,7 @@ void W_Explosive_Attack (float attacktype)
 	
 	setorigin(gren, w_shotorg);
 	setsize(gren, '0 0 -3', '0 0 -3');
+    PROJECTILE_FIX(gren)
 
 	gren.think = adaptor_think2use;
 	gren.use = W_RM_Explode;

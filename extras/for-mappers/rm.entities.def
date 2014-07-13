@@ -260,6 +260,27 @@ The Wrath Buff (Pink Team)
 */
 
 
+/*QUAKED item_buff_adept (0.57 0.00 1.00) (-16 -16 -16) (16 16 16)
+The Adept Buff
+*/
+
+/*QUAKED item_buff_adept_team1 (0.57 0.00 1.00) (-16 -16 -16) (16 16 16)
+The Adept Buff (Red Team)
+*/
+
+/*QUAKED item_buff_adept_team2 (0.57 0.00 1.00) (-16 -16 -16) (16 16 16)
+The Adept Buff (Blue Team)
+*/
+
+/*QUAKED item_buff_adept_team3 (0.57 0.00 1.00) (-16 -16 -16) (16 16 16)
+The Adept Buff (Yellow Team)
+*/
+
+/*QUAKED item_buff_adept_team4 (0.57 0.00 1.00) (-16 -16 -16) (16 16 16)
+The Adept Buff (Pink Team)
+*/
+
+
 /*QUAKED item_buff_random (0.5 0.5 0.5) (-16 -16 -16) (16 16 16)
 A random buff
 */
@@ -297,4 +318,19 @@ Use this entity as the camera for the scoreboards view at end of matches. Can be
 -------- KEYS --------
 angles: sorted as pitch, yaw, roll.
 target: point this to an info_notnull or target_position entity to set the camera's pointing angles.
+*/
+
+
+/*QUAKED item_nadget (1 .3 1) (-30 -30 0) (30 30 48) FLOATING
+Extra nadget
+-------- KEYS --------
+respawntime: time till it respawns (default: 120)
+hg_ammo: how much nadgets to give (default: 1)
+hg_bonus: how much can it go over the regen limit (default: 1)
+team: out of items with the same value here, only one (random one) will spawn. Useful to put multiple items on one spot.
+cnt: weight of this item for random selection using "team". Set to a lower value for items you want to see less likely.
+-------- SPAWNFLAGS --------
+FLOATING: the item will float in air, instead of aligning to the floor by falling
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/items/g_fuelregen.md3"
 */

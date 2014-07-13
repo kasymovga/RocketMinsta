@@ -1,0 +1,7 @@
+
+.float joinqueue;
+
+entity JoinQ_Pop(void);
+void JoinQ_Push(entity plr);
+void JoinQ_Remove(entity plr);
+void JoinQ_Fix(void);

@@ -4,12 +4,13 @@ float Ban_MaybeEnforceBan(entity client);
 float GameCommand_Ban(string command);
 
 void OnlineBanList_URI_Get_Callback(float id, float status, string data);
-void Ban_KickBanClient(entity client, float bantime, float masksize, string reason);
+float Ban_KickBanClient(entity client, float bantime, float masksize, string reason);
 float Ban_Delete(float i);
 float Ban_Insert(string ip, float bantime, string reason, float dosync);
 
-#define BAN_MAX 64
+#define BAN_MAX 256
 float ban_loaded;
 string ban_ip[BAN_MAX];
+string ban_reason[BAN_MAX];
 float ban_expire[BAN_MAX];
 float ban_count;

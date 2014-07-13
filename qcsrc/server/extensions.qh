@@ -1936,3 +1936,29 @@ void(float pause) setpause = #531;
 //
 //Note: it is worth considering that network-related functions may be called during the pause (including customizeentityforclient for example), and it is also important to consider the continued use of the KRIMZON_SV_PARSECLIENTCOMMAND extension while paused (chatting players, etc), players may also join/leave during the pause.  In other words, the only things that are not called are think and other time-related functions.
 
+///// BEGIN DarkPlacesRM EXTENSIONS /////
+
+//DP_RM_IRC
+//idea: Akari
+//darkplaces implementation: Akari
+//builtin definitions: see irc.qh
+//description:
+//The engine can connect to Internet Relay Chat servers via libircclient, mainly to implement a bridge between the game server and an IRC channel, and allow server administration over IRC.
+//The read-only irc_initialized cvar indicates that the IRC library has been loaded and is ready to use, you should check for it before attempting to use IRC.
+//The irc_enabled cvar can be used to disable creation of IRC sessions and processing of IRC events.
+//Multiple servers are supported. To connect to an IRC server, you must first call IRC_CreateSession and save the returned session handle, and then call IRC_ConnectSession.
+//IRC sessions are independent of the server qc module and persist between server restarts. You can save a session handle to an internal cvar to continue using it after a map change.
+//Most IRC functions return 0 on success, -1 on invalid session handle, or a libircclient error code on other errors. You can use IRC_StrError to get a human-readable error message from the error code.
+//IRC functions that accept a human-readable message to display on the IRC (such as IRC_Pirvmsg) will translate Quake color codes and special characters for IRC readability. You can change this behaviour using irc_translate_dp2irc_* cvars, or bypass it using IRC_SendRaw. You can also use IRC_DP2IRC to translate an arbitrary string.
+//To translate IRC color codes into their Quake equivalents, use IRC_IRC2DP. The behaviour of this function depends on the irc_translate_irc2dp_* cvars.
+//You must define the following callback function to process IRC events from svqc:
+//  void IRC_Event(float handle, string event, float numeric, string src, float argc);
+//
+//  handle is the id of the IRC session that the event occured in
+//  event is the event name, or string_null if the event is a numeric IRC response
+//  numeric is the IRC response number, or -1 if the event is not a numeric IRC response
+//  argc is the count of additional event arguments that can be accessed with the argv() function
+//
+//  See libircclient documentation for a list of events and their possible arguments, or play around with irc_eventlog
+
+///// END DarkPlacesRM EXTENSIONS /////

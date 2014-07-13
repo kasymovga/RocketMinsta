@@ -26,7 +26,7 @@ campaign.qh
 ../common/campaign_common.qh
 ../common/mapinfo.qh
 ../common/ip2c.qh
-../common/handgrenades.qh
+../common/nadgets.qh
 ../common/buffs.qh
 ip2c.qh
 csqcprojectile.qh
@@ -43,7 +43,7 @@ antilag.qh
 vote.qh
 soulmates.qh
 timetravel.qh
-g_handgrenades.qh
+g_nadgets.qh
 g_terminals.qh
 g_buffs.qh
 g_freeze.qh
@@ -56,6 +56,7 @@ domination.qh
 ../common/damagetracker.qh
 damagetracker.qh
 irc.qh
+joinqueue.qh
 
 ../common/util.qc
 scores_rules.qc
@@ -127,6 +128,7 @@ cl_client.qc
 t_plats.qc
 antilag.qc
 irc.qc
+joinqueue.qc
 
 ctf.qc
 domination.qc
@@ -134,7 +136,7 @@ mode_onslaught.qc
 nexball.qc
 g_hook.qc
 timetravel.qc
-g_handgrenades.qc
+g_nadgets.qc
 g_terminals.qc
 g_buffs.qc
 soulmates.qc
@@ -192,7 +194,7 @@ func_breakable.qc
 
 ../common/items.qc
 ../common/ip2c.qc
-../common/handgrenades.qc
+../common/nadgets.qc
 ../common/buffs.qc
 ip2c.qc
 monsters/defs.qc

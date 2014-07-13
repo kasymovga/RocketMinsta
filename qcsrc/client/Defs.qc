@@ -239,3 +239,5 @@ float ticrate;
 // only for Porto
 float angles_held_status;
 vector angles_held;
+float sv_nicehealth;
+float sv_showacc;

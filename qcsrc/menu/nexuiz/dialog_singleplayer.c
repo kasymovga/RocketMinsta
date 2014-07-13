@@ -53,9 +53,7 @@ void InstantAction_LoadMap(entity btn, entity dummy)
 void fillNexuizSingleplayerDialog(entity me)
 {
 	entity e, btnPrev, btnNext, lblTitle;
-    fillNexuizRMConfigDialog(me);
-    /*
-
+    
 	me.TR(me);
 		me.TDempty(me, (me.columns - 3) / 2);
 		me.TD(me, 2, 3, e = makeNexuizBigButton("Instant action! (random map with bots)", '0 0 0'));
@@ -83,6 +81,5 @@ void fillNexuizSingleplayerDialog(entity me)
 		me.TD(me, 1, me.columns - 2 , e = makeNexuizButton("Start Singleplayer!", '0 0 0'));
 			e.onClick = CampaignList_LoadMap;
 			e.onClickEntity = me.campaignBox;
-    */
 }
 #endif

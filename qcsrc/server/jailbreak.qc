@@ -127,7 +127,7 @@ void JB_NonJBInit() {
     
     for(e = findchain(classname, "jailbreak_jail"); e; e = e.chain) {
         float idx = Team_Index(e.team);
-        if(!g_handgrenades || jb_doors_opened[idx]) {
+        if(!g_nadgets || jb_doors_opened[idx]) {
             e.think = SUB_Remove;
             e.nextthink = time;
         }
@@ -252,8 +252,8 @@ void JB_Imprison(entity attacker) {
         announce(self, "jailbreak/imprison.wav");
         bigprint_spec(self, "You're in a jail, prisoner!", ((attacker && attacker != self)? strcat("You've been imprisoned by ^3", attacker.netname) : ""), 10);
         
-        if(g_handgrenades) {
-            if(!cvar("g_handgrenades_regen_time"))
+        if(g_nadgets) {
+            if(!cvar("g_nadgets_regen_time"))
                 self.hg_ammo = 0;
             self.hg_bonus = 0;
         }
@@ -295,8 +295,8 @@ void JB_Release(entity saviour) {
         self.armorvalue = max(self.armorvalue, cvar("g_jailbreak_prisoner_armor"));
     }
     
-	if(g_handgrenades)
-    if(!cvar("g_handgrenades_regen_time"))
+	if(g_nadgets)
+    if(!cvar("g_nadgets_regen_time"))
 		HG_PlayerSpawn();
 	
 	PlayerScore_Set(self, SP_FROZENSTATUS, 0);
@@ -535,7 +535,7 @@ void JB_Torture_Grenades() {
 	
 	entity gren = spawn();
 	gren.owner = self;
-	gren.classname = "jb_torture_copypasta_from_g_handgrenades";
+	gren.classname = "jb_torture_copypasta_from_g_nadgets";
 	gren.bot_dodge = TRUE;
 	gren.bot_dodgerating = 300;
 	gren.movetype = MOVETYPE_BOUNCE;
@@ -872,7 +872,7 @@ void JB_SetupJailSpawnpoint() {
 void JB_Jail_Touch() {
 	//JB_Log(strcat(other.netname, "^7 is in the ", ColoredTeamName(self.team), " ^7jail"));
 	
-    if(g_handgrenades)
+    if(g_nadgets)
     if(other.hg_type == HG_TRANSLOC)
     if(other.classname == "hg_grenade") {
         other.jb_jail_resettime = time + frametime * 5;
@@ -1062,7 +1062,7 @@ void JB_ControlPoint_SwitchTeam(entity e, float t) {
 }
 
 void JB_TriggerTeamControlPoints(float t) {
-    entity e, o;
+    entity o;
     o = self;
     
     FOR_EACH_JB_CONTROLPOINT(self)
@@ -1153,7 +1153,7 @@ void JB_ControlPoint_Touch() {
     if(other.classname != "player")
         return;
     
-    if(other.hg_stealth)
+    if(time - other.hg_stealthtime < cvar("g_nadgets_cloak_actiondelay"))
         return;
     
     other.pointupdatetime = time;
@@ -1188,7 +1188,7 @@ void JB_ControlPoint_Touch() {
     if(other.jb_message != JBMSG_CAPPINGNEUTRAL || self.team == JB_TEAM_NEUTRAL) {
         float rate = cvar("g_jailbreak_controlpoint_unlock_speed");
         if(other.hg_shield)
-            rate *= cvar("g_handgrenades_shield_progressrate");
+            rate *= cvar("g_nadgets_shield_progressrate");
         
         self.jb_unlock_progress = bound(0, self.jb_unlock_progress + frametime * rate, 1);
     }
@@ -1297,7 +1297,6 @@ void JB_JailSpec_Proxy_CopyFields(entity to, entity from) {
     SpectateCopy(from);
     self = o;
     
-    to.hg_regentime = from.hg_regentime;
     to.jb_isprisoned = from.jb_isprisoned;
     to.velocity = '0 0 0';
     

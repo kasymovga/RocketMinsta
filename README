@@ -25,15 +25,6 @@ The build script will generate several "client packages" (sometimes incorrectly 
 You can also integrate your own custom packages.  To do this, first create a directory named "c_YOURPACKAGENAME.pk3dir" in the root of your cloned repository and fill it with content (c_*.pk3dir directories will be ignored by git).  After that, alter your config and add your package name into the BUILDPKG_CUSTOM array, like this: BUILDPKG_CUSTOM=('YOURPACKAGENAME').  (Notice the lack of the c_ prefix and the .pk3dir extension.)  Finally, rebuild the mod;  your package will be compressed and added to the resulting installation's "rocketminsta.cfg".
 
 
- -- Updating (for builds on the server machine) --
-
-There is a helper script that simplifies the process of updating the repo, reinstalling the mod, and reloading it's configuration on the server (through RCON) down to a single command.  This process uses it's own configuration file, much like using "build.sh", which is customized in the same fashion.
-
-First, copy and rename "EXAMPLE_updconfig.sh" as "updconfig.sh" and edit this new file. The variables RCON_ADDRESS, RCON_PORT, and RCON_PASSWORD should match your server's address, port and rcon_password variable, respectively.  If you haven't customized any RocketMinsta related settings on your server, it's better to replace "exec server.cfg" with "exec rocketminsta.cfg".  If you keep your RM-related configuration separate, then it's good to put "exec rocketminsta.cfg" first, and then "exec what_your_config_is_called.cfg" after it.  If you're using an rm-custom config, then "exec rm-custom/cfgname.cfg" is enough.
-
-Once you're done modifying "updconfig.sh", you can run "./update.sh" whenever you want to update your server.  NOTE 1: update.sh will not do anything unless an update is available.  NOTE 2: update.sh doesn't support rcon_secure yet, so the server must have it off for the upgrade script to work properly. To enforce an update, run "./update.sh force".
-
-
  -- Release System --
 
 RocketMinsta features a simple release system, which allows you to quickly generate pre-compiled packages for the end user (server host) to extract over their existing nexdata.  These packages can be customized.

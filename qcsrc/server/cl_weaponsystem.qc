@@ -1021,10 +1021,13 @@ float weapon_prepareattack(float secondary, float attacktime)
 	if(self.frozen) 
 		return FALSE;
     
-    if(self.hg_stealth)
-        self.hg_stealth = -1;
+    if(time < self.hg_plasmalock)
+        return FALSE;
     
-    if(self.hg_stealthalpha > cvar("g_handgrenades_cloak_alphashootlimit"))
+    if(self.hg_stealth)
+        HG_Cloak_Trigger();
+    
+    if(time - self.hg_stealthtime < cvar("g_nadgets_cloak_actiondelay"))
         return FALSE;
     
 	if not(self.items & IT_UNLIMITED_WEAPON_AMMO)

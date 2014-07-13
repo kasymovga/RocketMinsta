@@ -31,12 +31,12 @@ void fillNexuizNadeMenuDialog(entity me)
     NadeMenu_RegisterCvars();
     
     me.TR(me);
-        me.TD(me, me.rows - 3, me.columns, me.nadelist = e = makeRMNadeList());
-    me.gotoRC(me, me.rows - 4, 0);
+        me.TD(me, me.rows - 2, me.columns, me.nadelist = e = makeRMNadeList());
+    me.gotoRC(me, me.rows - 3, 0);
     me.TR(me);
         me.TD(me, 1, me.columns, e = makeNexuizCheckBox(0, "_rm_hg_alwaysask", "Ask at each round"));
-    me.TR(me);
-        me.TD(me, 1, me.columns, e = makeNexuizCheckBox(0, "_rm_hg_optout", "Opt out of bonuses"));
+    //me.TR(me);
+    //    me.TD(me, 1, me.columns, e = makeNexuizCheckBox(0, "_rm_hg_optout", "Opt out of bonuses"));
     me.TR(me);
         me.TD(me, 1, me.columns, e = makeNexuizButton("Accept", '0 0 0'));
             e.onClick = NadeMenu_Close;

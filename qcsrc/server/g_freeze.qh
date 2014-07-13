@@ -17,9 +17,6 @@ float g_freeze_globalwarming_reset;
 .float danger_used;
 .float frozenrow;
 .float freeze_playerfelloff;
-.float frozen_plasmalock;
-.float frozen_plasmalock_nexteffect;
-.entity frozen_plasmalock_owner;
 
 .float spawnstate_saved;
 .float spawnstate_team;

@@ -7,6 +7,7 @@ float g_buffs_randomize;
 float g_buffs_randomize_dual;
 float g_buffs_randomize_byinstance;
 float g_buffs_randomize_chaos;
+float g_buffs_randomize_interval;
 float g_buffs_spawn_on_powerups;
 float g_buffs_lockon;
 
@@ -14,6 +15,7 @@ float g_buffs_enabled[BUFF_COUNT];
 float g_buffs_replacements[BUFF_COUNT];
 float g_buffs_used[BUFF_COUNT];
 float g_buffs_used_dual[BUFF_COUNT];
+string g_buffs_model[BUFF_COUNT];
 
 float g_buffs_randomize_ulevel;
 float g_buffs_randomize_ulevel_dual;
@@ -42,10 +44,12 @@ float g_buffs_count;
 .entity buff_lockon;
 .float buff_lockon_updatetime;
 
+.float nobuffs;
+
 #define BUFFS_GIVE(p,b) ((p).buffs |= (b))
 #define BUFFS_REMOVE(p,b) ((p).buffs &~= (b))
 #define BUFFS_PRESENT_INTERNAL(p,b) (g_buffs && (((p).buffs & b) == (b) || (((p).hg_linker.buffs & b) == (b) && (p).hg_linker.hg_linker_buffpower)))
-#define BUFFS_PRESENT(p,b) (BUFFS_PRESENT_INTERNAL(p,b) && !(p).hg_shield)
+#define BUFFS_PRESENT(p,b) (BUFFS_PRESENT_INTERNAL(p,b) && !(p).nobuffs)
 
 #define BUFF_RANDOM -1337
 
@@ -64,4 +68,6 @@ void Buffs_BuffPickup_Setup(void);
 float Buffs_BuffPower(entity, float);
 float Buffs_NadgetPower(entity);
 float Buffs_NadgetRegen(entity);
+float Buffs_NadgetCooldown(entity);
 float Buffs_NadgetRegenDmgPause(entity);
+void Buffs_SetBuffModel(entity ment, float thebuffs);

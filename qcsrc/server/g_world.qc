@@ -476,8 +476,8 @@ void spawnfunc_worldspawn (void)
 	cvar_string = cvar_string_builtin;
 	cvar_set = cvar_set_builtin;
 	dprint_load(); // load dprint status from cvar
-	
-	RM_CvarCompat();
+
+    RM_CvarCompat();
     sv_damagestats = cvar("sv_damagestats");
 
 	
@@ -491,8 +491,7 @@ void spawnfunc_worldspawn (void)
 	registercvar("g_jailbreak", "0");
     registercvar("g_clanarena", "0");
 	registercvar("g_no", "0");
-	
-	
+    
 /*
  - now unused
     registercvar("_sv_rm_lastgametype", "");
@@ -602,6 +601,16 @@ void spawnfunc_worldspawn (void)
 	Map_MarkAsRecent(mapname);
 
 	precache_model ("null"); // we need this one before InitGameplayMode
+    
+    sv_nicehealth = cvar("sv_nicehealth");
+    
+    MapInfo_Enumerate();
+    registercvar("_sv_rm_nextgametype", "");
+    s = cvar_string("_sv_rm_nextgametype");
+    if(s != "")
+        GameCommand(strcat("gametype ", s));
+    cvar_set("_sv_rm_nextgametype", "");
+    
 	InitGameplayMode();
 	readlevelcvars();
 	GrappleHookInit();
@@ -671,7 +680,6 @@ void spawnfunc_worldspawn (void)
 
 	Ban_LoadBans();
 
-	MapInfo_Enumerate();
 	MapInfo_FilterGametype(gametype_ID_to_MapID(game), MapInfo_CurrentFeatures(), MapInfo_RequiredFlags(), MapInfo_ForbiddenFlags(), 1);
 
 	if(whichpack(strcat("maps/", mapname, ".cfg")) != "")
@@ -712,6 +720,7 @@ void spawnfunc_worldspawn (void)
 	WeaponStats_Init();
 
     addstat(STAT_ROUNDSTATE, AS_INT, roundstate_stat);
+    addstat(STAT_QUEUE, AS_INT, joinqueue);
 	addstat(STAT_WEAPONS, AS_INT, weapons);
 	addstat(STAT_SWITCHWEAPON, AS_INT, switchweapon);
 	addstat(STAT_GAMESTARTTIME, AS_FLOAT, stat_game_starttime);
@@ -739,7 +748,7 @@ void spawnfunc_worldspawn (void)
     
 	addstat(STAT_MINSTA, AS_INT, g_minstagib_stat);
 
-	if(g_handgrenades)
+	if(g_nadgets)
         HG_Init();
     Term_Init();
     
@@ -755,7 +764,7 @@ void spawnfunc_worldspawn (void)
 			if not(MapInfo_Map_flags & (MAPINFO_FLAG_HIDDEN | MAPINFO_FLAG_FORBIDDEN))
             if(ListContains(cvar_string("g_maplist"), MapInfo_Map_bspname, " "))
 			{
-				if(mod(i, 2))
+				if(mod(j, 2))
 					col = "^2";
 				else
 					col = "^3";
@@ -839,7 +848,19 @@ void spawnfunc_worldspawn (void)
     InitializeEntity(world, ForceModeSpawns, INITPRIO_LAST);
     if(!g_jailbreak)
         InitializeEntity(world, JB_NonJBInit, INITPRIO_LAST);
-
+    
+    if(cvar("sv_showaccuracy")) {
+        if(g_minstagib)
+            sv_showacc = TRUE;
+        else for(i = WEP_FIRST; i < WEP_COUNT; ++i)
+            if(g_weaponarena == pow(2, i-1)) {
+                sv_showacc = TRUE;
+                break;
+            }
+    }
+    
+    defer(0, fix_team_spawns);
+    
     IRC_Init();
     DPRM_Start();
 }
@@ -1223,10 +1244,7 @@ void IntermissionThink()
 	if(!mapvote_initialized)
 		if (time < intermission_exittime + 10 && !self.BUTTON_ATCK && !self.BUTTON_JUMP && !self.BUTTON_ATCK2 && !self.BUTTON_HOOK && !self.BUTTON_USE)
 			return;
-
-    if(nextgametype != "")
-        GameCommand(strcat("gametype ", nextgametype));
-
+            
 	MapVote_Start();
 };
 
@@ -2251,24 +2269,7 @@ float DoNextMapOverride()
 	if(cvar_string("nextmap") != "")
 		if(MapInfo_CheckMap(cvar_string("nextmap")))
 		{
-			if(gametypevote)
-				return FALSE;
-			
 			Map_Goto_SetStr(cvar_string("nextmap"));
-			
-			if(mapvote_initialized)
-			{
-				if(cvar("sv_vote_gametype")) if(cvar("sv_vote_gametype_overplayed_strict"))
-				{
-					if(GameTypeVote_AvailabilityStatus(gametype_ID_to_Name(gametypetoset)) != GTV_AVAILABLE)
-					{
-						choosenmap = strzone(cvar_string("nextmap"));
-						//GameTypeVote_Start();
-						return FALSE;
-					}
-				}
-			}
-			
 			alreadychangedlevel = TRUE;
 			Map_Goto();
 			return TRUE;
@@ -2289,7 +2290,7 @@ void MapVote_ClearAllVotes()
 		other.mapvote = 0;
 }
 
-string MapVote_Suggest(string m)
+string MapVote_Suggest(string m, float ismaster)
 {
 	float i;
 	if(m == "")
@@ -2301,7 +2302,7 @@ string MapVote_Suggest(string m)
 	m = MapInfo_FixName(m);
 	if(!m || !ListContains(cvar_string("g_maplist"), m, " "))
 		return "The map you suggested is not available on this server.";
-	if(!cvar("g_maplist_votable_override_mostrecent"))
+	if(!cvar("g_maplist_votable_override_mostrecent") && !ismaster)
 		if(Map_IsRecent(m))
 			return "This server does not allow for recent maps to be played again. Please be patient for some rounds.";
     

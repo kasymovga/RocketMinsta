@@ -12,14 +12,18 @@ void Draw_ShowNames()
     if(!autocvar_hud_shownames)
         return;
 
-    local float oldfont;
+    float oldfont;
     oldfont = drawfont;
-    
-    self.iorigin = self.iorigin + (self.origin - self.iorigin) * frametime * 15;
     
     if(self.sameteam || (!self.sameteam && !rm_shownames_teamonly))
     {
         //InterpolateOrigin_Do();
+        
+        if(self.iorigin == '0 0 0')
+            self.iorigin = self.origin;
+        else
+            self.iorigin = self.iorigin + (self.origin - self.iorigin) * frametime * 15;
+        
 
         if(!self.sameteam)
         {
@@ -141,12 +145,11 @@ void Draw_ShowNames()
 
             if (width != namesize)
                 namepos_x += (namesize - width) / 2;
-                
-            drawfont = sbar_bigfont_real;
+            
             float nade;
-            if(g_handgrenades)
+            if(g_nadgets)
                 nade = playerslots[self.the_entnum-1].(scores[SP_NADEMODE]);
-                
+            
             if(self.sameteam) {
                 float mx = 200;
                 vector dmg = healtharmor_maxdamage(self.healthvalue, self.armorvalue, armorblockpercent);
@@ -154,16 +157,22 @@ void Draw_ShowNames()
                 
                 if(dmg_x) {
                     self.health_v = bound(0, self.health_v + (min(dmg_x, mx) - self.health_v) * frametime * 10, mx);
-                    drawfont = sbar_bigfont;
-                    s2 = ftos(dmg_x); // strcat(ftos(self.healthvalue), " / ", ftos(self.armorvalue));
-                    drawstring(namepos - hsz * '0 1 0' * textsz_y + '0.5 0 0' * (width - stringwidth_svn(s2, TRUE, textsz * hsz)), s2, textsz * hsz, healthcolor(dmg_x), a * 0.7, DRAWFLAG_NORMAL);
-                    
+                    drawfont = GetBigfont();
+                    vector clr;
+                    if(playerslots[self.the_entnum-1].(scores[SP_FROZENSTATUS])) {
+                        s2 = "Frozen!";
+                        clr = '0.2 1 1';
+                    } else {
+                        s2 = ftos(dmg_x); // strcat(ftos(self.healthvalue), " / ", ftos(self.armorvalue));
+                        clr = healthcolor(dmg_x);
+                    }
+                    drawstring(namepos - hsz * '0 1 0' * textsz_y + '0.5 0 0' * (width - stringwidth_svn(s2, TRUE, textsz * hsz)), s2, textsz * hsz, clr, a * 0.7, DRAWFLAG_NORMAL);
                     drawfont = sbar_font;
                 }
             }            
             
             if(nade) {
-                drawpic(namepos - '0.5 0 0' * textsz_x - '2 0 0', HG_TypeToIcon(nade, FALSE), textsz, HG_TypeToColor(nade), a * 0.7, DRAWFLAG_NORMAL);
+                drawpic(namepos - '0.5 0 0' * textsz_x - '2 0 0', HG_TypeToIcon(nade, FALSE, FALSE), textsz, HG_TypeToColor(nade), a * 0.7, DRAWFLAG_NORMAL);
                 namepos = '0.5 0 0' * textsz_x + '2 0 0' + namepos;
             }
             
@@ -176,6 +185,8 @@ void Draw_ShowNames()
             
             drawfont = oldfont;
             //drawfontscale = '1 1 0';
+            
+            playerslots[self.the_entnum-1].sn_lastdraw = time;
         }
     }
 }

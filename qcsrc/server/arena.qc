@@ -106,7 +106,7 @@ void reset_map(float dorespawn)
             if(g_freeze)
                 self.frozenrow = 0;
             
-            if(g_handgrenades) {
+            if(g_nadgets) {
                 if(self.hg_type_picked_nextround >= 0)
                     self.hg_type_picked = self.hg_type_picked_nextround;
                 if(self.hg_optout_nextround >= 0)
@@ -159,7 +159,7 @@ void reset_map(float dorespawn)
 				}
 			}
             
-            if(g_handgrenades) if(self.classname == "player") {
+            if(g_nadgets) if(self.classname == "player") {
                 HG_ResetState(self);
                 self.hg_nadesused = 0;
                 

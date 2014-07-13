@@ -6,8 +6,8 @@ void LightingArc_Draw(void) {
         case COLOR_TEAM2: tex = "particles/hook_blue";      break;
         case COLOR_TEAM3: tex = "particles/hook_yellow";    break;
         case COLOR_TEAM4: tex = "particles/hook_pink";      break;
-        default         : tex = "particles/hook_blue";      break;
-    }   else              tex = "particles/hook_blue";
+        default         : tex = "particles/hook_green";     break;
+    }   else              tex = (self.team? "particles/hook_blue" : "particles/hook_green");
     
     float i; for(i = 0; i < 5; ++i)
         Draw_CylindricLine(self.origin + randomvec() * 10 * self.alpha, self.velocity + randomvec() * 10 * self.alpha, 25 * self.alpha, tex, 0.02, random(), '1 1 1', self.alpha, DRAWFLAG_ADDITIVE);

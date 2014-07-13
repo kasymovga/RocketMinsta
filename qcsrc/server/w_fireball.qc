@@ -148,7 +148,7 @@ void W_Fireball_Attack2()
 	proj.touch = W_Fireball_TouchExplode;
 	setsize(proj, '-16 -16 -16', '16 16 16');
 	proj.flags = FL_PROJECTILE;
-
+    
 	CSQCProjectile(proj, TRUE, PROJECTILE_FIREBALL, TRUE);
 }
 

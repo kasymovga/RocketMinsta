@@ -644,23 +644,19 @@ void GameCommand(string command)
 		return;
 	}
 
-	if(argv(0) == "gotomap") if(argc >= 2)
-	{
-		// might fail but screw it
-		if(argc > 2)
-		{
-			//localcmd("gametype ", argv(2), "\n");
-            nextgametype = strzone(argv(2));
-			gametypetoset = gametype_Name_to_ID(argv(2));
-		}
-		
-		print(GotoMap(argv(1)), "\n");
-		return;
-	}
+    if(argv(0) == "gotomap") if(argc >= 2)
+    {
+        if(argc > 2)
+            localcmd("gametype ", argv(2), "\n");
+        
+        print(GotoMap(argv(1)), "\n");
+        return;
+    }
 
 	if(argv(0) == "gametype" || argv(0) == "forcegametype") if(argc == 2)
 	{
 		float t, tsave;
+        
 		s = argv(1);
 		s = NormalizeGametypeName(s);
 		
@@ -674,19 +670,25 @@ void GameCommand(string command)
 		tsave = game;
 		if(t)
 		{
-			//MapInfo_SwitchGameType(t);
-			gametype_Set(gametype_Name_to_ID(s));
-			MapInfo_FilterGametype(gametype_ID_to_MapID(game), MapInfo_CurrentFeatures(), MapInfo_RequiredFlags(), MapInfo_ForbiddenFlags(), 0);
-			
-			if(MapInfo_count > 0) {
-				bprint("Game type successfully switched to ", s, "\n");
-			} else if(argv(0) == "forcegametype") {
-				bprint("Not map found for ", s ,", switch forced!\n");
-			} else {
-				bprint("Cannot use this game type: no map for it found\n");
-				gametype_Set(tsave);
-				MapInfo_FilterGametype(gametype_ID_to_MapID(game), MapInfo_CurrentFeatures(), MapInfo_RequiredFlags(), MapInfo_ForbiddenFlags(), 0);
-			}
+            if(time > 1) {
+                cvar_set("_sv_rm_nextgametype", s);
+                bprint("The gametype will be switched to ", gametype_Name_to_LongName(s), " on next map\n");
+            } else {
+                //MapInfo_SwitchGameType(t);
+                gametype_Set(gametype_Name_to_ID(s));
+                MapInfo_FilterGametype(gametype_ID_to_MapID(game), MapInfo_CurrentFeatures(), MapInfo_RequiredFlags(), MapInfo_ForbiddenFlags(), 0);
+                
+                if(MapInfo_count > 0) {
+                    bprint("Game type successfully switched to ", s, "\n");
+                } else if(argv(0) == "forcegametype") {
+                    bprint("Not map found for ", s ,", switch forced!\n");
+                } else {
+                    bprint("Cannot use this game type: no map for it found\n");
+                    error(ftos(game));
+                    gametype_Set(tsave);
+                    MapInfo_FilterGametype(gametype_ID_to_MapID(game), MapInfo_CurrentFeatures(), MapInfo_RequiredFlags(), MapInfo_ForbiddenFlags(), 0);
+                }
+            }
 		}
 		else
 			bprint("Game type switch to ", s, " failed: this type does not exist!\n");

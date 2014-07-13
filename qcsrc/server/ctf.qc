@@ -440,7 +440,10 @@ void FlagTouch()
 
 	if (self.cnt == FLAG_CARRY)
 		return;
-
+    
+    if(time - other.hg_stealthtime < cvar("g_nadgets_cloak_actiondelay"))
+        return;
+    
 	if (self.cnt == FLAG_BASE)
 	if (other.team == self.team)
 	if (other.flagcarried) // he's got a flag

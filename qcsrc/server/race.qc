@@ -694,7 +694,7 @@ void race_ReadyRestart()
 			if(!s)
 				e.race_place = 0;
 		}
-		print(e.netname, " = ", ftos(e.race_place), "\n");
+		// print(e.netname, " = ", ftos(e.race_place), "\n");
 	}
 
 	if(g_race_qualifying == 2)

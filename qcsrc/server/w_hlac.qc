@@ -57,6 +57,7 @@ void W_HLAC_Attack (void)
 
 	setorigin (missile, w_shotorg);
 	setsize(missile, '0 0 0', '0 0 0');
+    PROJECTILE_FIX(missile)
 
     missile.velocity = (w_shotdir + randomvec() * spread) * cvar("g_balance_hlac_primary_speed");
 
@@ -101,6 +102,7 @@ void W_HLAC_Attack2f (void)
 
 	setorigin (missile, w_shotorg);
 	setsize(missile, '0 0 0', '0 0 0');
+    PROJECTILE_FIX2(missile)
 
     missile.velocity = (w_shotdir + randomvec() * spread) * cvar("g_balance_hlac_secondary_speed");
 

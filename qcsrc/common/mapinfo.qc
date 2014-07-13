@@ -195,7 +195,7 @@ float MapInfo_FilterGametype(float pGametype, float pFeatures, float pFlagsRequi
 		_MapInfo_filtered = buf_create();
 	}
 	MapInfo_count = 0;
-	
+    
 	for(i = 0, j = -1; i < _MapInfo_globcount; ++i)
 	{
 		// Chaiomanot  : I'm left here scratching my head wondering what in the world

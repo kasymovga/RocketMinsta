@@ -73,6 +73,7 @@ const float COLOR_SPECTATOR = 1337;
 #define SP_CLRATIO -5
 #define SP_PL -6
 #define SP_FRAGS -7
+#define SP_LAG -8
 
 #define SP_SEPARATOR -100
 
@@ -201,6 +202,8 @@ float rm_oldhud_option;
 float rm_althud_option;
 float rm_noflags;
 float rm_showrankings;
+float rm_showtimer;
+float rm_shownadgetregen;
 
 float rm_oldhud;
 float rm_althud;
@@ -303,13 +306,14 @@ string sv_hostname;
 string sv_rm_build;
 string sv_rm_version;
 string sv_rm_date;
+string sv_rm_commit;
 string sv_motd;
 
 float sv_showspecs_extra;
 float sv_showfps;
 float sv_oldfag;
 
-float g_handgrenades;
+float g_nadgets;
 float sv_scoreboard_heal_column;
 float g_freeze;
 
@@ -330,3 +334,5 @@ entity dtrack_total_spec;
 entity dtrack_taken_spec;
 
 float sv_damagestats;
+
+float GetBigfont();

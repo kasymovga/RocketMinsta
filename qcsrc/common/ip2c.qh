@@ -1,35 +1,37 @@
-void IP2C_Init();
-void IP2C_Shutdown();
-void IP2C_ClearCache();
-void IP2C_Lookup(string ip, void(string, string, entity) callback, entity callbackentity);
-void IP2C_URI_Get_Callback(float id, float status, string data);
-void IP2C_PrintRequests();
-float IP2C_GameCommand(string cmd);
 
 typedef void(string, string, entity) ip2c_callback_t;
+
+void IP2C_Init(void);
+void IP2C_Shutdown(void);
+void IP2C_ClearCache(void);
+void IP2C_Lookup(string ip, ip2c_callback_t callback, float timeout, entity callbackentity);
+void IP2C_URI_Get_Callback(float id, float status, string data);
+void IP2C_PrintRequests(void);
+float IP2C_GameCommand(string cmd);
+
 ip2c_callback_t IP2C_Callback_DumpToConsole;
 
-#define IP_IS_WEEABOO(ip) (crc16(0, ip) == 23067)
+#define IP_IS_WEEABOO(ip) (crc16(0, ip) == 16330)
 #define GRORIOUS_NIPPON "JP"
 
 #ifdef SVQC
-	#define IP2C_REGISTERVARS()
-	#define IP2C_DBNAME "ipcache.db"
+    #define IP2C_REGISTERVARS()
+    #define IP2C_DBNAME "ipcache.db"
 #endif
 
 #define IP2C_REGISTERVARS_CLIENT registercvar("sv_ip2country_server", "http://rocketminsta.net/cgi/ip2c.pl?ip=", CVAR_SAVE); registercvar("sv_ip2country_timeout", "30", CVAR_SAVE); registercvar("sv_ip2country", "1", CVAR_SAVE);
 
 #ifdef CSQC
-	#define IP2C_REGISTERVARS() IP2C_REGISTERVARS_CLIENT
-	#define IP2C_DBNAME "ipcache_csqc.db"
+    #define IP2C_REGISTERVARS() IP2C_REGISTERVARS_CLIENT
+    #define IP2C_DBNAME "ipcache_csqc.db"
 #endif
 
 #ifdef MENUQC
-	#define IP2C_REGISTERVARS() IP2C_REGISTERVARS_CLIENT
-	#define IP2C_DBNAME "ipcache_menuqc.db"
-	#define find findstring
-	
-	void IP2C_CheckTimedOut();
+    #define IP2C_REGISTERVARS() IP2C_REGISTERVARS_CLIENT
+    #define IP2C_DBNAME "ipcache_menuqc.db"
+    #define find findstring
+    
+    void IP2C_CheckTimedOut(void);
 #endif
 
 float URI_GET_IP2C = 17;

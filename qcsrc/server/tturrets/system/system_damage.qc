@@ -297,6 +297,12 @@ void turret_stdproc_damage (entity inflictor, entity attacker, float damage, flo
     if not (baseent.tur_active)
         return;
 
+    if(self.turret_damagehook)
+        damage = self.turret_damagehook(inflictor, attacker, damage, deathtype, hitloc, vforce);
+
+    if(damage < 0)
+        return;
+
     if (teamplay != 0)
     if (self.team == attacker.team)
     {

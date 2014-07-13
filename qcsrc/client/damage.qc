@@ -112,17 +112,12 @@ void Ent_DamageInfo(float isNew)
 			hittype &~= DEATH_HITTYPEMASK;
 			switch (hittype)
 			{
-				case DEATH_HG_NORMAL:
+                case DEATH_HG_NORMAL:
                 case DEATH_HG_REMOTE:
-					float radius = rad, i;
-					pointparticles (particleeffectnum ("rocket_explode"), self.origin, '0 0 0', 1);
-					for (i = 0; i < 20; i ++)
-					{
-						vector v = randomvec ();
-						r = random ();
-						pointparticles (particleeffectnum (mod(i, 4)? "rocket_explode" : "TE_TEI_BIGEXPLOSION"), self.origin + v * radius * r, v * radius * r * 100, 1);
-					}
+                case DEATH_HG_NAPALM:
+                    pointparticles (rm_particleeffectnum("RM_EXPLOSION"), self.origin, '0 0 0', 1);
                     break;
+                
                 case DEATH_HG_PLASMA_SHARD: case DEATH_HG_LASER:
                     org2 = org + backoff * 6;
                     pointparticles(rm_particleeffectnum_team("RM_HG_PLASMA_SHARD_EXPLODE", self.team, 2 - (hittype == DEATH_HG_LASER)), org2, '0 0 0', 1);
@@ -136,8 +131,6 @@ void Ent_DamageInfo(float isNew)
                     if(!issilent)
                         sound(self, CHAN_PROJECTILE, "weapons/hookbomb_impact.wav", VOL_BASE, ATTN_NORM);
                     break;
-				case DEATH_HG_NAPALM:
-					break;
 			}
 		}
 		else switch (hitwep)

@@ -119,7 +119,7 @@ void drawListBoxItemRMNadeList(entity me, float i, vector absSize, float isSelec
     
     s = bufstr_get(me.nadelist_buf, i);
     
-    draw_Picture_Unskinned(o, HG_NameToIcon(s, FALSE), me.realFontSize, HG_TypeToColor(HG_NameToType(s)), 1);
+    draw_Picture_Unskinned(o, HG_NameToIcon(s, FALSE, FALSE), me.realFontSize, HG_TypeToColor(HG_NameToType(s)), 1);
     draw_Text(me.realFontSize_x * '1.2 0 0' + o, HG_NameToExpandedName(s), me.realFontSize, '1 1 1', 1 * amod, 1);
 }
 #endif

@@ -58,6 +58,9 @@ float rm_particleeffectnum(string p) {
             
             case "RM_HEAL":
                 return particleeffectnum("electro_impact");
+            
+            case "RM_EXPLOSION":
+                return particleeffectnum("rocket_explode");
         }
     }
     
@@ -104,12 +107,15 @@ void Projectile_DrawTrail(vector to)
                 goto flame;
             case PROJECTILE_HG_NAPALM:
 			case PROJECTILE_FIREMINE:
+            case PROJECTILE_HG_TRANSLOC:
 				to_z += 1;
 				break;
 			case PROJECTILE_ELECTRO:
                 //trailparticles(self, particleeffectnum("TR_NEXUIZPLASMA"), from, to);
                 trailparticles(self, rm_particleeffectnum_team("RM_HG_PLASMA", self.team, 2), from, to);
                 return;
+            case PROJECTILE_HEAL_PARTICLE_EMITTER:
+                break;
 			default:
 				return;
 		}
@@ -214,6 +220,13 @@ void Projectile_DrawTrail(vector to)
                 vector v = randomvec();
                 v_z = (v_z + 1) * 0.25;
                 pointparticles(rm_particleeffectnum_team("RM_HG_NAPALM_FIRE", self.team, 1), self.origin + v * self.extradata * 0.7, '0 0 0', 1);
+                self.nextparticle = time + 0.15 + random() * 0.15;
+            }
+            break;
+        case PROJECTILE_HEAL_PARTICLE_EMITTER:
+            if(time >= self.nextparticle) {
+                vector v = randomvec();
+                pointparticles(rm_particleeffectnum("RM_HEAL"), self.origin + v * self.extradata * 0.5, '0 0 0', 1);
                 self.nextparticle = time + 0.15 + random() * 0.15;
             }
             break;
@@ -419,7 +432,8 @@ void Ent_Projectile()
         self.team = ReadByte() - 1;
 
         if(self.cnt == PROJECTILE_HG_NAPALMSHARD ||
-           self.cnt == PROJECTILE_ELECTRO)
+           self.cnt == PROJECTILE_ELECTRO ||
+           self.cnt == PROJECTILE_HEAL_PARTICLE_EMITTER)
             self.extradata = ReadByte();
 
 		self.silent = (self.cnt & 0x80);
@@ -462,7 +476,7 @@ void Ent_Projectile()
 			case PROJECTILE_HAGAR_BOUNCING: setmodel(self, "models/hagarmissile.mdl"); self.scale = 0.4; break;
 			case PROJECTILE_FIREBALL: self.model = ""; self.modelindex = 0; break; // particle effect is good enough
 			case PROJECTILE_FIREMINE: self.model = ""; self.modelindex = 0; break; // particle effect is good enough
-            case PROJECTILE_HG_NAPALMSHARD: self.model = ""; self.modelindex = 0; break;
+            case PROJECTILE_HG_NAPALMSHARD: case PROJECTILE_HEAL_PARTICLE_EMITTER: self.model = ""; self.modelindex = 0; break;
 			default:
 				error("Received invalid CSQC projectile, can't work with this!");
 				break;
@@ -473,7 +487,10 @@ void Ent_Projectile()
 		self.colormod = '0 0 0';
 		self.move_touch = SUB_Stop;
 		self.move_movetype = MOVETYPE_TOSS;
-
+        
+        if(self.cnt == PROJECTILE_HG_TRANSLOC)
+            self.colormod = '1 1 1' * 0.3 + GetTeamRGB(self.team) * 0.7;
+        
 		switch(self.cnt)
 		{
 			case PROJECTILE_ELECTRO:
@@ -500,7 +517,7 @@ void Ent_Projectile()
             case PROJECTILE_HG_TRANSLOC:
             case PROJECTILE_HG_REMOTE:
             case PROJECTILE_HG_LASER:
-                if(g_handgrenades == 2) {   // g_handgrenades_oldhitboxes
+                if(g_nadgets == 2) {   // g_nadgets_oldhitboxes
                     self.mins = '0 0 -3';
                     self.maxs = '0 0 -3';
                 } else {
@@ -538,7 +555,7 @@ void Ent_Projectile()
 				break;
             case PROJECTILE_HG_NAPALMSHARD:
 			case PROJECTILE_FIREMINE:
-				loopsound(self, CHAN_PROJECTILE, "weapons/fireball_fly.wav", VOL_BASE, ATTN_NORM);
+				loopsound(self, CHAN_PROJECTILE, "weapons/fire_burn.wav", VOL_BASE, ATTN_NORM);
 				self.move_movetype = MOVETYPE_BOUNCE;
 				self.move_touch = SUB_Null;
 				self.mins = '-4 -4 -4';
@@ -586,6 +603,6 @@ void Projectile_Precache()
     precache_model("models/runematch/rune.mdl");
 	precache_sound("weapons/electro_fly.wav");
 	precache_sound("weapons/rocket_fly.wav");
-	precache_sound("weapons/fireball_fly.wav");
+	precache_sound("weapons/fire_burn.wav");
 	precache_sound("weapons/fireball_fly2.wav");
 }

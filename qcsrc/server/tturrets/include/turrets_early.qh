@@ -407,6 +407,8 @@ void turret_fire();
 .void() turret_diehook;
 .void() turret_respawnhook;
 
+.float(entity inflictor, entity attacker, float damage, float deathtype, vector hitloc, vector vforce) turret_damagehook;
+
 /*
 #define TEH_THINK 2
 #define TEH_DAMAGE 4

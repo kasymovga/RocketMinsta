@@ -3,3 +3,5 @@ void VisualDamage_PreDraw(void);
 void VisualDamage_Draw(void);
 void VisualDamage_Spawn(float, float, float, vector);
 void Net_VisualDamage(void);
+
+vector vdmg_dmgtakenorigin;

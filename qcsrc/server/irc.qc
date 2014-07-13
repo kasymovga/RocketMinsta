@@ -5,30 +5,69 @@ float IRC_CheckSession(float s) {
     if(!IRC_SessionExists(s))
         s = IRC_CreateSession();
     
-    if(!IRC_SessionIsConnected(s))
-        IRC_ConnectSession(s,
+    if(!IRC_SessionIsConnected(s)) {
+        if(IRC_ConnectSession(s,
             cvar_string("sv_ircbot_server"),
             cvar("sv_ircbot_server_port"),
             cvar_string("sv_ircbot_server_password"),
             cvar_string("sv_ircbot_nick"),
             cvar_string("sv_ircbot_user"),
             cvar_string("sv_ircbot_realname")
-        );
+        ) == IRC_ERR_STATE)
+            IRC_TerminateSession(s);
+    }
     
     cvar_set("_sv_ircbot_session", ftos(s));
     return s;
 }
 
-string IRC_TopicPostfix(void) {
-    return strcat(strcat("^9  //  ^7playing ^5", gametype_ID_to_LongName(game)), 
-                  "^7 on ^2", mapname, "^9  //  ^1", 
-                  ftos(realclients), "^7/", ftos(maxclients), " clients");
+#define IRC_STRING_SEPARATOR "^9  //  "
+
+string IRC_GameInfoString(void) {
+    return strcat("^7playing ^5", gametype_ID_to_LongName(game), "^7 on ^2", mapname);
+}
+
+string IRC_ClientsInfoString(void) {
+    float bots = totalclients - realclients;
+    string s = strcat("^1", ftos(totalclients), "^7/", ftos(maxclients), " clients");
+    if(bots > 0)
+        s = strcat(s, " (", ftos(bots), " bots)");
+    return s;
+}
+
+float IRC_Privmsg(float handle, string targ, string msg) {
+    float r = IRC_Privmsg_Builtin(handle, targ, msg);
+    
+    float spam = max(0, cvar("sv_ircbot_spamstatus"));
+    if(spam && handle == irc.cnt && strtolower(targ) == irc.target) {
+        float c = cvar("_sv_ircbot_msgsent") + 1;
+        if(c >= spam) {
+            c = 0;
+            IRC_Privmsg_Builtin(handle, targ, strcat("^1Game status: ^7", IRC_GameInfoString(), IRC_STRING_SEPARATOR, IRC_ClientsInfoString()));
+        }
+        cvar_set("_sv_ircbot_msgsent", ftos(c));
+    }
+    
+    return r;
 }
 
 void IRC_UpdateTopic(void) {
     if(!cvar("sv_ircbot_update_topic"))
         return;
-    IRC_Topic(irc.cnt, irc.target, strcat(cvar_string("hostname"), IRC_TopicPostfix()));
+        
+    string s = cvar_string("sv_ircbot_update_topic_static");
+    if(s != "")
+        s = strcat(s, IRC_STRING_SEPARATOR, "^7");
+    if(cvar("sv_ircbot_update_topic_hostname"))
+        s = strcat(s, cvar_string("hostname"), IRC_STRING_SEPARATOR);
+    s = strcat(s, IRC_GameInfoString());
+    
+    if(!realclients && cvar("sv_ircbot_update_topic_serverempty"))
+        s = strcat(s, IRC_STRING_SEPARATOR, "^1server empty");
+    else if(totalclients == maxclients && cvar("sv_ircbot_update_topic_serverfull"))
+        s = strcat(s, IRC_STRING_SEPARATOR, "^1server full");
+    
+    IRC_Topic(irc.cnt, irc.target, s);
     irc.skin = 0;
 }
 
@@ -61,6 +100,7 @@ void IRC_Init(void) {
     // These are internal cvars used to achieve persistence between restarts
     registercvar("_sv_ircbot_session", "-1");
     registercvar("_sv_ircbot_joinlog", "");
+    registercvar("_sv_ircbot_msgsent", "0");
     
     s = IRC_CheckSession(cvar("_sv_ircbot_session"));
     
@@ -92,7 +132,8 @@ void IRC_AdminCommand(float handle, string nick, string cmdline) {
                 s = IRC_DP2IRC(e.netname);
                 if(argc < 2 || strstrofs(strdecolorize(s), argv(1), 0) >= 0) {
                     s = strcat("^3#", ftos(num_for_edict(e)));
-                    for(i = 0; i < 6 - strlen(s); ++i) s = strcat(s, " ");
+                    l = strlen(s);
+                    for(i = 0; i < 7 - l; ++i) s = strcat(s, " ");
                     s = strcat(s, " ^4", e.netaddress);
                     for(i = 0; i < 15 - strlen(e.netaddress); ++i) s = strcat(s, " ");
                     s = strcat(s, " ^7", e.netname);
@@ -130,8 +171,16 @@ void IRC_AdminCommand(float handle, string nick, string cmdline) {
             RESTARG(reason);
             reason = strcat("[IRC ", nick, "] ", reason);
             
-            IRC_Notice(handle, nick, strcat(client.netname, "^7 is now banned for ", ftos(bantime), " seconds (masksize ", ftos(masksize), ")"));
-            Ban_KickBanClient(client, bantime, masksize, reason);
+            string clname = strzone(client.netname);
+            i = Ban_KickBanClient(client, bantime, masksize, reason);
+            
+            if(i >= 0)
+                IRC_Notice(handle, nick, strcat(clname, "^7 is now banned for ", ftos(bantime),
+                                         strcat(" seconds (masksize ", ftos(masksize), ", id ^3#", ftos(i), "^7)")));
+            else
+                IRC_Notice(handle, nick, "Failed to kickban, just kicked");
+            
+            strunzone(clname);
             break;
         }
         
@@ -148,28 +197,53 @@ void IRC_AdminCommand(float handle, string nick, string cmdline) {
             RESTARG(reason);
             reason = strcat("[IRC ", nick, "] ", reason);
             
-            IRC_Notice(handle, nick, strcat("^4", s, "^7 is now banned for ", ftos(bantime), " seconds"));
-            Ban_Insert(s, bantime, reason, 1);
+            i = Ban_Insert(s, bantime, reason, 1);
+            
+            if(i >= 0)
+                IRC_Notice(handle, nick, strcat("^4", s, "^7 is now banned for ", ftos(bantime), " seconds (id ^3#", ftos(i), "^7)"));
+            else
+                IRC_Notice(handle, nick, "Failed to ban");
             break;
         }
         
         case "bans": {
-            for(l = i = stof(argv(1)); i < ban_count, k < 10; ++i, ++k) {
+            float maxrange = min(10, max(5, floor(stof(argv(2)))));
+            float activebans = 0;
+            float startfrom = stof(argv(1));
+            
+            for(i = 0; i < ban_count; ++i)
+                if(time <= ban_expire[i]) {
+                    ++activebans;
+                } else if(i == startfrom)
+                    ++startfrom;
+            
+            if(!activebans) {
+                IRC_Notice(handle, nick, "No active bans");
+                break;
+            }
+            
+            IRC_Notice(handle, nick, strcat("Active bans: ^1", ftos(activebans),
+                                            "^7, showing up to ^1", ftos(maxrange), "^7 entries starting from ^3#", ftos(startfrom)));
+            
+            for(l = 0, k = i = startfrom; i < ban_count && l < maxrange; ++i) {
                 if(time > ban_expire[i])
                     continue;
                 
-                ++l;
+                ++l; ++k;
+                
                 s = strcat("^3#", ftos(i), " ", ((i < 10)? " " : ""));
                 s = strcat(s, "^4", ban_ip[i], "^7 ");
                 for(j = 0; j < 15 - strlen(ban_ip[i]); ++j) s = strcat(s, " ");
-                s = strcat(s, ftos(ban_expire[i] - time), " seconds");
+                s = strcat(s, ftos(rint(ban_expire[i] - time)), "s");
+                if(ban_reason[i])
+                    s = strcat(s, ", ", ban_reason[i]);
                 IRC_Notice(handle, nick, s);
             }
-            if(l == ban_count || l == stof(argv(1)))
+            
+            if(k == activebans)
                 IRC_Notice(handle, nick, "- End of list -");
             else
-                IRC_Notice(handle, nick, "- List truncated, use bans <position> to start from a different item -");
-            print(ftos(l), "\n");
+                IRC_Notice(handle, nick, "- List truncated, use bans <position> [item count] to start from a different item -");
             break;
         }
         
@@ -204,7 +278,7 @@ void IRC_AdminCommand(float handle, string nick, string cmdline) {
         
         default: {
 :help
-            s = "Available commands: status kickban bans unban";
+            s = "Available commands: status kickban ban bans unban";
             if(cvar("sv_ircbot_admin_allow_cmd"))
                 s = strcat(s, " cmd");
             IRC_Notice(handle, nick, s);
@@ -226,7 +300,7 @@ float IRC_IsAdmin(string mask) {
 }
 
 void IRC_Event(float handle, string event, float numeric, string src, float argc) {
-    float i, ijp;
+    float ijp;
     string nick, user, host;
     
     if(handle != irc.cnt)    // not our session
@@ -244,9 +318,27 @@ void IRC_Event(float handle, string event, float numeric, string src, float argc
             IRC_SendRaw(handle, cvar_string("sv_ircbot_connectcommand"));
     } else if(event == "CHANNEL") {
         if(cvar("sv_ircbot_chat_irc2game"))
-        if(strtolower(argv(0)) == irc.target)
-            bprint("\{1}^5IRC ^8<^3", nick, "^8>^7 ", IRC_IRC2DP(argv(1)), "\n");
-    } else if(event == "PRIVMSG" || event == "NOTICE") {
+        if(strtolower(argv(0)) == irc.target) {
+            string msg = IRC_IRC2DP(argv(1));
+            
+            if(cvar("sv_ircbot_chat_irc2game_require_highlight")) {
+                string mynick = IRC_CurrentNick(handle);
+                float nl = strlen(mynick);
+                float ml = strlen(msg);
+                
+                if(substring(msg, 0, nl + 1) == strcat(mynick, " "))
+                    msg = substring(msg, nl + 1, ml);
+                else if(substring(msg, 0, nl + 2) == strcat(mynick, ": ") ||
+                        substring(msg, 0, nl + 2) == strcat(mynick, ", "))
+                    msg = substring(msg, nl + 2, ml);
+                else
+                    msg = "";
+            }
+            
+            if(msg != "")
+                bprint("\{1}^5IRC ^8<^3", nick, "^8>^7 ", msg, "\n");
+        }
+    } else if(event == "PRIVMSG") {
         string cmd = argv(1);
         if(argv(0) == IRC_CurrentNick(handle)) {
             if(IRC_IsAdmin(src))
@@ -255,27 +347,35 @@ void IRC_Event(float handle, string event, float numeric, string src, float argc
                 IRC_Notice(handle, nick, "Permission denied");
         }
     } else if(event == "CTCP") {
+        // /me for borked libircclient
         if(cvar("sv_ircbot_chat_irc2game"))
+        if(!cvar("sv_ircbot_chat_irc2game_require_highlight"))
         if(substring(argv(0), 0, 7) == "ACTION ")
             bprint("\{1}^5IRC  ^3* ", nick, "^7 ", IRC_IRC2DP(substring(argv(0), 7, strlen(argv(0)))), "\n");
+    } else if(event == "ACTION") {
+        // /me for unborked libircclient
+        if(cvar("sv_ircbot_chat_irc2game"))
+        if(!cvar("sv_ircbot_chat_irc2game_require_highlight"))
+        if(strtolower(argv(0)) == irc.target)
+            bprint("\{1}^5IRC  ^3* ", nick, "^7 ", IRC_IRC2DP(argv(1)), "\n");
     } else if(event == "KICK") {
         if(cvar("sv_ircbot_channel_auto_rejoin"))
         if(argv(1) == IRC_CurrentNick(handle)) {
-            IRC_JoinChannel(handle, argv(0), ((argv(0) == irc.target)? irc.targetname : ""));
+            IRC_JoinChannel(handle, argv(0), ((strtolower(argv(0)) == irc.target)? irc.targetname : ""));
             return;
         }
         
-        if(ijp) if(argv(0) == irc.target) {
+        if(ijp) if(strtolower(argv(0)) == irc.target) {
             bprint("\{1}^5IRC  ^1* ^3", nick, " ^1kicked ^3", argv(1), " ^1from ^2", argv(0));
             if(argv(2) != "" && argv(2) != argv(1))
                bprint(" ^8(", argv(2), ")");
             bprint("\n");
         }
     } else if(event == "JOIN") {
-        if(ijp) if(argv(0) == irc.target)
+        if(ijp) if(strtolower(argv(0)) == irc.target)
             bprint("\{1}^5IRC  ^7* ^3", nick, " ^7joined ^2", argv(0), "\n");
     } else if(event == "PART") {
-        if(ijp) if(argv(0) == irc.target)
+        if(ijp) if(strtolower(argv(0)) == irc.target)
             bprint("\{1}^5IRC  ^7* ^3", nick, " ^7left ^2", argv(0));
             if(argv(1) != "" && argv(1) != nick)
                 bprint(" ^8(", argv(1), ")");
@@ -287,7 +387,7 @@ void IRC_Event(float handle, string event, float numeric, string src, float argc
                 bprint(" ^8(", argv(0), ")");
             bprint("\n");
     } else if(event == "MODE") {
-        if(argv(0) == irc.target) if(argv(1) == "+o") if(argv(2) == IRC_CurrentNick(irc.cnt))
+        if(strtolower(argv(0)) == irc.target) if(argv(1) == "+o") if(argv(2) == IRC_CurrentNick(irc.cnt))
             irc.skin = 1;
     } else if(event == "NICK") {
         if(cvar("sv_ircbot_announce_irc_nick"))
@@ -301,24 +401,44 @@ void IRC_Announce_PlayerChat(entity plr, string msg) { if(!irc) return;
     IRC_Privmsg(irc.cnt, irc.target, strcat("<", plr.netname, "> ", msg));
 }
 
-void IRC_Announce_Client(entity plr, float ispart) {
-    if(!cvar("sv_ircbot_announce_joinparts"))
-        return;
-    
+void IRC_Announce_Client_Callback(string ip, string cn, entity ctx) {
+    entity plr = ctx.owner;
     string msg;
     
-    if(ispart)  msg = "^1- part ^3#";
+    if(ctx.cnt) msg = "^1- part ^3#";
     else        msg = "^2+ join ^3#";
     msg = strcat(msg, ftos(num_for_edict(plr)), "^7: ", plr.netname);
     
     if(cvar("sv_ircbot_announce_joinparts_showip"))
-        msg = strcat(msg, "^7 (^4", plr.netaddress, "^7)");
-    
-    if(!cvar("sv_ircbot_update_topic"))
-        msg = strcat(msg, IRC_TopicPostfix());
+        msg = strcat(msg, "^7 (^4", ip, "^7)");
+    if(cn != "")
+        msg = strcat(msg, "^7 [^6", strtoupper(cn), "^7]");
+    if(cvar("sv_ircbot_announce_joinparts_showgameinfo"))
+        msg = strcat(msg, IRC_STRING_SEPARATOR, IRC_GameInfoString());
+    msg = strcat(msg, IRC_STRING_SEPARATOR, IRC_ClientsInfoString());
     
     IRC_Privmsg(irc.cnt, irc.target, msg);
     irc.skin = 1;
+    
+    remove(ctx);
+}
+
+void IRC_Announce_Client(entity plr, float ispart) {
+    if(!cvar("sv_ircbot_announce_joinparts"))
+        return;
+    
+    entity ctx = spawn();
+    ctx.cnt = ispart;
+    ctx.owner = plr;
+    
+    if(cvar("sv_ircbot_announce_joinparts_showcountry"))
+    if(cvar("sv_ip2country"))
+    if(cvar_string("sv_ip2country_server") != "") {
+        IP2C_Lookup(plr.netaddress, IRC_Announce_Client_Callback, cvar("sv_ircbot_announce_joinparts_showcountry_timeout"), ctx);
+        return;
+    }
+    
+    IRC_Announce_Client_Callback(plr.netaddress, "", ctx);
 }
 
 void IRC_Announce_ClientConnect(entity plr) { if(!irc) return;
@@ -356,6 +476,6 @@ void IRC_Announce_Ban(string bstr) { if(!irc) return;
 }
 
 void IRC_Announce_Name(entity plr, string name) { if(!irc) return;
-    if(cvar("sv_ircbot_announce_name") && plr.netname != name)
+    if(cvar("sv_ircbot_announce_name") && (strdecolorize(plr.netname) != strdecolorize(name)))
         IRC_Privmsg(irc.cnt, irc.target, strcat("* ^3", plr.netname, "^7 changed name to ^3", name));
 }

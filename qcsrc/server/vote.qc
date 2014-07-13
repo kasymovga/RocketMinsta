@@ -112,14 +112,14 @@ float RemapVote(string vote, string cmd, entity e)
 		return FALSE;
 	}
 
-	if(!VoteAllowed(argv(0), cmd))
+	if(!VoteAllowed(e, argv(0), cmd))
 		return FALSE;
 
 	// VoteAllowed tokenizes!
 	vote_argc = tokenize_console(vote);
 
 	local float min_argc = cvar (strcat ("sv_vote_", argv (0), "_min_arguments"));
-	if (vote_argc < min_argc && min_argc > 0)
+	if (vote_argc <= min_argc && min_argc > 0)
 	{
 		sprint (e, strcat ("^2", argv (0), " ^1requires at least ^2", ftos (min_argc), " ^1argument(s).\n"));
 		return FALSE;
@@ -576,7 +576,7 @@ float GameCommand_Vote(string s, entity e) {
 				} else if(VoteCheckNasty(dovote)) {
 					print_to(e, "Syntax error in command. See 'vhelp' for more info.");
 				} else if(RemapVote(dovote, "vdo", e)) { // strcat seems to be necessary
-                    tmp = strcat("^2* ^3", VoteNetname(e), "^2 used his ^3master^2 status to do ^2", RemapVote_display, "^2");
+                    tmp = strcat("^2* ^3", VoteNetname(e), "^2 used his ^3", e.vote_mastername, "^2 status to do ^2", RemapVote_display, "^2");
 					bprint("\{1}", tmp, "\n");
                     IRC_Announce_Vote(tmp);
 					if(cvar("sv_eventlog"))
@@ -597,8 +597,23 @@ float GameCommand_Vote(string s, entity e) {
 				if (e)
 					e.vote_master = granted;
 				if(granted) {
+                    string lname;
+                    
+                    if(argc > 3 && cvar("sv_vote_master_arbitrary_login"))
+                        lname = argv(3);
+                    else
+                        lname = cvar_string("sv_vote_master_default_login");
+                    
+                    if(e) {
+                        if(e.vote_mastername) {
+                            strunzone(e.vote_mastername);
+                            e.vote_mastername = string_null;
+                        }
+                        e.vote_mastername = strzone(lname);
+                    }
+                    
 					print("Accepted master login from ", VoteNetname(e), "\n");
-                    tmp = strcat("^2* ^3", VoteNetname(e), "^2 logged in as ^3master^2");
+                    tmp = strcat("^2* ^3", VoteNetname(e), "^2 logged in as ^3", e.vote_mastername, "^2");
 					bprint("\{1}", tmp, "\n");
                     IRC_Announce_Vote(tmp);
 					if(cvar("sv_eventlog"))
@@ -713,7 +728,7 @@ void VoteHelp(entity e) {
 	print_to(e, "^7If enough of the players vote no the vote is rejected.");
 	print_to(e, strcat("^7If neither the vote will timeout after ", cvar_string("sv_vote_timeout"), "^7 seconds."));
 	print_to(e, "^7You can call a vote for or execute these commands:");
-	print_to(e, strcat("^3", GetVoteList_Filtered(), "^7and maybe further ^3arguments^7"));
+	print_to(e, strcat("^3", GetVoteList_Filtered(e.vote_master, FALSE), "^7and maybe further ^3arguments^7"));
 }
 
 string VoteNetname(entity e)
@@ -796,27 +811,16 @@ float VoteCommandInList(string votecommand, string list)
 	return FALSE;
 }
 
-float VoteAllowed(string votecommand, string cmd) {
+float VoteAllowed(entity caller, string votecommand, string cmd) {
 	local string s;
 	
-	if(VoteCommandInList(votecommand, GetVoteList()))
+	if(VoteCommandInList(votecommand, GetVoteList(caller.vote_master, (cmd == "vdo"))))
 		return TRUE;
 
 	if(cvar("sv_vote_gametype_call"))
 	if((s = NormalizeGametypeName(votecommand)) != "")
 	if(ListContainsEx(cvar_string("sv_vote_gametype_options"), s, " ", NormalizeGametypeName))
 		return TRUE;			// gametype alias
-
-	if(cmd == "vdo")
-	{
-		if(VoteCommandInList(votecommand, cvar_string("sv_vote_master_commands")))
-			return TRUE;
-	}
-	else
-	{
-		if(VoteCommandInList(votecommand, cvar_string("sv_vote_only_commands")))
-			return TRUE;
-	}
 
 	return FALSE;
 }

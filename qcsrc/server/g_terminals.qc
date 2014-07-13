@@ -111,9 +111,17 @@ void Term_Hook_PlayerPreThink(void) {
     }
     
     if not(found)
-        self.term_auth = self.term_authed = 0;
+        self.term_auth = self.term_authed = self.term_used = 0;
     else if not(self.term_authed) {
+        if(time < self.term_nextuse) {
+            centerprint_spec(self, strcat("You must wait ", ftos(ceil(self.term_nextuse - time)), " seconds before authenticating again"));
+            self.term_authed = TRUE;
+            self.term_used = TRUE;
+            return;
+        }
+        
         self.term_auth = approach(self.term_auth, 1, frametime / cvar("g_terminals_auth_time"));
+        
         if(self.term_auth == 1) {
             self.term_auth = 0;
             self.term_authed = TRUE;

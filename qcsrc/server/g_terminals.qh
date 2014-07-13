@@ -3,6 +3,8 @@ float g_terminals;
 
 .float term_auth;
 .float term_authed;
+.float term_used;
+.float term_nextuse;
 
 void Term_Init(void);
 void Term_Hook_PlayerPreThink(void);
