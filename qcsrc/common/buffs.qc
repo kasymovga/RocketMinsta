@@ -62,7 +62,7 @@ string Buffs_TypeToExpandedName(float buff) {
 
 	case BUFF_ZEN     :      return "Zen";
 	case BUFF_IRON     :      return "Iron";
-	case BUFF_ION     :      return "Vision";
+	case BUFF_VIScION     :      return "Vision";
 	case BUFF_STRIKE     :      return "Strike";
 	case BUFF_ANGEL     :      return "Angel";
 
