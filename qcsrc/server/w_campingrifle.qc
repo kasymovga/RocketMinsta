@@ -54,9 +54,9 @@ void W_CampingRifle_Reload()
 		self.weaponentity.state = WS_INUSE;
 	}
 
-        float vol = VOL_BASE;
-        if (BUFFS_PRESENT(self, BUFF_NINJA)) vol = vol * cvar("g_buffs_nina_weapvol_mult");
-	sound (self, CHAN_WEAPON2, "weapons/campingrifle_reload.wav", VOL_BASE, ATTN_NORM);
+        
+        if (!BUFFS_PRESENT(self, BUFF_NINJA))        
+          sound (self, CHAN_WEAPON2, "weapons/campingrifle_reload.wav", VOL_BASE, ATTN_NORM);
 
 	t = max(time, ATTACK_FINISHED(self)) + cvar("g_balance_campingrifle_reloadtime") + 1;
 	ATTACK_FINISHED(self) = t;
