@@ -125,7 +125,8 @@ void PlayerJump (void)
 	else
 		setanim(self, self.anim_jump, FALSE, TRUE, TRUE);
 
-	if(g_jump_grunt)
+	if(g_jump_grunt && ! BUFFS_PRESENT(self, BUFF_NINJA))
+
 		PlayerSound(playersound_jump, CHAN_PLAYER, VOICETYPE_PLAYERSOUND);
 
 	if(sv_doublejump)
@@ -685,8 +686,12 @@ void SV_PlayerPhysics()
 			self.velocity_z = sv_jumpvelocity * wj_z_factor;
 			if (self.crouch) self.velocity_z *= -1; // thanks Synap for the idea
 			self.oldvelocity = self.velocity;
-			pointparticles(particleeffectnum("smoke_ring"), trace_endpos, plane_normal, 10);
-			PlayerSound (playersound_jump, CHAN_PLAYER, VOICETYPE_PLAYERSOUND);
+                        if (!BUFFS_PRESENT(self, BUFF_NINJA))
+                          {
+                            pointparticles(particleeffectnum("smoke_ring"), trace_endpos, plane_normal, 10);
+
+                            PlayerSound (playersound_jump, CHAN_PLAYER, VOICETYPE_PLAYERSOUND);
+                          };
 		}
 	}
 
@@ -924,10 +929,11 @@ void SV_PlayerPhysics()
 		self.angles_z = 0;
 	}
 
+        
 	if(self.flags & FL_ONGROUND)
 	if(self.wasFlying)
 	{
-		self.wasFlying = 0;
+          self.wasFlying = 0;
 
 		if(self.waterlevel < WATERLEVEL_SWIMMING)
 		if(time >= self.ladder_time)
@@ -936,6 +942,7 @@ void SV_PlayerPhysics()
 			self.nextstep = time + 0.3 + random() * 0.1;
 			trace_dphitq3surfaceflags = 0;
 			tracebox(self.origin, self.mins, self.maxs, self.origin - '0 0 1', MOVE_NOMONSTERS, self);
+                        if not (BUFFS_PRESENT(self, BUFF_NINJA))
 			if not(trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOSTEPS)
 			{
 				if(trace_dphitq3surfaceflags & Q3SURFACEFLAG_METALSTEPS)

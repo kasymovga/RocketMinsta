@@ -1050,12 +1050,15 @@ void AngelHeal(entity targ, entity healer) {
         targ.heal_next_particle = time + 0.2;
     }
     
-    if(healhp) {
-        VisualDamage(healer, targ, heal, 0, VDMG_TYPE_HEAL);
-        HealScore(targ, healer, heal);
-        sound(targ, CHAN_TRIGGER, "misc/mediumhealth.wav", VOL_BASE, ATTN_NORM);
-        //centerprint(targ, strcat("^2+", ftos(heal)));
-    }
+
+    if (healhp || healarm) 
+      {
+        VisualDamage(healer, targ, healhp, healarm, VDMG_TYPE_HEAL);
+        HealScore(targ, healer, healhp + healarm);
+        sound(self, CHAN_AUTO, "kh/capture.wav", 0.4, 1.5);
+
+        if (healer != targ) 	te_csqc_lightningarc(targ.origin, healer.origin, FALSE, healer.team);
+      }
 }
 
 // these are updated by each Damage call for use in button triggering and such
@@ -1107,6 +1110,10 @@ void Damage(entity targ, entity inflictor, entity attacker, float damage, float 
         if(BUFFS_PRESENT(attacker, BUFF_BASH) && !RadiusDamage_running && deathtype != DEATH_BASH && !inflictor.iscreature && !DEATH_ISHG(deathtype)) {
             Buffs_BashDamage(attacker, inflictor, targ, damage, hitloc);
         }
+
+        if (BUFFS_PRESENT(attacker, BUFF_ZEN)) damage = damage * cvar("g_buffs_zen_damage_mult");
+
+        
         
         if(targ.iscreature && BUFFS_PRESENT(attacker, BUFF_MEDIC) && (!DEATH_ISSPECIAL(deathtype) || deathtype == DEATH_BASH || deathtype == DEATH_ARC)) {
             if((teams_matter && attacker.team == targ.team) || attacker == targ) {
