@@ -267,6 +267,7 @@ float dodging_PlayerPhysics()
 			  self.velocity 
 			+ (cvar("g_dodging_up_speed") * forcemod * v_up);
 
+                if (!BUFFS_PRESENT(self, BUFF_NINJA))
 		if(cvar("g_dodging_sound"))
 			PlayerSound(playersound_jump, CHAN_PLAYER, VOICETYPE_PLAYERSOUND);
 

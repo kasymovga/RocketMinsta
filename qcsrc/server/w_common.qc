@@ -39,6 +39,9 @@ void FireRailgunBullet (vector start, vector end, float bdamage, float bforce, f
     float bash, bashcd;
 
     bash = (BUFFS_PRESENT(self, BUFF_BASH) && deathtype != DEATH_HG_SHIELD);
+
+    float volume_mod = 1;
+    if (BUFFS_PRESENT(self, BUFF_NINJA)) volume_mod = cvar("g_buffs_ninja_weapvol_mult");
     
     if(bash)
         bashcd = cvar("g_buffs_bash_cooldown");
@@ -141,7 +144,7 @@ void FireRailgunBullet (vector start, vector end, float bdamage, float bforce, f
 
 			if(!pseudoprojectile)
 				pseudoprojectile = spawn(); // we need this so the sound uses the "entchannel4" volume
-			soundtoat(MSG_ONE, pseudoprojectile, beampos, CHAN_PROJECTILE, snd, VOL_BASE * f, ATTN_NONE);
+			soundtoat(MSG_ONE, pseudoprojectile, beampos, CHAN_PROJECTILE, snd, VOL_BASE * f * volume_mod, ATTN_NONE);
 		}
 
 		if(pseudoprojectile)
@@ -446,6 +449,7 @@ void fireHitscanBullet(vector start, vector dir, float spread, float damage, flo
 
 void fireBallisticBullet(vector start, vector dir, float spread, float pSpeed, float lifetime, float damage, float headshotbonus, float force, float dtype, float tracereffects, float gravityfactor, float bulletconstant)
 {
+
 	float lag, dt, savetime;
 	entity pl, oldself;
     

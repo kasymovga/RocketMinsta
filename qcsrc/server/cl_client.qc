@@ -608,7 +608,9 @@ float Client_customizeentityforclient()
     
     float sa = 1 - self.hg_stealthalpha;
     
-    if((teams_matter && other.team == self.team) || 
+    if(
+       (BUFFS_PRESENT(other, BUFF_VISION)) ||
+       (teams_matter && other.team == self.team) || 
        (other.hg_stealth && (!BUFFS_PRESENT(self, BUFF_ADEPT) || BUFFS_PRESENT(other, BUFF_ADEPT))) ||
        !other.iscreature)
         sa = 0.3 + 0.7 * sa;

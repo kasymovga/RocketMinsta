@@ -54,7 +54,9 @@ void W_CampingRifle_Reload()
 		self.weaponentity.state = WS_INUSE;
 	}
 
-	sound (self, CHAN_WEAPON2, "weapons/campingrifle_reload.wav", VOL_BASE, ATTN_NORM);
+        
+        if (!BUFFS_PRESENT(self, BUFF_NINJA))        
+          sound (self, CHAN_WEAPON2, "weapons/campingrifle_reload.wav", VOL_BASE, ATTN_NORM);
 
 	t = max(time, ATTACK_FINISHED(self)) + cvar("g_balance_campingrifle_reloadtime") + 1;
 	ATTACK_FINISHED(self) = t;
@@ -83,7 +85,8 @@ void W_CampingRifle_FireBullet(float pSpread, float pDamage, float pHeadshotAdde
 	else
 		W_SetupShot (self, cvar("g_antilag_bullets") && pSpeed >= cvar("g_antilag_bullets"), 2, "weapons/campingrifle_fire.wav", cvar("g_balance_campingrifle_primary_damage"));
 
-	pointparticles(particleeffectnum("shotgun_muzzleflash"), w_shotorg, w_shotdir * 2000, 1);
+        if (!BUFFS_PRESENT(self, BUFF_NINJA))
+          pointparticles(particleeffectnum("shotgun_muzzleflash"), w_shotorg, w_shotdir * 2000, 1);
 
 	if(self.BUTTON_ZOOM) // if zoomed, shoot from the eye
 	{
@@ -91,10 +94,11 @@ void W_CampingRifle_FireBullet(float pSpread, float pDamage, float pHeadshotAdde
 		w_shotorg = self.origin + self.view_ofs + ((w_shotorg - self.origin - self.view_ofs) * v_forward) * v_forward;
 	}
 
-	fireBallisticBullet(w_shotorg, w_shotdir, pSpread, pSpeed, pLifetime, pDamage, pHeadshotAddedDamage / pDamage, pForce, deathtype, EF_RED, 1, pBulletConstant);
+	fireBallisticBullet(w_shotorg, w_shotdir, pSpread, pSpeed, pLifetime, pDamage, pHeadshotAddedDamage / pDamage, pForce, deathtype, (BUFFS_PRESENT(self, BUFF_NINJA) ? 0 : EF_RED), 1, pBulletConstant);
 	endFireBallisticBullet();
 
 	if (cvar("g_casings") >= 2)
+          if (!BUFFS_PRESENT(self, BUFF_NINJA))
 		SpawnCasing (((random () * 50 + 50) * v_right) - (v_forward * (random () * 25 + 25)) - ((random () * 5 - 70) * v_up), 2, vectoangles(v_forward),'0 250 0', 100, 3, self);
 	
 	self.campingrifle_bulletcounter = max(0, self.campingrifle_bulletcounter - cost);
@@ -164,6 +168,11 @@ float w_campingrifle(float req)
             float fteqcc_is_gay = floor(cvar("g_buffs_supply_campingrifle_extra_magazine") * Buffs_BuffPower(self, BUFF_SUPPLY));
             self.campingrifle_bulletlimit += fteqcc_is_gay;
         }
+        if (BUFFS_PRESENT(self, BUFF_ZEN))
+          {
+            self.campingrifle_bulletlimit = ceil(self.campingrifle_bulletlimit*cvar("g_buffs_zen_ammo_mult"));
+          }
+
         self.campingrifle_bulletcounter = min(self.campingrifle_bulletcounter, self.campingrifle_bulletlimit);
         
 		if(self.campingrifle_bulletcounter < 0) // forced reload (e.g. because interrupted)

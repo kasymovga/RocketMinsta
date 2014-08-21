@@ -1060,7 +1060,7 @@ float SendEntity_ShowNames(entity to, float sendflags)
     WriteByte(MSG_ENTITY, num_for_edict(self.owner));
 
     sendflags = sendflags & 127;
-    if(teams_matter && ((to.hg_stealth && !self.owner.hg_stealth) || self.owner.team == to.team || (to.classname == "spectator" && to.enemy.team == self.owner.team)))
+    if( (BUFFS_PRESENT(to, BUFF_VISION)) || (teams_matter && ((to.hg_stealth && !self.owner.hg_stealth) || self.owner.team == to.team || (to.classname == "spectator" && to.enemy.team == self.owner.team))))
         sendflags |= 128;
     else
         sendflags &~= 2;

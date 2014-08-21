@@ -136,6 +136,11 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 	local float _oldsolid;
 	vector vecs, dv;
 	_oldsolid = ent.dphitcontentsmask;
+
+
+        float volume_mod = 1;
+        if (BUFFS_PRESENT(self, BUFF_NINJA)) volume_mod = cvar("g_buffs_ninja_weapvol_mult");
+
 	if(ent.weapon == WEP_CAMPINGRIFLE)
 		ent.dphitcontentsmask = DPCONTENTS_BODY | DPCONTENTS_CORPSE;
 	else
@@ -305,7 +310,7 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 
 	if (snd != "")
 	{
-		sound (ent, CHAN_WEAPON, snd, VOL_BASE, ATTN_NORM);
+		sound (ent, CHAN_WEAPON, snd, VOL_BASE *volume_mod, ATTN_NORM);
 	}
 
 	if (ent.items & IT_STRENGTH)

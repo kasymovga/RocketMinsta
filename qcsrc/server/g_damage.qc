@@ -1029,6 +1029,38 @@ float Heal(entity targ, entity inflictor, entity healer, float heal, float pause
     return heal;
 }
 
+void AngelHeal(entity targ, entity healer) {    
+    if(g_clanarena) {
+        return;
+    }
+    float heal = cvar("g_buffs_angel_heal");
+    float healmax = cvar("g_buffs_angel_healmax");
+    float healhp = max(0, min(heal, healmax - targ.health) );
+    float healarm = max(0, min(heal, healmax - targ.armorvalue) );
+    float pauserot = cvar ("g_buffs_angel_pauserot");
+    
+    targ.health += healhp;
+    targ.armorvalue += healarm;
+
+    targ.pauserothealth_finished = max(targ.pauserothealth_finished, time + pauserot);
+    targ.pauserotarmor_finished = max(targ.pauserotarmor_finished, time + pauserot);
+    
+    if(time > targ.heal_next_particle) {
+        te_heal(targ);
+        targ.heal_next_particle = time + 0.2;
+    }
+    
+
+    if (healhp || healarm) 
+      {
+        VisualDamage(healer, targ, healhp, healarm, VDMG_TYPE_HEAL);
+        HealScore(targ, healer, healhp + healarm);
+        sound(self, CHAN_AUTO, "kh/capture.wav", 0.4, 1.5);
+
+        if (healer != targ) 	te_csqc_lightningarc(targ.origin, healer.origin, FALSE, healer.team);
+      }
+}
+
 // these are updated by each Damage call for use in button triggering and such
 entity damage_targ;
 entity damage_inflictor;
@@ -1078,6 +1110,10 @@ void Damage(entity targ, entity inflictor, entity attacker, float damage, float 
         if(BUFFS_PRESENT(attacker, BUFF_BASH) && !RadiusDamage_running && deathtype != DEATH_BASH && !inflictor.iscreature && !DEATH_ISHG(deathtype)) {
             Buffs_BashDamage(attacker, inflictor, targ, damage, hitloc);
         }
+
+        if (BUFFS_PRESENT(attacker, BUFF_ZEN)) damage = damage * cvar("g_buffs_zen_damage_mult");
+
+        
         
         if(targ.iscreature && BUFFS_PRESENT(attacker, BUFF_MEDIC) && (!DEATH_ISSPECIAL(deathtype) || deathtype == DEATH_BASH || deathtype == DEATH_ARC)) {
             if((teams_matter && attacker.team == targ.team) || attacker == targ) {

@@ -4,15 +4,26 @@
 #define BUFF_GUARD      4
 #define BUFF_HASTE      8
 #define BUFF_MEDIC      16
+
 #define BUFF_BASH       32
 #define BUFF_VAMPIRE    64
 #define BUFF_TENACITY   128
 #define BUFF_WRATH      256
-#define BUFF_ADEPT      512
+#define BUFF_ANGEL       512
+
+#define BUFF_ADEPT       1024
+#define BUFF_VISION      2048
+#define BUFF_NINJA       4096
+#define BUFF_ZEN         8192
+
+
+
+// To add afterwards
 
 #define BUFF_FIRST      BUFF_ARC
-#define BUFF_LAST       BUFF_ADEPT
-#define BUFF_COUNT      10
+#define BUFF_LAST       BUFF_ZEN
+
+#define BUFF_COUNT      14
 
 string Buffs_TypeToName(float);
 float Buffs_NameToType(string);

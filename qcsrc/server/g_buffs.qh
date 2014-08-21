@@ -36,6 +36,8 @@ float g_buffs_count;
 .float buff_vamp_healthpool;
 .float buff_vamp_nexttick;
 
+.float buff_angel_nexttick;
+
 .entity buff_waypoint;
 .entity buff_model;
 .entity buff_teamwp;

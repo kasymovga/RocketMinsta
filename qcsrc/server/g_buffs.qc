@@ -35,6 +35,7 @@ void Buffs_Init(void) {
     
     addstat(STAT_BUFFS, AS_INT, buffstat);
     
+
     float enabled;
     for(i = 0, b = 1; i < BUFF_COUNT; ++i, b *= 2) {
         g_buffs_enabled[i] = cvar(strcat("g_buffs_", Buffs_TypeToName(b)));
@@ -494,6 +495,25 @@ void Buffs_ClientFrame(void) {
             self.buff_vamp_ticks -= 1;
             self.buff_vamp_nexttick = time + 1;
         }
+    }
+
+    if(BUFFS_PRESENT(self, BUFF_ANGEL)) {
+      if(time > self.buff_angel_nexttick) {
+	  self.buff_angel_nexttick = time + 2;
+
+	  float heal = cvar("g_buffs_angel_heal");
+	 
+
+	  entity p;
+
+	  FOR_EACH_PLAYER(p) {
+	    if(p.team != self.team) {
+	      continue;
+	    }
+	    if(vlen(self.origin - p.origin) <= cvar("g_buffs_angel_range"))
+	      AngelHeal(p, self);
+	    }
+	  }
     }
     
     if(!self.buff_teamwp) {

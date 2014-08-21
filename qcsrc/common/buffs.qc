@@ -10,7 +10,12 @@ string Buffs_TypeToName(float buff) {
         case BUFF_VAMPIRE   :      return "vampire";
         case BUFF_TENACITY  :      return "tenacity";
         case BUFF_WRATH     :      return "wrath";
+        case BUFF_ANGEL     :      return "angel";
         case BUFF_ADEPT     :      return "adept";
+        case BUFF_VISION     :      return "vision";
+        case BUFF_NINJA     :      return "ninja";
+        case BUFF_ZEN     :      return "zen";
+
         default             :      return "unknown";
     }
 }
@@ -26,7 +31,12 @@ float Buffs_NameToType(string name) {
         case "vampire"      :      return BUFF_VAMPIRE;
         case "tenacity"     :      return BUFF_TENACITY;
         case "wrath"        :      return BUFF_WRATH;
+        case "angel"        :      return BUFF_ANGEL;
         case "adept"        :      return BUFF_ADEPT;
+        case "vision"       :      return BUFF_VISION;
+        case "ninja"        :      return BUFF_NINJA; 
+        case "zen"          :      return BUFF_ZEN;
+
         default             :      return 0;
     }
 }
@@ -42,7 +52,12 @@ string Buffs_TypeToExpandedName(float buff) {
         case BUFF_VAMPIRE   :      return "Vampire";
         case BUFF_TENACITY  :      return "Tenacity";
         case BUFF_WRATH     :      return "Wrath";
+	case BUFF_ANGEL     :      return "Angel";
         case BUFF_ADEPT     :      return "Adept";
+        case BUFF_VISION    :      return "Vision";
+        case BUFF_NINJA     :      return "Ninja";
+        case BUFF_ZEN       :      return "Zen"; 
+
         default             :      return "Unknown";
     }
 }
@@ -62,7 +77,12 @@ vector Buffs_TypeToColor(float buff) {
         case BUFF_VAMPIRE   :      return '1.00  0.15  0.00';    // Scarlet
         case BUFF_TENACITY  :      return '0.66  0.66  0.73';    // Silver
         case BUFF_WRATH     :      return '0.55  0.50  1.00';    // Bright Blue
+        case BUFF_ANGEL     :      return '0.90  0.90  0.40';    // Bright Yellow
         case BUFF_ADEPT     :      return '0.57  0.00  1.00';    // Viole(n)t
+        case BUFF_VISION    :      return '0.29  0.29  0.29';    // White ish
+        case BUFF_NINJA     :      return '0.30  0.10  0.20';    // Purple ish
+        case BUFF_ZEN       :      return '0.40  1.00  0.40';    // Bright green
+
         default             :      return '0.00  0.00  0.00';
     }
 }

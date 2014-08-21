@@ -92,6 +92,7 @@ void CreatureFrame (void)
 			if (self.flags & FL_ONGROUND)
 			if (vlen(self.velocity) > sv_maxspeed * 0.6)
 			if (!self.deadflag)
+                        if (!BUFFS_PRESENT(self, BUFF_NINJA))
 			if (time < self.lastground + 0.2)
 			{
 				if((time > self.nextstep) || (time < (self.nextstep - 10.0)))
