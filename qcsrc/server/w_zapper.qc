@@ -66,7 +66,7 @@ float W_Zapper_Beam_Send(entity to, float sf) {
 }
 
 float W_Zapper_Beam_Expired(void) {
-    if(time > self.zapper_expire)
+    if(self.zapper_expire)
         return TRUE;
 
     if(self.owner.zapper_heat >= 1)
@@ -123,69 +123,34 @@ void W_Zapper_Beam_Think(void) {
     end = trace_endpos;
     fract = trace_fraction;
 
-    float dt = time - self.zapper_lastdmg;
     float rate = W_WeaponRateFactorFor(self.owner);
-    float damageIsDps = FALSE;
-    float adjustDamage = TRUE;
     
-    if(dt < frametime)
-    if(almost_equals(dt, frametime))
-        dt = frametime;
+    float damage = cvar("g_balance_zapper_primary_damage");
+    float force  = cvar("g_balance_zapper_primary_force");
     
-    float wantedTicrate = self.zapper_dmgdelay * rate;
-    
-    if(wantedTicrate <= 0) {
-        wantedTicrate = dt;
-        damageIsDps = TRUE;
-    } else if(almost_equals(dt, wantedTicrate)) {
-        dt = wantedTicrate;
-        adjustDamage = FALSE;
+    W_Accuracy_RegisterShot(o, o.weapon);
+    W_Accuracy_RegisterHit(o, targ, o.weapon);
+
+    if(targ.takedamage) {
+        float d = (end - w_shotorg) * w_shotdir;
+
+        float mindist = cvar("g_balance_zapper_primary_damagefalloff_mindist");
+        float maxdist = cvar("g_balance_zapper_primary_damagefalloff_maxdist");
+        float halflifedist = cvar("g_balance_zapper_primary_damagefalloff_halflife");
+        float forcehalflifedist = cvar("g_balance_zapper_primary_damagefalloff_forcehalflife");
+
+        damage *= ExponentialFalloff(mindist, maxdist, halflifedist, d);
+        force  *= ExponentialFalloff(mindist, maxdist, forcehalflifedist, d);
+
+        Damage(targ, self, self.owner, damage, WEP_ZAPPER, end, force * w_shotdir);
     }
-    
-    if(dt >= wantedTicrate) {
-        float damage = cvar("g_balance_zapper_primary_damage");
-        float force  = cvar("g_balance_zapper_primary_force");
-        
-        if(damageIsDps) {
-            damage = damage * wantedTicrate;
-            force = force * wantedTicrate;
-        } else if(adjustDamage) {
-            // In case we can't run at the wanted ticrate,
-            // adjust damage and force to preserve the intended DPS
-        
-            float targetDps = damage / wantedTicrate;
-            float targetFps = force  / wantedTicrate;
-            
-            damage = targetDps * dt;
-            force  = targetFps * dt;
-        }
-        
-        W_Accuracy_RegisterShot(o, o.weapon);
-        W_Accuracy_RegisterHit(o, targ, o.weapon);
 
-        if(targ.takedamage) {
-            float d = (end - w_shotorg) * w_shotdir;
+    if(fract < 1)
+    if(targ.solid == SOLID_BSP && !(trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOIMPACT))
+        Damage_DamageInfo(end, damage, 0, 0, force * w_shotdir, WEP_ZAPPER, self);
 
-            float mindist = cvar("g_balance_zapper_primary_damagefalloff_mindist");
-            float maxdist = cvar("g_balance_zapper_primary_damagefalloff_maxdist");
-            float halflifedist = cvar("g_balance_zapper_primary_damagefalloff_halflife");
-            float forcehalflifedist = cvar("g_balance_zapper_primary_damagefalloff_forcehalflife");
-
-            damage *= ExponentialFalloff(mindist, maxdist, halflifedist, d);
-            force  *= ExponentialFalloff(mindist, maxdist, forcehalflifedist, d);
-
-            Damage(targ, self, self.owner, damage, WEP_ZAPPER, end, force * w_shotdir);
-        }
-
-        if(fract < 1)
-        if(targ.solid == SOLID_BSP && !(trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOIMPACT))
-            Damage_DamageInfo(end, damage, 0, 0, force * w_shotdir, WEP_ZAPPER, self);
-
-        if(!(o.items & IT_UNLIMITED_AMMO))
-            o.ammo_cells -= cvar("g_balance_zapper_primary_ammo");
-
-        self.zapper_lastdmg = time;
-    }
+    if(!(o.items & IT_UNLIMITED_AMMO))
+        o.ammo_cells -= cvar("g_balance_zapper_primary_ammo");
 
     vector org = gettaginfo(self.owner.exteriorweaponentity, gettagindex(self.owner.exteriorweaponentity, "_"));
 
@@ -209,7 +174,8 @@ void W_Zapper_Beam_Think(void) {
         self.owner.zapper_coolofftime = time;
     }
 
-    self.nextthink = time;
+    self.nextthink = self.zapper_lastdmg + self.zapper_dmgdelay;
+    self.zapper_lastdmg = self.nextthink;
 }
 
 void W_Zapper_Attack1(void) {
@@ -225,7 +191,7 @@ void W_Zapper_Attack1(void) {
 
     e.zapper_tracespeed = cvar("g_balance_zapper_primary_tracespeed");
     e.zapper_range = cvar("g_balance_zapper_primary_range");
-    e.zapper_expire = time + cvar("g_balance_zapper_primary_lifetime");
+    e.zapper_expire = 0;
     e.zapper_dmgdelay = cvar("g_balance_zapper_primary_ticrate");
     e.zapper_lastdmg = time - e.zapper_dmgdelay;
     
@@ -235,6 +201,7 @@ void W_Zapper_Attack1(void) {
 
     o = self;
     self = e;
+    self.zapper_lastdmg = time;
     self.think();
     self = o;
     
@@ -353,17 +320,19 @@ float w_zapper(float req) {
                 if(self.zapper_heat >= 1) {
                     W_SwitchWeapon_OutOfAmmo(self);
                 } else {
-                    if(self.zapper_beam)
-                        self.zapper_beam.zapper_expire = time + cvar("g_balance_zapper_primary_lifetime");
-                    else if(weapon_prepareattack(0, cvar("g_balance_zapper_primary_refire")))   
+                    if (!self.zapper_beam && weapon_prepareattack(0, cvar("g_balance_zapper_primary_refire")))   
                         W_Zapper_Attack1();
                     weapon_thinkf(WFRAME_FIRE1, cvar("g_balance_zapper_animtime"), w_ready);
                 }
             }
-        } else if(self.BUTTON_ATCK2) {
-            if(weapon_prepareattack(0, cvar("g_balance_zapper_secondary_refire"))) {
-                W_Zapper_Attack2();
-                weapon_thinkf(WFRAME_FIRE1, cvar("g_balance_zapper_animtime"), w_ready);
+        } else {
+            if not(self.zapper_beam.zapper_expire)
+                self.zapper_beam.zapper_expire = 1;
+            if(self.BUTTON_ATCK2) {
+                if(weapon_prepareattack(0, cvar("g_balance_zapper_secondary_refire"))) {
+                    W_Zapper_Attack2();
+                    weapon_thinkf(WFRAME_FIRE1, cvar("g_balance_zapper_animtime"), w_ready);
+                }
             }
         }
     } else if(req == WR_PRECACHE) {
