@@ -323,6 +323,10 @@ void trace_end_for(entity o) {
 }
 
 void traceline_skipnonsolid(vector start, vector end, float t, entity forent) {
+    if (!cvar("sv_skip_nonsolid_surfaces")) {
+        traceline(start, end, t, forent);
+        return;
+    }
     float prev_trace_fract = 0;
     float tries;
     for (tries = 10; tries > 0; tries--) {
@@ -342,6 +346,10 @@ void traceline_skipnonsolid(vector start, vector end, float t, entity forent) {
 }
 
 void tracebox_skipnonsolid(vector start, vector mi, vector ma, vector end, float nomonst, entity forent) {
+    if (!cvar("sv_skip_nonsolid_surfaces")) {
+        tracebox(start, mi, ma, end, nomonst, forent);
+        return;
+    }
     float prev_trace_fract = 0;
     float tries;
     for (tries = 10; tries > 0; tries--) {
@@ -361,6 +369,18 @@ void tracebox_skipnonsolid(vector start, vector mi, vector ma, vector end, float
 }
 
 void tracetoss_skipnonsolid(entity ent, entity ignore, float toss_frametime, float toss_count) {
+    if (!cvar("sv_skip_nonsolid_surfaces")) {
+        vector v0;
+        float g0;
+        v0 = ent.velocity;
+        g0 = ent.gravity;
+        ent.velocity = ent.velocity * toss_frametime * 20;
+        ent.gravity *= (toss_frametime * toss_frametime * 400);
+        tracetoss(ent, ignore);
+        ent.velocity= v0;
+        ent.gravity = g0;
+        return;
+    }
     //Almost full copy of darkplaces tracetoss but with tracebox_skipnonsolid instead tracebox.
     float i;
     vector velocity_save = ent.velocity;

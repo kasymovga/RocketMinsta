@@ -2247,7 +2247,7 @@ float projectile_skipnonsolid()
 	}
 	return FALSE;
 }
-#define PROJECTILE_SKIPNONSOLID if (projectile_skipnonsolid()) { return; }
+#define PROJECTILE_SKIPNONSOLID if (cvar("sv_skip_nonsolid_surfaces") && projectile_skipnonsolid()) { return; }
 
 float MAX_IPBAN_URIS = 16;
 
