@@ -188,7 +188,7 @@ void setanim(entity e, vector anim, float looping, float override, float restart
 
 .float	damageforcescale;
 
-//.float          gravity;
+.float          gravity;
 
 .float		dmg;
 

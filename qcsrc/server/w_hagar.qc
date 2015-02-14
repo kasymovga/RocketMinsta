@@ -17,12 +17,14 @@ void W_Hagar_Explode2 (void)
 
 void W_Hagar_Touch (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	PROJECTILE_TOUCH;
 	self.use ();
 }
 
 void W_Hagar_Touch2 (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	PROJECTILE_TOUCH;
 
 	if(self.cnt > 0 || other.takedamage == DAMAGE_AIM) {

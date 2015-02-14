@@ -22,7 +22,7 @@ float sv_warsowbunny_backtosideratio;
 
 .float ladder_time;
 .entity ladder_entity;
-.float gravity;
+//.float gravity;
 .float swamp_slowdown;
 .float lastflags;
 .float lastground;

@@ -2,6 +2,7 @@ void(float imp) W_SwitchWeapon;
 
 void W_Laser_Touch (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	PROJECTILE_TOUCH;
 
 	self.event_damage = SUB_Null;

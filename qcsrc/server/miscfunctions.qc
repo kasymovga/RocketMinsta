@@ -2237,6 +2237,17 @@ float SUB_NoImpactCheck()
 #define PROJECTILE_TOUCH do { if(SUB_OwnerCheck()) return; if(SUB_NoImpactCheck()) { remove(self); return; } if(trace_ent && trace_ent.solid > SOLID_TRIGGER) UpdateCSQCProjectileNextFrame(self); } while(0)
 #define PROJECTILE_FIX(p) if(cvar("sv_gameplayfix_zerohitcontents")) { setsize(p, '0 0 0', '0 0 1'); }
 #define PROJECTILE_FIX2(p) if(cvar("sv_gameplayfix_zerohitcontents")) { setsize(p, '0 0 0', '0 0 1'); (p).dphitcontentsmask &~= DPCONTENTS_CORPSE; }
+float projectile_skipnonsolid()
+{
+	if(!other && (trace_dphitq3surfaceflags & Q3SURFACEFLAG_NONSOLID)) {
+		// We need a small step to avoid sticking to surface.
+		setorigin(self, self.origin + (normalize(self.velocity) * 0.01));
+		UpdateCSQCProjectile(self);
+		return TRUE;
+	}
+	return FALSE;
+}
+#define PROJECTILE_SKIPNONSOLID if (cvar("sv_skip_nonsolid_surfaces") && projectile_skipnonsolid()) { return; }
 
 float MAX_IPBAN_URIS = 16;
 

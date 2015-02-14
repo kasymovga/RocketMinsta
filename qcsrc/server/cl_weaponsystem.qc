@@ -173,7 +173,7 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 		traceline_antilag(world, ent.origin + ent.view_ofs, ent.origin + ent.view_ofs + s_forward * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent);
 		// passing world, because we do NOT want it to touch dphitcontentsmask
 	else
-		traceline(ent.origin + ent.view_ofs, ent.origin + ent.view_ofs + s_forward * MAX_SHOT_DISTANCE, MOVE_NOMONSTERS, ent);
+		traceline_skipnonsolid(ent.origin + ent.view_ofs, ent.origin + ent.view_ofs + s_forward * MAX_SHOT_DISTANCE, MOVE_NOMONSTERS, ent);
 	ent.dphitcontentsmask = DPCONTENTS_SOLID | DPCONTENTS_BODY | DPCONTENTS_CORPSE;
 	trueaimpoint = trace_endpos;
 
@@ -278,7 +278,7 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 	{
 		if (cvar("g_antilag") == 1) // switch to "ghost" if not hitting original
 		{
-			traceline(w_shotorg, w_shotorg + w_shotdir * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent);
+			traceline_skipnonsolid(w_shotorg, w_shotorg + w_shotdir * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent);
 			if (!trace_ent.takedamage)
 			{
 				traceline_antilag_force (ent, w_shotorg, w_shotorg + w_shotdir * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent, ANTILAG_LATENCY(ent));
@@ -286,7 +286,7 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 				{
 					entity e;
 					e = trace_ent;
-					traceline(w_shotorg, e.origin, MOVE_NORMAL, ent);
+					traceline_skipnonsolid(w_shotorg, e.origin, MOVE_NORMAL, ent);
 					if(trace_ent == e)
 						w_shotdir = normalize(trace_ent.origin - w_shotorg);
 				}
@@ -301,11 +301,11 @@ void W_SetupShot_Dir_ProjectileSize(entity ent, vector s_forward, vector mi, vec
 			{
 				// verify that the shot would miss without antilag
 				// (avoids an issue where guns would always shoot at their origin)
-				traceline(w_shotorg, w_shotorg + w_shotdir * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent);
+				traceline_skipnonsolid(w_shotorg, w_shotorg + w_shotdir * MAX_SHOT_DISTANCE, MOVE_NORMAL, ent);
 				if (!trace_ent.takedamage)
 				{
 					// verify that the shot would hit if altered
-					traceline(w_shotorg, ent.cursor_trace_ent.origin, MOVE_NORMAL, ent);
+					traceline_skipnonsolid(w_shotorg, ent.cursor_trace_ent.origin, MOVE_NORMAL, ent);
 					if (trace_ent == ent.cursor_trace_ent)
 						w_shotdir = normalize(ent.cursor_trace_ent.origin - w_shotorg);
 					else

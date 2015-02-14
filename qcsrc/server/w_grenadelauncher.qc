@@ -31,12 +31,14 @@ void W_Grenade_Explode2 (void)
 
 void W_Grenade_Touch1 (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	PROJECTILE_TOUCH;
 	W_Grenade_Explode ();
 }
 
 void W_Grenade_Touch2 (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	PROJECTILE_TOUCH;
 	if (other.takedamage == DAMAGE_AIM)
 	{

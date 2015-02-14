@@ -267,6 +267,7 @@ void W_Rocket_Think (void)
 
 void W_Rocket_Touch (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	W_Rocket_Unregister();
 
 	PROJECTILE_TOUCH;

@@ -245,6 +245,7 @@ float W_Crylink_Touch_WouldHitFriendly(entity projectile, float rad)
 // NO bounce protection, as bounces are limited!
 void W_Crylink_Touch(void)
 {
+    PROJECTILE_SKIPNONSOLID
     float finalhit;
     float f;
     float isprimary = !(self.projectiledeathtype & HITTYPE_SECONDARY);

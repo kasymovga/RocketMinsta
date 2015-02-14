@@ -36,7 +36,7 @@ void W_Porto_Fail (float failhard)
 		{
 			self.flags = FL_ITEM;
 			self.velocity = trigger_push_calculatevelocity(self.origin, self.owner, 128);
-			tracetoss(self, self);
+			tracetoss_skipnonsolid(self, self, 0.05, 200);
 			if(vlen(trace_endpos - self.owner.origin) < 128)
 			{
 				W_ThrowNewWeapon(self.owner, WEP_PORTO, 0, self.origin, self.velocity);
@@ -70,6 +70,7 @@ void W_Porto_Think (void)
 
 void W_Porto_Touch (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	vector norm;
 
 	// do not use PROJECTILE_TOUCH here

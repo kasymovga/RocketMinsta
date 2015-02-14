@@ -357,6 +357,7 @@ float W_BallisticBullet_LeaveSolid(entity e, vector vel, float constant)
 
 void W_BallisticBullet_Touch (void)
 {
+	PROJECTILE_SKIPNONSOLID
 	if(self.think == W_BallisticBullet_LeaveSolid_think) // skip this!
 		return;
     
@@ -491,19 +492,7 @@ void fireBallisticBullet(vector start, vector dir, float spread, float pSpeed, f
         
 		for(;;)
 		{
-			// DP tracetoss is stupid and always traces in 0.05s
-			// ticks. This makes it trace in 0.05*0.125s ticks
-			// instead.
-			vector v0;
-			float g0;
-			v0 = self.velocity;
-			g0 = self.gravity;
-			self.velocity = self.velocity * 0.125;
-			self.gravity *= 0.125 * 0.125;
-			trace_fraction = 0;
-			tracetoss(self, oldself);
-			self.velocity = v0;
-			self.gravity = g0;
+			tracetoss_skipnonsolid(self, oldself, 0.05 * 0.125, 200);
 
 			if(vlen(trace_endpos - self.origin) > 16)
 				zcurveparticles_from_tracetoss(eff, self.origin, trace_endpos, self.velocity);
