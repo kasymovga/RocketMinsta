@@ -305,23 +305,6 @@ void main (void)
 
 .entity trace_savedowner;
 
-void trace_start_for(entity o) {
-    if(!cvar("sv_gameplayfix_shootownentities"))
-        return;
-
-    entity e; for(;(e = findentity(e, owner, o));) {
-        e.trace_savedowner = o;
-        e.owner = world;
-    }
-}
-
-void trace_end_for(entity o) {
-    entity e; for(;(e = findentity(e, trace_savedowner, o));) {
-        e.trace_savedowner = world;
-        e.owner = o;
-    }
-}
-
 void traceline_skipnonsolid(vector start, vector end, float t, entity forent) {
     if (!cvar("sv_gameplayfix_zerohitcontents")) {
         traceline(start, end, t, forent);

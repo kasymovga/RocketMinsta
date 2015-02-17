@@ -107,9 +107,9 @@ void FireRailgunBullet(vector start, vector end, float bdamage, float bforce, fl
 
     pts = Buffs_MEODP_Hitscan_Begin(self);
     
-    trace_start_for(self);
-    hitents = tracerail_antilag(self, start, end, FALSE, self);
-    trace_end_for(self);
+    entity temp = spawn();
+    hitents = tracerail_antilag(self, start, end, FALSE, temp);
+    remove(temp);
 
     endpoint = trace_endpos;
     endent = trace_ent;
@@ -539,31 +539,6 @@ void fireBallisticBullet(vector start, vector dir, float spread, float pSpeed, f
 		CSQCProjectile(proj, TRUE, PROJECTILE_BULLET_GLOWING, TRUE);
 	else
 		CSQCProjectile(proj, TRUE, PROJECTILE_BULLET, TRUE);
-}
-
-
-void fireBullet(vector start, vector dir, float spread, float damage, float force, float dtype, float tracer) {
-	vector  end;
-	//local entity e;
-
-	dir = normalize(dir + randomvec() * spread);
-	end = start + dir * MAX_SHOT_DISTANCE;
-
-    trace_start_for(self);
-	traceline_antilag(self, start, end, FALSE, self);
-    trace_end_for(self);
-
-    end = trace_endpos;
-
-	if ((trace_fraction != 1.0) && (pointcontents (trace_endpos) != CONTENT_SKY))
-	{
-		pointparticles(particleeffectnum("TE_KNIGHTSPIKE"),end,trace_plane_normal * 2500,1);
-		if (trace_ent.solid == SOLID_BSP && !(trace_dphitq3surfaceflags & Q3SURFACEFLAG_NOIMPACT))
-			Damage_DamageInfo(trace_endpos, damage, 0, 0, dir * max(1, force), dtype, self);
-		Damage (trace_ent, self, self, damage, dtype, trace_endpos, dir * force);
-		//void(float effectnum, vector org, vector vel, float howmany) pointparticles = #337; // same as in CSQC
-	}
-	trace_endpos = end;
 }
 
 
