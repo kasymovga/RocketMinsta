@@ -107,23 +107,24 @@ void W_Flak_Attack1(void) {
     if not(self.items & IT_UNLIMITED_WEAPON_AMMO)
         self.ammo_shells -= cvar("g_balance_flak_primary_ammo");
 
-    W_SetupShot_ProjectileSize(self, '0 0 -3', '0 0 -3', FALSE, 4, "weapons/flak_fire.wav", cvar("g_balance_flak_primary_damage") * pcount);
+    float damage = cvar("g_balance_flak_primary_damage");
+    W_SetupShot_ProjectileSize(self, '0 0 -3', '0 0 -3', FALSE, 4, "weapons/flak_fire.wav", damage * pcount);
     w_shotdir = v_forward;
+
+    float mygravity = cvar("g_balance_flak_primary_gravity");
+    float lifetime = cvar("g_balance_flak_primary_lifetime");
+    float myspeed = cvar("g_balance_flak_primary_speed");
+    float speed_up = cvar("g_balance_flak_primary_speed_up");
+    float mybouncefactor = cvar("g_balance_flak_primary_bouncefactor");
+    float spread_up = cvar("g_balance_flak_primary_spread_up");
+    float spread_side = cvar("g_balance_flak_primary_spread_side");
 
     for(i = 0; i < pcount; ++i) {
         vector a = vectoangles(w_shotdir);
 
-        fixedmakevectors(a + '1 0 0' *  random() * cvar("g_balance_flak_primary_spread_up")
-                           + '0 1 0' * crandom() * cvar("g_balance_flak_primary_spread_side"));
+        fixedmakevectors(a + '1 0 0' *  random() * spread_up + '0 1 0' * crandom() * spread_side);
 
-        W_Flak_Projectile(self,
-                          cvar("g_balance_flak_primary_damage"),
-                          cvar("g_balance_flak_primary_gravity"),
-                          cvar("g_balance_flak_primary_lifetime"),
-                          cvar("g_balance_flak_primary_speed"),
-                          cvar("g_balance_flak_primary_speed_up"),
-                          cvar("g_balance_flak_primary_bouncefactor"),
-                          WEP_FLAK);
+        W_Flak_Projectile(self, damage, mygravity, lifetime, myspeed, speed_up, mybouncefactor, WEP_FLAK);
     }
 
     entity flash = spawn();
@@ -140,22 +141,24 @@ void W_Flak_Attack2(void) {
     if not(self.items & IT_UNLIMITED_WEAPON_AMMO)
         self.ammo_shells -= cvar("g_balance_flak_secondary_ammo");
 
-    W_SetupShot_ProjectileSize(self, '0 0 -3', '0 0 -3', FALSE, 4, "weapons/flak_fire2.wav", cvar("g_balance_flak_secondary_damage") * pcount);
+    float damage = cvar("g_balance_flak_secondary_damage");
+    W_SetupShot_ProjectileSize(self, '0 0 -3', '0 0 -3', FALSE, 4, "weapons/flak_fire2.wav", damage * pcount);
     w_shotdir = v_forward;
+
+    float mygravity = cvar("g_balance_flak_secondary_gravity");
+    float lifetime = cvar("g_balance_flak_secondary_lifetime");
+    float myspeed = cvar("g_balance_flak_secondary_speed");
+    float speed_up = cvar("g_balance_flak_secondary_speed_up");
+    float mybouncefactor = cvar("g_balance_flak_secondary_bouncefactor");
+    float spread_up = cvar("g_balance_flak_secondary_spread_up");
+    float spread_side = cvar("g_balance_flak_secondary_spread_side");
 
     for(i = 0; i < pcount; ++i) {
         vector a = vectoangles(w_shotdir);
 
-        fixedmakevectors(a + '1 0 0' *  random() * cvar("g_balance_flak_secondary_spread_up")
-                           + '0 1 0' * crandom() * cvar("g_balance_flak_secondary_spread_side"));
+        fixedmakevectors(a + '1 0 0' *  random() * spread_up + '0 1 0' * crandom() * spread_side);
 
-        W_Flak_Projectile(self,
-                          cvar("g_balance_flak_secondary_damage"),
-                          cvar("g_balance_flak_secondary_gravity"),
-                          cvar("g_balance_flak_secondary_lifetime"),
-                          cvar("g_balance_flak_secondary_speed"),
-                          cvar("g_balance_flak_secondary_speed_up"),
-                          cvar("g_balance_flak_secondary_bouncefactor"),
+        W_Flak_Projectile(self, damage, mygravity, lifetime, myspeed, speed_up, mybouncefactor,
                           WEP_FLAK | HITTYPE_SECONDARY | HITTYPE_BOUNCE);
     }
 
@@ -194,19 +197,20 @@ void W_Flak_Bomb_Explode(void) {
         spread_up = cvar("g_balance_flak_secondary_spread_up");
     }
 
+    float damage = cvar("g_balance_flak_secondary_damage");
+    float mygravity = cvar("g_balance_flak_secondary_gravity");
+    float lifetime = cvar("g_balance_flak_secondary_lifetime");
+    float myspeed = cvar("g_balance_flak_secondary_speed");
+    float speed_up = cvar("g_balance_flak_secondary_speed_up");
+    float mybouncefactor = cvar("g_balance_flak_secondary_bouncefactor");
+
     for(i = 0; i < c; ++i) {
         vector a = vectoangles(dir);
 
         fixedmakevectors(a + '1 0 0' * crandom() * spread_up
                            + '0 1 0' * crandom() * spread_side);
 
-        entity p = W_Flak_Projectile(self.owner,
-                          cvar("g_balance_flak_secondary_damage"),
-                          cvar("g_balance_flak_secondary_gravity"),
-                          cvar("g_balance_flak_secondary_lifetime"),
-                          cvar("g_balance_flak_secondary_speed"),
-                          cvar("g_balance_flak_secondary_speed_up"),
-                          cvar("g_balance_flak_secondary_bouncefactor"),
+        entity p = W_Flak_Projectile(self.owner, damage, mygravity, lifetime, myspeed, speed_up, mybouncefactor,
                           WEP_FLAK | HITTYPE_SECONDARY | HITTYPE_BOUNCE);
 
         // do not hit the direct hit entity with shrapnel right away (causes very inconsistent behavior)
