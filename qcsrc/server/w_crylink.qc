@@ -70,7 +70,7 @@ void W_Crylink_Reset(void)
 }
 
 // force projectile to explode
-void W_Crylink_LinkExplode(entity e, entity e2, float move_correction)
+void W_Crylink_LinkExplode(entity e, entity e2, float move_correction, float damage, float edgedamage, float myradius, float force)
 {
     float a;
 
@@ -87,12 +87,12 @@ void W_Crylink_LinkExplode(entity e, entity e2, float move_correction)
         
     float isprimary = !(e.projectiledeathtype & HITTYPE_SECONDARY);
         
-    RadiusDamage(e, e.realowner, WEP_CVAR_BOTH(crylink, isprimary, damage) * a, WEP_CVAR_BOTH(crylink, isprimary, edgedamage) * a, WEP_CVAR_BOTH(crylink, isprimary, radius), world, WEP_CVAR_BOTH(crylink, isprimary, force) * a, e.projectiledeathtype, other);
+    RadiusDamage(e, e.realowner, damage * a, edgedamage * a, myradius, world, force * a, e.projectiledeathtype, other);
 
     if (e.crylink_lastgroup == e) // This is last one. The next one and all following allready was moved by engine. Move them backward.
         move_correction = move_correction - 1;
 
-    W_Crylink_LinkExplode(e.queuenext, e2, move_correction);
+    W_Crylink_LinkExplode(e.queuenext, e2, move_correction, damage, edgedamage, myradius, force);
 
     e.classname = "spike_oktoremove";
     remove(e);
@@ -283,13 +283,18 @@ void W_Crylink_Touch(void)
     if(a)
         f *= a;
 
-    float totaldamage = RadiusDamage(self, self.realowner, WEP_CVAR_BOTH(crylink, isprimary, damage) * f, WEP_CVAR_BOTH(crylink, isprimary, edgedamage) * f, WEP_CVAR_BOTH(crylink, isprimary, radius), world, WEP_CVAR_BOTH(crylink, isprimary, force) * f, self.projectiledeathtype, other);
+    float damage = WEP_CVAR_BOTH(crylink, isprimary, damage);
+    float edgedamage = WEP_CVAR_BOTH(crylink, isprimary, edgedamage);
+    float myradius = WEP_CVAR_BOTH(crylink, isprimary, radius);
+    float force = WEP_CVAR_BOTH(crylink, isprimary, force);
+    float totaldamage = RadiusDamage(self, self.realowner, damage * f, edgedamage * f, myradius, world, force * f, self.projectiledeathtype, other);
         
-    if(totaldamage && ((WEP_CVAR_BOTH(crylink, isprimary, linkexplode) == 2) || ((WEP_CVAR_BOTH(crylink, isprimary, linkexplode) == 1) && !W_Crylink_Touch_WouldHitFriendly(self, WEP_CVAR_BOTH(crylink, isprimary, radius)))))
+    float linkexplode = WEP_CVAR_BOTH(crylink, isprimary, linkexplode);
+    if(totaldamage && ((linkexplode == 2) || ((linkexplode == 1) && !W_Crylink_Touch_WouldHitFriendly(self, myradius))))
     {
         if(self == self.realowner.crylink_lastgroup)
             self.realowner.crylink_lastgroup = world;
-        W_Crylink_LinkExplode(self.queuenext, self, move_correction);
+        W_Crylink_LinkExplode(self.queuenext, self, move_correction, damage, edgedamage, myradius, force);
         self.classname = "spike_oktoremove";
         remove(self);
         return;
@@ -338,8 +343,11 @@ void W_Crylink_Attack(void)
     if(!(self.items & IT_UNLIMITED_AMMO))
         self.ammo_cells -= WEP_CVAR_PRI(crylink, ammo);
 
-    maxdmg = WEP_CVAR_PRI(crylink, damage) * WEP_CVAR_PRI(crylink, shots);
-    maxdmg *= 1 + WEP_CVAR_PRI(crylink, bouncedamagefactor) * WEP_CVAR_PRI(crylink, bounces);
+    float damage = WEP_CVAR_PRI(crylink, damage);
+    float bounces = WEP_CVAR_PRI(crylink, bounces);
+    shots = WEP_CVAR_PRI(crylink, shots);
+    maxdmg = damage * shots;
+    maxdmg *= 1 + WEP_CVAR_PRI(crylink, bouncedamagefactor) * bounces;
     if(WEP_CVAR_PRI(crylink, joinexplode))
         maxdmg += WEP_CVAR_PRI(crylink, joinexplode_damage);
 
@@ -348,9 +356,15 @@ void W_Crylink_Attack(void)
     right = v_right;
     up = v_up;
 
-    shots = WEP_CVAR_PRI(crylink, shots);
     pointparticles(particleeffectnum("crylink_muzzleflash"), w_shotorg, w_shotdir * 1000, shots);
     proj = prevproj = firstproj = world;
+    float spread = WEP_CVAR_PRI(crylink, spread);
+    float middle_lifetime = WEP_CVAR_PRI(crylink, middle_lifetime);
+    float middle_fadetime = WEP_CVAR_PRI(crylink, middle_fadetime);
+    float other_lifetime = WEP_CVAR_PRI(crylink, other_lifetime);
+    float other_fadetime = WEP_CVAR_PRI(crylink, other_fadetime);
+    float myspeed = WEP_CVAR_PRI(crylink, speed);
+    float joindelay = WEP_CVAR_PRI(crylink, joindelay);
     for(counter = 0; counter < shots; ++counter)
     {
         proj = spawn();
@@ -358,7 +372,7 @@ void W_Crylink_Attack(void)
         proj.realowner = proj.owner = self;
         proj.classname = "spike";
         proj.bot_dodge = TRUE;
-        proj.bot_dodgerating = WEP_CVAR_PRI(crylink, damage);
+        proj.bot_dodgerating = damage;
         if(shots == 1) {
             proj.queuenext = proj;
             proj.queueprev = proj;
@@ -397,25 +411,25 @@ void W_Crylink_Attack(void)
             s_y = v_forward_x;
             s_z = v_forward_y;
         }
-        s = s * WEP_CVAR_PRI(crylink, spread);
-        W_Crylink_SetupProjVelocity(proj, w_shotdir + right * s_y + up * s_z, v_up, WEP_CVAR_PRI(crylink, speed), 0, 0);
+        s = s * spread;
+        W_Crylink_SetupProjVelocity(proj, w_shotdir + right * s_y + up * s_z, v_up, myspeed, 0, 0);
         proj.touch = W_Crylink_Touch;
 
         proj.think = W_Crylink_Fadethink;
         if(counter == 0)
         {
-            proj.fade_time = time + WEP_CVAR_PRI(crylink, middle_lifetime);
-            proj.fade_rate = 1 / WEP_CVAR_PRI(crylink, middle_fadetime);
-            proj.nextthink = time + WEP_CVAR_PRI(crylink, middle_lifetime) + WEP_CVAR_PRI(crylink, middle_fadetime);
+            proj.fade_time = time + middle_lifetime;
+            proj.fade_rate = 1 / middle_fadetime;
+            proj.nextthink = time + middle_lifetime + middle_fadetime;
         }
         else
         {
-            proj.fade_time = time + WEP_CVAR_PRI(crylink, other_lifetime);
-            proj.fade_rate = 1 / WEP_CVAR_PRI(crylink, other_fadetime);
-            proj.nextthink = time + WEP_CVAR_PRI(crylink, other_lifetime) + WEP_CVAR_PRI(crylink, other_fadetime);
+            proj.fade_time = time + other_lifetime;
+            proj.fade_rate = 1 / other_fadetime;
+            proj.nextthink = time + other_lifetime + other_fadetime;
         }
-        proj.teleport_time = time + WEP_CVAR_PRI(crylink, joindelay);
-        proj.cnt = WEP_CVAR_PRI(crylink, bounces);
+        proj.teleport_time = time + joindelay;
+        proj.cnt = bounces;
         //proj.scale = 1 + 1 * proj.cnt;
 
         proj.angles = vectoangles(proj.velocity);
@@ -448,8 +462,11 @@ void W_Crylink_Attack2(void)
     if(!(self.items & IT_UNLIMITED_AMMO))
         self.ammo_cells -= WEP_CVAR_SEC(crylink, ammo);
 
-    maxdmg = WEP_CVAR_SEC(crylink, damage) * WEP_CVAR_SEC(crylink, shots);
-    maxdmg *= 1 + WEP_CVAR_SEC(crylink, bouncedamagefactor) * WEP_CVAR_SEC(crylink, bounces);
+    float damage = WEP_CVAR_SEC(crylink, damage);
+    float bounces = WEP_CVAR_SEC(crylink, bounces);
+    shots = WEP_CVAR_SEC(crylink, shots);
+    maxdmg = damage * shots;
+    maxdmg *= 1 + WEP_CVAR_SEC(crylink, bouncedamagefactor) * bounces;
     if(WEP_CVAR_SEC(crylink, joinexplode))
         maxdmg += WEP_CVAR_SEC(crylink, joinexplode_damage);
 
@@ -458,9 +475,16 @@ void W_Crylink_Attack2(void)
     right = v_right;
     up = v_up;
 
-    shots = WEP_CVAR_SEC(crylink, shots);
     pointparticles(particleeffectnum("crylink_muzzleflash"), w_shotorg, w_shotdir * 1000, shots);
     proj = prevproj = firstproj = world;
+    float spreadtype = WEP_CVAR_SEC(crylink, spreadtype);
+    float spread = WEP_CVAR_SEC(crylink, spread);
+    float middle_lifetime = WEP_CVAR_SEC(crylink, middle_lifetime);
+    float middle_fadetime = WEP_CVAR_SEC(crylink, middle_fadetime);
+    float other_lifetime = WEP_CVAR_SEC(crylink, other_lifetime);
+    float other_fadetime = WEP_CVAR_SEC(crylink, other_fadetime);
+    float myspeed = WEP_CVAR_SEC(crylink, speed);
+    float joindelay = WEP_CVAR_SEC(crylink, joindelay);
     for(counter = 0; counter < shots; ++counter)
     {
         proj = spawn();
@@ -468,7 +492,7 @@ void W_Crylink_Attack2(void)
         proj.realowner = proj.owner = self;
         proj.classname = "spike";
         proj.bot_dodge = TRUE;
-        proj.bot_dodgerating = WEP_CVAR_SEC(crylink, damage);
+        proj.bot_dodgerating = damage;
         if(shots == 1) {
             proj.queuenext = proj;
             proj.queueprev = proj;
@@ -497,7 +521,7 @@ void W_Crylink_Attack2(void)
         setorigin(proj, w_shotorg);
         setsize(proj, '0 0 0', '0 0 0');
 
-        if(WEP_CVAR_SEC(crylink, spreadtype) == 1)
+        if(spreadtype == 1)
         {
             s = '0 0 0';
             if(counter == 0)
@@ -508,31 +532,31 @@ void W_Crylink_Attack2(void)
                 s_y = v_forward_x;
                 s_z = v_forward_y;
             }
-            s = s * WEP_CVAR_SEC(crylink, spread);
+            s = s * spread;
             s = w_shotdir + right * s_y + up * s_z;
         }
         else
         {
-            s = (w_shotdir + (((counter + 0.5) / shots) * 2 - 1) * v_right * WEP_CVAR_SEC(crylink, spread));
+            s = (w_shotdir + (((counter + 0.5) / shots) * 2 - 1) * v_right * spread);
         }
 
-        W_Crylink_SetupProjVelocity(proj, s, v_up, WEP_CVAR_SEC(crylink, speed), 0, 0);
+        W_Crylink_SetupProjVelocity(proj, s, v_up, myspeed, 0, 0);
         proj.touch = W_Crylink_Touch;
         proj.think = W_Crylink_Fadethink;
         if(counter == (shots - 1) / 2)
         {
-            proj.fade_time = time + WEP_CVAR_SEC(crylink, middle_lifetime);
-            proj.fade_rate = 1 / WEP_CVAR_SEC(crylink, middle_fadetime);
-            proj.nextthink = time + WEP_CVAR_SEC(crylink, middle_lifetime) + WEP_CVAR_SEC(crylink, middle_fadetime);
+            proj.fade_time = time + middle_lifetime;
+            proj.fade_rate = 1 / middle_fadetime;
+            proj.nextthink = time + middle_lifetime + middle_fadetime;
         }
         else
         {
-            proj.fade_time = time + WEP_CVAR_SEC(crylink, other_lifetime);
-            proj.fade_rate = 1 / WEP_CVAR_SEC(crylink, other_fadetime);
-            proj.nextthink = time + WEP_CVAR_SEC(crylink, other_lifetime) + WEP_CVAR_SEC(crylink, other_fadetime);
+            proj.fade_time = time + other_lifetime;
+            proj.fade_rate = 1 / other_fadetime;
+            proj.nextthink = time + other_lifetime + other_fadetime;
         }
-        proj.teleport_time = time + WEP_CVAR_SEC(crylink, joindelay);
-        proj.cnt = WEP_CVAR_SEC(crylink, bounces);
+        proj.teleport_time = time + joindelay;
+        proj.cnt = bounces;
         //proj.scale = 1 + 1 * proj.cnt;
 
         proj.angles = vectoangles(proj.velocity);
