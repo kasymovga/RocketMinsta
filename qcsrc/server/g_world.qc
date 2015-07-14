@@ -870,8 +870,12 @@ void spawnfunc_worldspawn (void)
 	localcmd("\n_sv_hook_gamestart ", gametype_ID_to_Name(game), ";");
     localcmd("\nsv_hook_rmcustom_gamestart ", gametype_ID_to_Name(game), ";");
 
-	localcmd("exec startup_allmaps.cfg;");
-	localcmd(strcat("exec startup_map_", mapname, ".cfg;"));
+	if (mapname != CVAR(_prevmap)) {
+		cvar_set("_prevmap", mapname);
+		localcmd("exec startup_allmaps.cfg;");
+		localcmd(strcat("exec startup_map_", mapname, ".cfg;"));
+		localcmd("exec startup_allmaps_complete.cfg;");
+	}
 
 	world_initialized = 1;
     
