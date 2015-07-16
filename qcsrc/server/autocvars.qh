@@ -4,6 +4,7 @@ string autocvar__angles;
 float autocvar__campaign_index;
 string autocvar__campaign_name;
 string autocvar__origin;
+string autocvar__prevmap;
 string autocvar__radio_queue;
 float autocvar__radio_queue_left;
 string autocvar__sv_explosive_topic;
