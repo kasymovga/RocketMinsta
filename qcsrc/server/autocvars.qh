@@ -1295,6 +1295,7 @@ float autocvar_g_keyhunt_point_leadlimit;
 float autocvar_g_keyhunt_point_limit;
 float autocvar_g_keyhunt_teams;
 float autocvar_g_keyhunt_teams_override;
+float autocvar_g_keyhunt_warmup;
 float autocvar_g_laserguided_missile;
 float autocvar_g_lms_always_available;
 float autocvar_g_lms_campcheck_damage;
