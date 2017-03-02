@@ -832,6 +832,7 @@ void kh_LoserTeam(float teem, entity lostkey)  // runs when a player pushes a fl
 
 void kh_FinishRound(float tout)  // runs when a team captures the keys
 {
+	G_EndRound(tout, CVAR(g_keyhunt_warmup), func_null, func_null, func_null);
 	// prepare next round
 	kh_interferemsg_time = 0;
 	entity key;
